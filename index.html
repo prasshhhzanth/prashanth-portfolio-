@@ -22,20 +22,6 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* Mouse Only Cursor */
-        @media (pointer: fine) {
-            body { cursor: none; }
-            #cursor {
-                width: 8px; height: 8px; background: black; border-radius: 50%;
-                position: fixed; pointer-events: none; z-index: 10000;
-            }
-            #cursor-follower {
-                width: 40px; height: 40px; border: 1.5px solid rgba(0,0,0,0.1);
-                border-radius: 50%; position: fixed; pointer-events: none; z-index: 9999;
-                transition: transform 0.15s cubic-bezier(0.23, 1, 0.32, 1);
-            }
-        }
-
         .font-space { font-family: 'Space Grotesk', sans-serif; }
 
         /* HEADER IDENTITY */
@@ -57,20 +43,20 @@
 
         /* HERO NAME & BEHIND-CARD LAYOUT */
         .name-display {
-            font-size: clamp(2.4rem, 8.5vw, 11rem); /* Decreased font size for better fit */
-            line-height: 0.82;
+            font-size: clamp(2.4rem, 8.5vw, 11rem);
+            line-height: 0.8;
             font-family: 'Space Grotesk', sans-serif;
             font-weight: 800;
             letter-spacing: -0.06em;
             text-transform: uppercase;
             position: relative;
             z-index: 10;
-            pointer-events: none;
+            pointer-events: none; /* Allows clicks to pass through to buttons behind if they overlap */
         }
 
         /* 3D GLASS TEXT STYLE - GREY */
         .glass-3d-text {
-            color: #9ca3af; /* Grey */
+            color: #9ca3af; 
             backdrop-filter: blur(4px);
             text-shadow: 1px 1px 2px rgba(0,0,0,0.05), -1px -1px 0px rgba(255,255,255,0.8);
             display: inline-block;
@@ -78,11 +64,11 @@
 
         .profile-card-wrapper {
             position: absolute;
-            right: 5%;
-            top: 55%;
-            transform: translateY(-50%);
-            width: 32vw;
-            max-width: 400px;
+            right: 8%;
+            top: 50%;
+            transform: translateY(-40%);
+            width: 30vw;
+            max-width: 420px;
             min-width: 260px;
             z-index: 5;
         }
@@ -92,12 +78,14 @@
                 position: relative;
                 right: auto; top: auto;
                 transform: none;
-                margin: -4vh auto 0 auto;
-                width: 90%;
+                margin-top: -6vh;
+                margin-left: auto;
+                margin-right: auto;
+                width: 85%;
             }
-            .name-display { font-size: clamp(2.2rem, 14vw, 7rem); line-height: 0.85; text-align: center; }
-            .hero-container { text-align: center; }
-            .mailbox-wrapper { justify-content: center !important; }
+            .name-display { font-size: clamp(2.2rem, 12vw, 7.5rem); line-height: 0.85; text-align: center; }
+            .hero-content { text-align: center; }
+            .mailbox-center { justify-content: center !important; margin-left: auto; margin-right: auto; }
         }
 
         .profile-card-fintech {
@@ -107,21 +95,21 @@
             position: relative;
             overflow: hidden;
             background: #f7f7f7;
-            box-shadow: 0 40px 90px -15px rgba(0,0,0,0.12);
+            box-shadow: 0 50px 100px -20px rgba(0,0,0,0.15);
             transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .profile-img-bg {
             width: 100%; height: 100%;
             object-fit: cover;
-            filter: contrast(1.05) brightness(0.92);
+            filter: contrast(1.05) brightness(0.9);
         }
 
         /* MAIL BOX ICON CARD */
         .mailbox-card {
             background: rgba(0, 0, 0, 0.02);
             border: 1px solid rgba(0,0,0,0.05);
-            padding: clamp(1rem, 3vw, 1.2rem) clamp(1.2rem, 4vw, 1.8rem);
+            padding: 1.2rem 1.8rem;
             border-radius: 2rem;
             display: inline-flex;
             align-items: center;
@@ -129,6 +117,7 @@
             transition: all 0.3s ease;
             text-decoration: none;
             color: black;
+            z-index: 20;
         }
         .mailbox-card:hover { transform: translateX(10px); background: rgba(0,0,0,0.04); }
         .mailbox-icon-wrapper {
@@ -138,36 +127,34 @@
             display: flex; align-items: center; justify-content: center;
         }
 
-        /* CARD ACTION BAR - FIXED LINKS */
+        /* CARD ACTION BAR - FIXED INTERACTION */
         .card-footer-actions {
             position: absolute;
             bottom: 1.2rem; left: 1.2rem; right: 1.2rem;
             display: flex; gap: 0.5rem;
             padding: 0.6rem;
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.15);
             backdrop-filter: blur(25px);
             -webkit-backdrop-filter: blur(25px);
             border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: 1.8rem;
-            z-index: 100; /* Ensure it stays on top of card background */
-            pointer-events: auto; /* Ensure clicks pass through */
+            z-index: 100;
         }
 
         .btn-card-sm {
-            flex: 1; height: 42px;
+            flex: 1; height: 40px;
             border-radius: 100px;
             display: flex; align-items: center; justify-content: center;
-            gap: 6px; font-size: 0.7rem; font-weight: 700;
+            gap: 6px; font-size: 0.65rem; font-weight: 700;
             text-transform: uppercase; letter-spacing: 0.05em;
             transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
             text-decoration: none !important;
-            cursor: pointer;
         }
 
-        .btn-glass-light { background: rgba(255,255,255,0.15); color: white; border: 1px solid rgba(255,255,255,0.1); }
-        .btn-glass-light:hover { background: rgba(255,255,255,0.3); }
+        .btn-glass-light { background: rgba(255,255,255,0.1); color: white; border: 1px solid rgba(255,255,255,0.1); }
+        .btn-glass-light:hover { background: rgba(255,255,255,0.25); }
         .btn-white-solid { background: white; color: black; }
-        .btn-white-solid:hover { background: #f8f8f8; transform: scale(1.05); }
+        .btn-white-solid:hover { background: #f0f0f0; transform: scale(1.05); }
 
         /* PROJECT CARDS */
         .project-card {
@@ -175,7 +162,7 @@
             width: 92%; max-width: 420px; 
             margin: 0 auto; aspect-ratio: 1 / 1.2;
             display: flex; flex-direction: column; justify-content: space-between;
-            padding: clamp(1.5rem, 5vw, 2.5rem); border-radius: 0.75rem;
+            padding: clamp(1.5rem, 5vw, 2.5rem); border-radius: 0.5rem;
             box-shadow: 15px 15px 45px rgba(0,0,0,0.05);
             transform-origin: center top;
             transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
@@ -190,7 +177,7 @@
         /* CHRONICLE ICONS */
         .aesthetic-icon {
             position: absolute;
-            width: clamp(40px, 7vw, 110px);
+            width: clamp(50px, 8vw, 120px);
             opacity: 0.8;
             pointer-events: none;
             z-index: 1;
@@ -205,7 +192,7 @@
         
         .reveal {
             opacity: 0; transform: translateY(30px);
-            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
         }
         .reveal.active { opacity: 1; transform: translateY(0); }
 
@@ -220,11 +207,8 @@
 </head>
 <body class="noise antialiased bg-white">
 
-    <div id="cursor" class="hidden md:block"></div>
-    <div id="cursor-follower" class="hidden md:block"></div>
-
     <!-- Header -->
-    <header class="py-4 fixed top-0 w-full z-[100] bg-white/90 backdrop-blur-lg border-b border-gray-100">
+    <header class="py-5 fixed top-0 w-full z-[100] bg-white/80 backdrop-blur-md border-b border-gray-50">
         <div class="px-6 md:px-12 mx-auto max-w-[1600px] flex items-center justify-between">
             
             <a href="#" class="header-identity">
@@ -236,7 +220,7 @@
                     <div class="flex items-center justify-center bg-black text-white w-full h-full text-[10px]" style="display:none">GP</div>
                 </div>
                 <div class="flex flex-col">
-                    <span class="text-xs md:text-sm font-space font-extrabold tracking-tighter text-black leading-none mb-0.5">G. PRASHANTH</span>
+                    <span class="text-sm font-space font-extrabold tracking-tighter text-black leading-none mb-0.5">G. PRASHANTH</span>
                     <span class="text-[8px] uppercase tracking-widest text-gray-400 font-bold leading-none">Engineering '28</span>
                 </div>
             </a>
@@ -244,7 +228,7 @@
             <nav class="flex items-center space-x-4 md:space-x-8">
                 <a href="#projects" class="text-black text-[10px] uppercase font-bold tracking-widest hover:opacity-50 hidden md:block">Work</a>
                 <a href="#chronicle" class="text-black text-[10px] uppercase font-bold tracking-widest hover:opacity-50 hidden md:block">Chronicle</a>
-                <a href="mailto:prashanthgarigaboina@gmail.com" class="p-2 border border-black/10 rounded-xl hover:bg-black hover:text-white transition-all">
+                <a href="mailto:prashanthgarigaboina@gmail.com" class="p-2.5 border border-black/10 rounded-xl hover:bg-black hover:text-white transition-all">
                     <i data-lucide="mail" class="w-4 h-4"></i>
                 </a>
             </nav>
@@ -252,8 +236,8 @@
     </header>
 
     <!-- Hero Section -->
-    <section class="min-h-screen flex flex-col justify-center relative pt-28 pb-12 px-6 md:px-12">
-        <div class="container mx-auto max-w-[1500px] relative hero-container">
+    <section class="min-h-screen flex flex-col justify-center relative pt-32 pb-12 px-6 md:px-12">
+        <div class="container mx-auto max-w-[1500px] relative">
             
             <!-- THE PROFILE CARD (BEHIND THE NAME) -->
             <div class="profile-card-wrapper animate-up" style="animation-delay: 0.2s">
@@ -264,22 +248,23 @@
                          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                     <div class="flex items-center justify-center bg-zinc-900 text-white w-full h-full" style="display:none">Profile Image</div>
 
+                    <!-- Interactive Buttons -->
                     <div class="card-footer-actions">
                         <a href="https://linkedin.com/in/prashanthgarigaboina" target="_blank" class="btn-card-sm btn-white-solid">
-                            <i data-lucide="linkedin" class="w-4 h-4"></i>
+                            <i data-lucide="linkedin" class="w-3.5 h-3.5"></i>
                             <span class="hidden sm:inline">Connect</span>
                         </a>
                         <a href="https://github.com/prasshhhzanth" target="_blank" class="btn-card-sm btn-glass-light">
-                            <i data-lucide="github" class="w-4 h-4"></i>
+                            <i data-lucide="github" class="w-3.5 h-3.5"></i>
                         </a>
                     </div>
                 </div>
             </div>
 
             <!-- NAME DISPLAY (OVERLAPPING THE CARD) -->
-            <div class="relative z-10">
-                <div class="mb-4 overflow-hidden hidden lg:block">
-                    <span class="inline-block text-[10px] font-bold tracking-[0.7em] text-gray-300 uppercase animate-up">CRAFTING DIGITAL LOGIC</span>
+            <div class="relative z-10 hero-content">
+                <div class="mb-6 overflow-hidden hidden lg:block">
+                    <span class="inline-block text-[10px] font-bold tracking-[0.7em] text-gray-400 uppercase animate-up">CRAFTING DIGITAL LOGIC</span>
                 </div>
                 
                 <h1 class="name-display tracking-tighter">
@@ -288,17 +273,17 @@
                 </h1>
 
                 <p class="text-base md:text-2xl font-light leading-relaxed text-gray-500 max-w-2xl animate-up mt-8 mb-10 mx-auto lg:ml-0" style="animation-delay: 0.5s">
-                    Engineering student specializing in <span class="text-black font-semibold">Computer Science & Business Systems</span>. Melding industrial logic with high-fidelity digital experiences.
+                    Engineering specializing in <span class="text-black font-semibold">Computer Science & Business Systems</span>. Melding industrial logic with high-fidelity digital experiences.
                 </p>
 
-                <div class="animate-up flex mailbox-wrapper lg:justify-start" style="animation-delay: 0.6s">
+                <div class="animate-up flex mailbox-wrapper mailbox-center lg:justify-start" style="animation-delay: 0.6s">
                     <a href="mailto:prashanthgarigaboina@gmail.com" class="mailbox-card">
                         <div class="mailbox-icon-wrapper">
-                            <i data-lucide="inbox" class="w-5 h-5"></i>
+                            <i data-lucide="inbox" class="w-6 h-6"></i>
                         </div>
                         <div class="flex flex-col text-left">
                             <span class="text-[8px] uppercase font-bold text-gray-400 tracking-widest leading-none mb-1">Mailbox</span>
-                            <span class="text-xs md:text-base font-semibold text-black leading-none">Drop an enquiry</span>
+                            <span class="text-sm md:text-base font-semibold text-black leading-none">Drop an enquiry</span>
                         </div>
                     </a>
                 </div>
@@ -308,58 +293,54 @@
     </section>
 
     <!-- Work Gallery -->
-    <section id="projects" class="bg-gray-50/50 pt-24 md:pt-40 pb-48 px-6">
+    <section id="projects" class="bg-gray-50/50 pt-32 pb-48 px-6">
         <div class="container mx-auto max-w-[1200px]">
             <div class="mb-24 text-center reveal">
                 <h2 class="text-[9px] uppercase tracking-[0.5em] text-gray-300 font-bold mb-4">01 / SELECTED WORKS</h2>
-                <p class="text-3xl md:text-6xl font-space font-bold tracking-tighter">Project <span class="italic font-light text-gray-400">Gallery</span></p>
+                <p class="text-4xl md:text-6xl font-space font-bold tracking-tighter">Project <span class="italic font-light text-gray-400">Gallery</span></p>
             </div>
 
-            <div class="space-y-[8vh] md:space-y-[15vh] pb-[15vh]">
-                <!-- Project 01: Clothing.ai (Yellow) -->
+            <div class="space-y-[10vh] md:space-y-[15vh] pb-[15vh]">
                 <a href="https://github.com/prasshhhzanth" target="_blank" class="project-card note-yellow">
                     <div class="h-1/2 flex items-center justify-center pointer-events-none">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="1.2" class="w-1/2 h-1/2"><path d="M22 2L11 13"/><path d="M22 2L15 22L11 13L2 9L22 2Z"/></svg>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="1.2" class="w-2/3 h-2/3"><path d="M22 2L11 13"/><path d="M22 2L15 22L11 13L2 9L22 2Z"/></svg>
                     </div>
                     <div class="flex flex-col">
-                        <h3 class="text-xl md:text-4xl font-space font-bold mb-2 tracking-tighter">Clothing.ai</h3>
-                        <p class="text-black/60 text-xs md:text-base font-medium leading-tight mb-8">AR fashion assistant generating unique patterns via GenAI and purchase links.</p>
+                        <h3 class="text-2xl md:text-4xl font-space font-bold mb-3 tracking-tighter">Clothing.ai</h3>
+                        <p class="text-black/60 text-sm md:text-base font-medium leading-tight mb-8">AR fashion assistant generating unique patterns via GenAI and purchase links.</p>
                         <div class="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest opacity-80"><span class="border-b-2 border-black pb-1">GitHub Profile</span><i data-lucide="arrow-up-right" class="w-3 h-3"></i></div>
                     </div>
                 </a>
 
-                <!-- Project 02: Dhanvantri AI (Pink) -->
                 <a href="https://github.com/prasshhhzanth" target="_blank" class="project-card note-pink">
                     <div class="h-1/2 flex items-center justify-center pointer-events-none">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="1.2" class="w-1/2 h-1/2"><path d="M4 20H20M4 4V20" stroke-opacity="0.2"/><path d="M7 16C7 16 9 10 12 10C15 10 17 14 20 14" stroke-width="2"/></svg>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="1.2" class="w-2/3 h-2/3"><path d="M4 20H20M4 4V20" stroke-opacity="0.2"/><path d="M7 16C7 16 9 10 12 10C15 10 17 14 20 14" stroke-width="2"/></svg>
                     </div>
                     <div class="flex flex-col">
-                        <h3 class="text-xl md:text-4xl font-space font-bold mb-2 tracking-tighter">Dhanvantri AI</h3>
-                        <p class="text-black/60 text-xs md:text-base font-medium leading-tight mb-8">Medical assistant for symptom prediction using NLP and diagnostic modeling.</p>
+                        <h3 class="text-2xl md:text-4xl font-space font-bold mb-3 tracking-tighter">Dhanvantri AI</h3>
+                        <p class="text-black/60 text-sm md:text-base font-medium leading-tight mb-8">Medical assistant for symptom prediction using NLP and diagnostic modeling.</p>
                         <div class="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest opacity-80"><span class="border-b-2 border-black pb-1">GitHub Profile</span><i data-lucide="arrow-up-right" class="w-3 h-3"></i></div>
                     </div>
                 </a>
 
-                <!-- Project 03: YOCTRON-RMS (Green) -->
                 <a href="https://github.com/prasshhhzanth" target="_blank" class="project-card note-green">
                     <div class="h-1/2 flex items-center justify-center pointer-events-none">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="1.2" class="w-1/2 h-1/2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="1.2" class="w-2/3 h-2/3"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
                     </div>
                     <div class="flex flex-col">
-                        <h3 class="text-xl md:text-4xl font-space font-bold mb-2 tracking-tighter">YOCTRON-RMS</h3>
-                        <p class="text-black/60 text-xs md:text-base font-medium leading-tight mb-8">Real-time restaurant tracking dashboard built with component-based logic.</p>
+                        <h3 class="text-2xl md:text-4xl font-space font-bold mb-3 tracking-tighter">YOCTRON-RMS</h3>
+                        <p class="text-black/60 text-sm md:text-base font-medium leading-tight mb-8">Real-time restaurant tracking dashboard built with component-based logic.</p>
                         <div class="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest opacity-80"><span class="border-b-2 border-black pb-1">GitHub Profile</span><i data-lucide="arrow-up-right" class="w-3 h-3"></i></div>
                     </div>
                 </a>
 
-                <!-- Project 04: Pet Adoption (Blue) -->
                 <a href="https://github.com/prasshhhzanth" target="_blank" class="project-card note-blue">
                     <div class="h-1/2 flex items-center justify-center pointer-events-none">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="1.2" class="w-1/2 h-1/2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="1.2" class="w-2/3 h-2/3"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
                     </div>
                     <div class="flex flex-col">
-                        <h3 class="text-xl md:text-4xl font-space font-bold mb-2 tracking-tighter">Pet Welfare</h3>
-                        <p class="text-black/60 text-xs md:text-base font-medium leading-tight mb-8">Community-driven adoption platform focused on responsive UX and conversion.</p>
+                        <h3 class="text-2xl md:text-4xl font-space font-bold mb-3 tracking-tighter">Pet Welfare</h3>
+                        <p class="text-black/60 text-sm md:text-base font-medium leading-tight mb-8">Community-driven adoption platform focused on responsive UX and conversion.</p>
                         <div class="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest opacity-80"><span class="border-b-2 border-black pb-1">GitHub Profile</span><i data-lucide="arrow-up-right" class="w-3 h-3"></i></div>
                     </div>
                 </a>
@@ -431,38 +412,6 @@
 
         document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-        if (window.matchMedia("(pointer: fine)").matches) {
-            const cursor = document.getElementById('cursor');
-            const follower = document.getElementById('cursor-follower');
-            let mouseX = -100, mouseY = -100, fX = -100, fY = -100;
-
-            document.addEventListener('mousemove', (e) => {
-                mouseX = e.clientX; mouseY = e.clientY;
-                cursor.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0)`;
-            });
-
-            const animateFollower = () => {
-                fX += (mouseX - fX - 20) * 0.12;
-                fY += (mouseY - fY - 20) * 0.12;
-                follower.style.transform = `translate3d(${fX}px, ${fY}px, 0)`;
-                requestAnimationFrame(animateFollower);
-            };
-            animateFollower();
-
-            document.querySelectorAll('a, .project-card').forEach(el => {
-                el.addEventListener('mouseenter', () => { 
-                    follower.style.width = '60px'; 
-                    follower.style.height = '60px'; 
-                    follower.style.backgroundColor = 'rgba(0,0,0,0.02)'; 
-                });
-                el.addEventListener('mouseleave', () => { 
-                    follower.style.width = '40px'; 
-                    follower.style.height = '40px'; 
-                    follower.style.backgroundColor = 'transparent'; 
-                });
-            });
-        }
-
         function stackNotes() {
             const cards = document.querySelectorAll('.project-card');
             const threshold = 0.2;
@@ -482,7 +431,7 @@
             });
         }
 
-        window.addEventListener('scroll', stackNotes);
+        window.addEventListener('scroll', stackNotes, { passive: true });
         stackNotes();
     </script>
 </body>
