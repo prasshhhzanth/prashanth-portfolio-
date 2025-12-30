@@ -44,15 +44,15 @@
 
         /* HERO NAME & BEHIND-CARD LAYOUT */
         .name-display {
-            font-size: clamp(2.3rem, 8.5vw, 10rem);
+            font-size: clamp(2.3rem, 8.2vw, 10.5rem);
             line-height: 0.8;
             font-family: 'Space Grotesk', sans-serif;
             font-weight: 800;
             letter-spacing: -0.06em;
             text-transform: uppercase;
             position: relative;
-            z-index: 10;
-            pointer-events: none; 
+            z-index: 20;
+            pointer-events: none; /* Allows clicks to pass through to the buttons below */
         }
 
         /* 3D GLASS TEXT STYLE - GREY */
@@ -69,9 +69,10 @@
             top: 50%;
             transform: translateY(-40%);
             width: 28vw;
-            max-width: 380px;
-            min-width: 250px;
-            z-index: 5;
+            max-width: 400px;
+            min-width: 260px;
+            z-index: 10;
+            pointer-events: auto; /* Ensures the card container is interactive */
         }
 
         @media (max-width: 1024px) {
@@ -79,22 +80,25 @@
                 position: relative;
                 right: auto; top: auto;
                 transform: none;
-                margin: -4vh auto 0 auto;
+                margin-top: -6vh;
+                margin-left: auto;
+                margin-right: auto;
                 width: 85%;
             }
-            .name-display { font-size: clamp(2.2rem, 12vw, 7.5rem); line-height: 0.85; text-align: center; pointer-events: auto; }
-            .hero-content { text-align: center; }
+            .name-display { font-size: clamp(2.2rem, 12vw, 7.5rem); line-height: 0.85; text-align: center; }
+            .hero-content { text-align: center; pointer-events: none; }
+            .hero-content > * { pointer-events: auto; } /* Re-enable for children */
             .mailbox-center { justify-content: center !important; margin-left: auto; margin-right: auto; }
         }
 
         .profile-card-fintech {
             width: 100%;
             aspect-ratio: 1 / 1.2;
-            border-radius: 2.5rem;
+            border-radius: 3rem;
             position: relative;
             overflow: hidden;
             background: #f7f7f7;
-            box-shadow: 0 50px 100px -20px rgba(0,0,0,0.12);
+            box-shadow: 0 50px 100px -20px rgba(0,0,0,0.15);
             transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
@@ -116,8 +120,8 @@
             transition: all 0.3s ease;
             text-decoration: none;
             color: black;
-            z-index: 20;
-            pointer-events: auto;
+            z-index: 30;
+            position: relative;
         }
         .mailbox-card:hover { transform: translateX(10px); background: rgba(0,0,0,0.04); }
         .mailbox-icon-wrapper {
@@ -127,13 +131,13 @@
             display: flex; align-items: center; justify-content: center;
         }
 
-        /* CARD ACTION BAR - FIXED INTERACTION */
+        /* CARD ACTION BAR - HIGHER Z-INDEX FOR DIRECT INTERACTION */
         .card-footer-actions {
             position: absolute;
             bottom: 1.2rem; left: 1.2rem; right: 1.2rem;
             display: flex; gap: 0.5rem;
             padding: 0.6rem;
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.15);
             backdrop-filter: blur(25px);
             -webkit-backdrop-filter: blur(25px);
             border: 1px solid rgba(255, 255, 255, 0.2);
@@ -151,9 +155,11 @@
             transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
             text-decoration: none !important;
             cursor: pointer;
+            position: relative;
+            z-index: 110;
         }
 
-        .btn-glass-light { background: rgba(255,255,255,0.1); color: white; border: 1px solid rgba(255,255,255,0.1); }
+        .btn-glass-light { background: rgba(255,255,255,0.15); color: white; border: 1px solid rgba(255,255,255,0.1); }
         .btn-glass-light:hover { background: rgba(255,255,255,0.25); }
         .btn-white-solid { background: white; color: black; }
         .btn-white-solid:hover { background: #f0f0f0; transform: scale(1.05); }
@@ -271,11 +277,11 @@
 
                     <!-- Interactive Buttons -->
                     <div class="card-footer-actions">
-                        <a href="https://linkedin.com/in/prashanthgarigaboina" target="_blank" class="btn-card-sm btn-white-solid">
+                        <a href="https://linkedin.com/in/prashanthgarigaboina" target="_blank" rel="noopener noreferrer" class="btn-card-sm btn-white-solid">
                             <i data-lucide="linkedin" class="w-3.5 h-3.5"></i>
                             <span class="hidden sm:inline">Connect</span>
                         </a>
-                        <a href="https://github.com/prasshhhzanth" target="_blank" class="btn-card-sm btn-glass-light">
+                        <a href="https://github.com/prasshhhzanth" target="_blank" rel="noopener noreferrer" class="btn-card-sm btn-glass-light">
                             <i data-lucide="github" class="w-3.5 h-3.5"></i>
                             <span class="hidden sm:inline">GitHub</span>
                         </a>
@@ -295,7 +301,7 @@
                 </h1>
 
                 <p class="text-base md:text-2xl font-light leading-relaxed text-gray-500 max-w-2xl animate-up mt-8 mb-10 mx-auto lg:ml-0" style="animation-delay: 0.5s">
-                    Engineering specializing in <span class="text-black font-semibold">Computer Science & Business Systems</span>. Building high-fidelity digital systems that bridge industrial logic and elegant design.
+                    Engineering specializing in <span class="text-black font-semibold">Computer Science & Business Systems</span>. Building robust digital systems that blend high-performance logic with scalable user experiences.
                 </p>
 
                 <div class="animate-up flex mailbox-wrapper mailbox-center lg:justify-start" style="animation-delay: 0.6s">
@@ -374,7 +380,7 @@
         </div>
     </section>
 
-    <!-- Skills Section -->
+    <!-- Skills Section - Synced with Resume -->
     <section id="skills" class="py-32 bg-white px-6">
         <div class="container mx-auto max-w-[1200px]">
             <div class="mb-24 reveal text-center lg:text-left">
@@ -389,9 +395,9 @@
                         <i data-lucide="code-2" class="w-5 h-5"></i>
                     </div>
                     <div>
-                        <h4 class="font-bold text-lg mb-4">Development</h4>
+                        <h4 class="font-bold text-lg mb-4">Languages</h4>
                         <div class="flex flex-wrap gap-2">
-                            <span class="px-3 py-1 bg-gray-50 text-[10px] font-bold uppercase tracking-wider rounded-full border border-gray-100">Java</span>
+                            <span class="px-3 py-1 bg-gray-50 text-[10px] font-bold uppercase tracking-wider rounded-full border border-gray-100">Java (OOP)</span>
                             <span class="px-3 py-1 bg-gray-50 text-[10px] font-bold uppercase tracking-wider rounded-full border border-gray-100">Python</span>
                             <span class="px-3 py-1 bg-gray-50 text-[10px] font-bold uppercase tracking-wider rounded-full border border-gray-100">C</span>
                             <span class="px-3 py-1 bg-gray-50 text-[10px] font-bold uppercase tracking-wider rounded-full border border-gray-100">SQL</span>
@@ -407,10 +413,10 @@
                     <div>
                         <h4 class="font-bold text-lg mb-4">Engineering</h4>
                         <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-gray-50 text-[10px] font-bold uppercase tracking-wider rounded-full border border-gray-100">DSA</span>
                             <span class="px-3 py-1 bg-gray-50 text-[10px] font-bold uppercase tracking-wider rounded-full border border-gray-100">FastAPI</span>
                             <span class="px-3 py-1 bg-gray-50 text-[10px] font-bold uppercase tracking-wider rounded-full border border-gray-100">React</span>
-                            <span class="px-3 py-1 bg-gray-50 text-[10px] font-bold uppercase tracking-wider rounded-full border border-gray-100">DSA</span>
-                            <span class="px-3 py-1 bg-gray-50 text-[10px] font-bold uppercase tracking-wider rounded-full border border-gray-100">OS</span>
+                            <span class="px-3 py-1 bg-gray-50 text-[10px] font-bold uppercase tracking-wider rounded-full border border-gray-100">Linux</span>
                         </div>
                     </div>
                 </div>
@@ -421,12 +427,12 @@
                         <i data-lucide="layers" class="w-5 h-5"></i>
                     </div>
                     <div>
-                        <h4 class="font-bold text-lg mb-4">Tools</h4>
+                        <h4 class="font-bold text-lg mb-4">Technologies</h4>
                         <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-gray-50 text-[10px] font-bold uppercase tracking-wider rounded-full border border-gray-100">Power BI</span>
                             <span class="px-3 py-1 bg-gray-50 text-[10px] font-bold uppercase tracking-wider rounded-full border border-gray-100">Git</span>
                             <span class="px-3 py-1 bg-gray-50 text-[10px] font-bold uppercase tracking-wider rounded-full border border-gray-100">Docker</span>
-                            <span class="px-3 py-1 bg-gray-50 text-[10px] font-bold uppercase tracking-wider rounded-full border border-gray-100">Linux</span>
-                            <span class="px-3 py-1 bg-gray-50 text-[10px] font-bold uppercase tracking-wider rounded-full border border-gray-100">Power BI</span>
+                            <span class="px-3 py-1 bg-gray-50 text-[10px] font-bold uppercase tracking-wider rounded-full border border-gray-100">MS 365</span>
                         </div>
                     </div>
                 </div>
@@ -442,7 +448,7 @@
                             <span class="px-3 py-1 bg-gray-50 text-[10px] font-bold uppercase tracking-wider rounded-full border border-gray-100">Analytics</span>
                             <span class="px-3 py-1 bg-gray-50 text-[10px] font-bold uppercase tracking-wider rounded-full border border-gray-100">GenAI</span>
                             <span class="px-3 py-1 bg-gray-50 text-[10px] font-bold uppercase tracking-wider rounded-full border border-gray-100">NLP</span>
-                            <span class="px-3 py-1 bg-gray-50 text-[10px] font-bold uppercase tracking-wider rounded-full border border-gray-100">Computer Vision</span>
+                            <span class="px-3 py-1 bg-gray-50 text-[10px] font-bold uppercase tracking-wider rounded-full border border-gray-100">DevOps</span>
                         </div>
                     </div>
                 </div>
