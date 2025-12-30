@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Garigaboina Prashanth | CSBS Portfolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -11,10 +11,11 @@
         :root {
             --bg-color: #ffffff;
             --text-main: #111111;
-            --text-muted: #666666;
-            --border-color: #eeeeee;
+            --text-muted: #888888;
+            --accent-black: #000000;
         }
 
+        /* Base Styles */
         body {
             font-family: 'Inter', sans-serif;
             background-color: var(--bg-color);
@@ -23,57 +24,56 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* Responsive Cursor - Disabled on Touch */
+        /* Optimized Custom Cursor */
         @media (pointer: fine) {
             body { cursor: none; }
             #cursor {
                 width: 8px; height: 8px; background: black; border-radius: 50%;
-                position: fixed; pointer-events: none; z-index: 10000; transition: transform 0.1s ease;
+                position: fixed; pointer-events: none; z-index: 10000;
             }
             #cursor-follower {
-                width: 40px; height: 40px; border: 1px solid rgba(0,0,0,0.15);
+                width: 40px; height: 40px; border: 1.5px solid rgba(0,0,0,0.1);
                 border-radius: 50%; position: fixed; pointer-events: none; z-index: 9999;
-                transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+                transition: transform 0.15s cubic-bezier(0.23, 1, 0.32, 1);
             }
         }
 
         .font-space { font-family: 'Space Grotesk', sans-serif; }
 
-        /* Optimized Hero Typography */
+        /* Typography Fine-tuning */
         .name-display {
-            font-size: clamp(3.2rem, 11vw, 13rem);
-            line-height: 0.82;
+            font-size: clamp(3.2rem, 12vw, 14rem);
+            line-height: 0.8;
             font-family: 'Space Grotesk', sans-serif;
             font-weight: 700;
-            letter-spacing: -0.05em;
+            letter-spacing: -0.06em;
             text-transform: uppercase;
         }
 
-        .noise::before {
+        .grain::before {
             content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: url('https://grainy-gradients.vercel.app/noise.svg');
-            opacity: 0.04; pointer-events: none; z-index: 9999;
+            opacity: 0.05; pointer-events: none; z-index: 9998;
         }
 
-        /* Project Note Physics */
+        /* Project Note Component */
         .project-card {
             position: sticky;
-            top: 12vh;
-            width: 90%;
-            max-width: 420px; 
+            top: 15vh;
+            width: 92%;
+            max-width: 440px; 
             margin: 0 auto;
-            aspect-ratio: 1 / 1.25;
+            aspect-ratio: 1 / 1.2;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            padding: clamp(1.5rem, 5vw, 2.5rem);
-            border-radius: 0.75rem;
-            box-shadow: 15px 15px 50px rgba(0,0,0,0.07);
+            padding: clamp(1.5rem, 5vw, 3rem);
+            border-radius: 0.5rem;
+            box-shadow: 20px 20px 60px rgba(0,0,0,0.08);
             transform-origin: center top;
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
             text-decoration: none;
             color: inherit;
-            z-index: 5;
         }
 
         .note-yellow { background-color: #FED049; }
@@ -81,188 +81,193 @@
         .note-green { background-color: #C9F4AA; }
         .note-blue { background-color: #AEE2FF; }
 
-        /* Adaptive Floating Icons */
+        /* Responsive Floating Icon Grid */
         .aesthetic-icon {
             position: absolute;
-            width: clamp(45px, 8vw, 120px);
+            width: clamp(50px, 10vw, 130px);
             opacity: 0.7;
             pointer-events: none;
             z-index: 1;
-            filter: grayscale(1);
+            filter: grayscale(1) contrast(1.2);
         }
 
         @media (max-width: 768px) {
-            .aesthetic-icon { opacity: 0.25; }
+            .aesthetic-icon { opacity: 0.3; }
         }
 
         @keyframes float {
             0%, 100% { transform: translateY(0) rotate(-2deg); }
-            50% { transform: translateY(-15px) rotate(2deg); }
+            50% { transform: translateY(-20px) rotate(2deg); }
         }
-        .animate-float { animation: float 6s ease-in-out infinite; }
+        .animate-float { animation: float 7s ease-in-out infinite; }
         
         .reveal {
-            opacity: 0; transform: translateY(30px);
-            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            opacity: 0; transform: translateY(40px);
+            transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
         }
         .reveal.active { opacity: 1; transform: translateY(0); }
 
         html { scroll-behavior: smooth; }
+        
+        /* Disable hover effects on mobile */
+        @media (hover: none) {
+            .project-card:active { transform: scale(0.98); }
+        }
     </style>
 </head>
-<body class="noise antialiased bg-white">
+<body class="grain antialiased bg-white">
 
     <div id="cursor" class="hidden md:block"></div>
     <div id="cursor-follower" class="hidden md:block"></div>
 
     <!-- Navigation -->
-    <header class="py-5 fixed top-0 w-full z-[100] mix-blend-difference">
+    <header class="py-6 fixed top-0 w-full z-[100] mix-blend-difference">
         <div class="px-6 md:px-12 mx-auto max-w-[1600px] flex items-center justify-between">
-            <a href="#" class="text-white font-space font-bold tracking-tighter text-xl md:text-2xl">GP.</a>
-            <nav class="flex items-center space-x-5 md:space-x-8">
-                <a href="#projects" class="text-white text-[9px] md:text-[10px] uppercase font-bold tracking-widest hover:opacity-50 transition-opacity">Work</a>
-                <a href="#chronicle" class="text-white text-[9px] md:text-[10px] uppercase font-bold tracking-widest hover:opacity-50 transition-opacity">Chronicle</a>
-                <a href="mailto:prashanthgarigaboina@gmail.com" class="text-white text-[9px] md:text-[10px] font-bold uppercase tracking-widest border border-white/30 px-4 md:px-6 py-2 rounded-full hover:bg-white hover:text-black transition-all">Contact</a>
+            <a href="#" class="text-white font-space font-bold tracking-tighter text-2xl">GP.</a>
+            <nav class="flex items-center space-x-6 md:space-x-10">
+                <a href="#projects" class="text-white text-[10px] uppercase font-bold tracking-widest hover:opacity-50 transition-opacity">Work</a>
+                <a href="#chronicle" class="text-white text-[10px] uppercase font-bold tracking-widest hover:opacity-50 transition-opacity">Chronicle</a>
+                <a href="mailto:prashanthgarigaboina@gmail.com" class="text-white text-[10px] font-bold uppercase tracking-widest border border-white/30 px-5 py-2 rounded-full hover:bg-white hover:text-black transition-all">Enquire</a>
             </nav>
         </div>
     </header>
 
-    <!-- Hero Section -->
+    <!-- Hero -->
     <section class="min-h-screen flex flex-col justify-center relative pt-20 px-6 md:px-12">
         <div class="container mx-auto max-w-[1500px]">
             <div class="mb-4 overflow-hidden">
-                <span class="inline-block text-[10px] font-bold tracking-[0.6em] text-gray-400 uppercase animate-up">GARIGABOINA PRASHANTH — 2025</span>
+                <span class="inline-block text-[10px] font-bold tracking-[0.7em] text-gray-400 uppercase animate-up">GARIGABOINA PRASHANTH — 2025</span>
             </div>
             
-            <div class="relative mb-12 md:mb-16">
-                <h1 class="name-display tracking-tighter">
-                    <span class="inline-block animate-up" style="animation-delay: 0.1s">GARIGABOINA</span><br/>
+            <div class="relative mb-12 md:mb-20">
+                <h1 class="name-display tracking-tighter leading-[0.8]">
+                    <span class="inline-block animate-up text-gray-200" style="animation-delay: 0.1s">GARIGABOINA</span><br/>
                     <span class="inline-block animate-up text-black" style="animation-delay: 0.2s">PRASHANTH</span>
                 </h1>
             </div>
 
-            <div class="grid lg:grid-cols-12 gap-8 items-end">
+            <div class="grid lg:grid-cols-12 gap-10 items-end">
                 <div class="lg:col-span-8 animate-up" style="animation-delay: 0.4s">
-                    <p class="text-lg md:text-3xl font-light leading-relaxed text-gray-500 max-w-3xl">
-                        Engineer specializing in <span class="text-black font-semibold">Computer Science & Business Systems</span>. Melding industrial logic with high-fidelity digital experiences.
+                    <p class="text-xl md:text-3xl font-light leading-relaxed text-gray-500 max-w-3xl">
+                        Computer Science & Business Systems Engineer. <br class="hidden md:block"/>
+                        Melding <span class="text-black font-semibold">Industrial Logic</span> with <span class="text-black font-semibold">High-Fidelity</span> digital experiences.
                     </p>
                 </div>
-                <div class="lg:col-start-10 lg:col-span-3 flex flex-col items-start lg:items-end gap-6 md:gap-10 animate-up" style="animation-delay: 0.5s">
+                <div class="lg:col-start-10 lg:col-span-3 flex flex-col items-start lg:items-end gap-10 animate-up" style="animation-delay: 0.5s">
                     <div class="text-left lg:text-right w-full">
-                        <p class="text-[9px] uppercase font-bold text-gray-400 tracking-[0.3em] mb-2">Reach Me</p>
-                        <a href="mailto:prashanthgarigaboina@gmail.com" class="text-sm md:text-lg font-medium text-black border-b border-black/10 hover:border-black transition-all pb-1 block w-fit lg:ml-auto">prashanthgarigaboina@gmail.com</a>
+                        <p class="text-[10px] uppercase font-bold text-gray-300 tracking-[0.3em] mb-3">Connect</p>
+                        <a href="mailto:prashanthgarigaboina@gmail.com" class="text-base md:text-lg font-medium text-black border-b border-black/10 hover:border-black transition-all pb-1 inline-block">prashanthgarigaboina@gmail.com</a>
+                        <p class="mt-4 text-sm text-gray-400 font-medium">Hyderabad, India</p>
                     </div>
                     <div class="flex gap-4">
-                        <a href="https://github.com/prasshhhzanth" target="_blank" class="p-3 border border-gray-100 rounded-full hover:bg-black hover:text-white transition-all"><i data-lucide="github" class="w-5 h-5"></i></a>
-                        <a href="https://linkedin.com/in/prashanthgarigaboina" target="_blank" class="p-3 border border-gray-100 rounded-full hover:bg-black hover:text-white transition-all"><i data-lucide="linkedin" class="w-5 h-5"></i></a>
+                        <a href="https://github.com/prasshhhzanth" target="_blank" class="p-4 border border-gray-100 rounded-full hover:bg-black hover:text-white transition-all"><i data-lucide="github" class="w-5 h-5"></i></a>
+                        <a href="https://linkedin.com/in/prashanthgarigaboina" target="_blank" class="p-4 border border-gray-100 rounded-full hover:bg-black hover:text-white transition-all"><i data-lucide="linkedin" class="w-5 h-5"></i></a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Work Section -->
-    <section id="projects" class="bg-gray-50/50 pt-24 md:pt-40 pb-32 md:pb-48 px-6">
+    <!-- Work Gallery -->
+    <section id="projects" class="bg-gray-50/50 pt-32 pb-48 px-6">
         <div class="container mx-auto max-w-[1200px]">
-            <div class="mb-20 text-center reveal">
-                <h2 class="text-[9px] uppercase tracking-[0.4em] text-gray-400 font-bold mb-3">01 / SELECTED WORKS</h2>
-                <p class="text-3xl md:text-5xl font-space font-bold tracking-tighter">Project <span class="italic font-light text-gray-400">Exhibits</span></p>
+            <div class="mb-24 text-center reveal">
+                <h2 class="text-[10px] uppercase tracking-[0.5em] text-gray-300 font-bold mb-4">01 / SELECTED WORKS</h2>
+                <p class="text-4xl md:text-6xl font-space font-bold tracking-tighter leading-none">Coded <span class="italic font-light text-gray-400">Notes</span></p>
             </div>
 
-            <div class="space-y-[8vh] md:space-y-[12vh] pb-[10vh]">
+            <div class="space-y-[10vh] md:space-y-[15vh] pb-[15vh]">
                 <!-- Project 01 -->
                 <a href="https://github.com/prasshhhzanth" target="_blank" class="project-card note-yellow">
-                    <div class="h-1/2 flex items-center justify-center">
-                        <svg viewBox="0 0 24 24" fill="none" class="w-2/3 h-2/3"><path d="M22 2L11 13" stroke="black" stroke-linecap="round"/><path d="M22 2L15 22L11 13L2 9L22 2Z" stroke="black" stroke-linejoin="round"/></svg>
+                    <div class="h-1/2 flex items-center justify-center pointer-events-none">
+                        <svg viewBox="0 0 24 24" fill="none" class="w-3/4 h-3/4"><path d="M22 2L11 13" stroke="black" stroke-width="1.2" stroke-linecap="round"/><path d="M22 2L15 22L11 13L2 9L22 2Z" stroke="black" stroke-width="1.2" stroke-linejoin="round"/></svg>
                     </div>
                     <div class="flex flex-col">
-                        <h3 class="text-2xl md:text-4xl font-space font-bold mb-2 tracking-tighter">Clothing.ai</h3>
-                        <p class="text-black/60 text-xs md:text-base font-medium leading-tight mb-6">AR fashion assistant generating unique patterns via GenAI and purchase links.</p>
-                        <div class="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest"><span class="border-b-2 border-black/80 pb-1">GitHub Repository</span><i data-lucide="external-link" class="w-3 h-3"></i></div>
+                        <h3 class="text-3xl md:text-4xl font-space font-bold mb-3 tracking-tighter leading-none">Clothing.ai</h3>
+                        <p class="text-black/60 text-sm md:text-base font-medium leading-tight mb-8">AR fashion assistant generating unique patterns via GenAI and purchase links.</p>
+                        <div class="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest opacity-80"><span class="border-b-2 border-black pb-1">Open Repository</span><i data-lucide="arrow-up-right" class="w-3 h-3"></i></div>
                     </div>
                 </a>
 
                 <!-- Project 02 -->
                 <a href="https://github.com/prasshhhzanth" target="_blank" class="project-card note-pink">
-                    <div class="h-1/2 flex items-center justify-center">
-                        <svg viewBox="0 0 24 24" fill="none" class="w-2/3 h-2/3"><path d="M4 20H20M4 4V20" stroke="black" stroke-opacity="0.3"/><path d="M7 16C7 16 9 10 12 10C15 10 17 14 20 14" stroke="black" stroke-width="1.5"/></svg>
+                    <div class="h-1/2 flex items-center justify-center pointer-events-none">
+                        <svg viewBox="0 0 24 24" fill="none" class="w-3/4 h-3/4"><path d="M4 20H20M4 4V20" stroke="black" stroke-width="1.2" stroke-opacity="0.3"/><path d="M7 16C7 16 9 10 12 10C15 10 17 14 20 14" stroke="black" stroke-width="1.5" stroke-linecap="round"/></svg>
                     </div>
                     <div class="flex flex-col">
-                        <h3 class="text-2xl md:text-4xl font-space font-bold mb-2 tracking-tighter">Dhanvantri AI</h3>
-                        <p class="text-black/60 text-xs md:text-base font-medium leading-tight mb-6">NLP medical assistant for symptom-based prediction and lifestyle help.</p>
-                        <div class="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest"><span class="border-b-2 border-black/80 pb-1">GitHub Repository</span><i data-lucide="external-link" class="w-3 h-3"></i></div>
+                        <h3 class="text-3xl md:text-4xl font-space font-bold mb-3 tracking-tighter leading-none">Dhanvantri AI</h3>
+                        <p class="text-black/60 text-sm md:text-base font-medium leading-tight mb-8">NLP medical assistant for symptom-based prediction and lifestyle recommendations.</p>
+                        <div class="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest opacity-80"><span class="border-b-2 border-black pb-1">Open Repository</span><i data-lucide="arrow-up-right" class="w-3 h-3"></i></div>
                     </div>
                 </a>
 
                 <!-- Project 03 -->
                 <a href="https://github.com/prasshhhzanth" target="_blank" class="project-card note-green">
-                    <div class="h-1/2 flex items-center justify-center">
-                        <svg viewBox="0 0 24 24" fill="none" class="w-2/3 h-2/3"><path d="M9 5H7C5.89543 5 5 5.89543 5 7V19C5 20.1046 5.89543 21 7 21H17C18.1046 21 19 20.1046 19 19V7C19 5.89543 18.1046 5 17 5H15" stroke="black"/><path d="M11 13L13 15L17 11" stroke="black"/></svg>
+                    <div class="h-1/2 flex items-center justify-center pointer-events-none">
+                        <svg viewBox="0 0 24 24" fill="none" class="w-3/4 h-3/4"><path d="M9 5H7C5.89543 5 5 5.89543 5 7V19C5 20.1046 5.89543 21 7 21H17C18.1046 21 19 20.1046 19 19V7C19 5.89543 18.1046 5 17 5H15" stroke="black" stroke-width="1.2"/><path d="M11 13L13 15L17 11" stroke="black" stroke-width="1.2"/></svg>
                     </div>
                     <div class="flex flex-col">
-                        <h3 class="text-2xl md:text-4xl font-space font-bold mb-2 tracking-tighter">YOCTRON-RMS</h3>
-                        <p class="text-black/60 text-xs md:text-base font-medium leading-tight mb-6">Component-based restaurant management interface for real-time order tracking.</p>
-                        <div class="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest"><span class="border-b-2 border-black/80 pb-1">GitHub Repository</span><i data-lucide="external-link" class="w-3 h-3"></i></div>
+                        <h3 class="text-3xl md:text-4xl font-space font-bold mb-3 tracking-tighter leading-none">YOCTRON-RMS</h3>
+                        <p class="text-black/60 text-sm md:text-base font-medium leading-tight mb-8">Component-based restaurant management interface for real-time order tracking.</p>
+                        <div class="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest opacity-80"><span class="border-b-2 border-black pb-1">Open Repository</span><i data-lucide="arrow-up-right" class="w-3 h-3"></i></div>
                     </div>
                 </a>
             </div>
         </div>
     </section>
 
-    <!-- Chronicle Section -->
-    <section id="chronicle" class="py-32 md:py-48 bg-white relative overflow-hidden px-6">
+    <!-- Education Section -->
+    <section id="chronicle" class="py-32 md:py-56 bg-white relative overflow-hidden px-6">
         
-        <!-- 8 Hand-drawn Aesthetic Icons Distributed Responsively -->
-        <div class="aesthetic-icon top-[5%] left-[5%] animate-float" style="animation-duration: 8s;"><svg viewBox="0 0 120 120" fill="none" stroke="black" stroke-width="1.5"><rect x="20" y="20" width="80" height="60" rx="3"/><path d="M40 80L30 100H90L80 80" /></svg></div>
-        <div class="aesthetic-icon top-[30%] left-[3%] animate-float" style="animation-duration: 6s; animation-delay: 1s;"><svg viewBox="0 0 120 120" fill="none" stroke="black" stroke-width="1.5"><path d="M30 90L90 30M35 95L95 35"/></svg></div>
-        <div class="aesthetic-icon top-[60%] left-[8%] animate-float" style="animation-duration: 9s; animation-delay: 2s;"><svg viewBox="0 0 120 120" fill="none" stroke="black" stroke-width="1.5"><path d="M60 20C45 20 35 35 35 50C35 65 45 75 50 80V95H70V80C75 75 85 65 85 50C85 35 75 20 60 20Z" /></svg></div>
-        <div class="aesthetic-icon bottom-[10%] left-[5%] animate-float" style="animation-duration: 7s; animation-delay: 0.5s;"><svg viewBox="0 0 120 120" fill="none" stroke="black" stroke-width="1.5"><rect x="30" y="40" width="60" height="15" rx="1"/><rect x="25" y="55" width="70" height="15" rx="1"/></svg></div>
+        <!-- Hand-drawn Aesthetic Icons scattered across the section -->
+        <div class="aesthetic-icon top-[5%] left-[6%] animate-float" style="animation-duration: 8s;"><svg viewBox="0 0 120 120" fill="none" stroke="black" stroke-width="1.5"><rect x="20" y="20" width="80" height="60" rx="2"/><path d="M40 80L30 100H90L80 80" /></svg></div>
+        <div class="aesthetic-icon top-[35%] left-[2%] animate-float" style="animation-duration: 6s; animation-delay: 1s;"><svg viewBox="0 0 120 120" fill="none" stroke="black" stroke-width="1.5"><path d="M30 90L90 30M35 95L95 35"/></svg></div>
+        <div class="aesthetic-icon bottom-[10%] left-[8%] animate-float" style="animation-duration: 9s; animation-delay: 2s;"><svg viewBox="0 0 120 120" fill="none" stroke="black" stroke-width="1.5"><path d="M60 20C45 20 35 35 35 50C35 65 45 75 50 80V95H70V80C75 75 85 65 85 50C85 35 75 20 60 20Z" /></svg></div>
         
-        <div class="aesthetic-icon top-[8%] right-[5%] animate-float" style="animation-duration: 10s; animation-delay: 1.5s;"><svg viewBox="0 0 120 120" fill="none" stroke="black" stroke-width="1.5"><rect x="20" y="40" width="80" height="50" rx="3"/><circle cx="60" cy="65" r="18"/></svg></div>
-        <div class="aesthetic-icon top-[35%] right-[2%] animate-float" style="animation-duration: 8s; animation-delay: 2.5s;"><svg viewBox="0 0 120 120" fill="none" stroke="black" stroke-width="1.5"><path d="M60 30L20 50L60 70L100 50L60 30Z"/><path d="M35 55V75C35 75 60 85 85 75V55"/></svg></div>
-        <div class="aesthetic-icon top-[65%] right-[6%] animate-float" style="animation-duration: 6s; animation-delay: 1.2s;"><svg viewBox="0 0 120 120" fill="none" stroke="black" stroke-width="1.5"><path d="M30 90L90 90L30 30L30 90Z"/></svg></div>
-        <div class="aesthetic-icon bottom-[12%] right-[5%] animate-float" style="animation-duration: 11s; animation-delay: 3s;"><svg viewBox="0 0 120 120" fill="none" stroke="black" stroke-width="1.5"><path d="M40 50H80V90C80 95 70 100 40 90V50Z"/><path d="M80 60C95 60 95 90 80 90"/></svg></div>
+        <div class="aesthetic-icon top-[10%] right-[6%] animate-float" style="animation-duration: 10s; animation-delay: 1.5s;"><svg viewBox="0 0 120 120" fill="none" stroke="black" stroke-width="1.5"><rect x="20" y="40" width="80" height="50" rx="3"/><circle cx="60" cy="65" r="18"/></svg></div>
+        <div class="aesthetic-icon top-[45%] right-[2%] animate-float" style="animation-duration: 8s; animation-delay: 2.5s;"><svg viewBox="0 0 120 120" fill="none" stroke="black" stroke-width="1.5"><path d="M60 30L20 50L60 70L100 50L60 30Z"/><path d="M35 55V75C35 75 60 85 85 75V55"/></svg></div>
+        <div class="aesthetic-icon bottom-[8%] right-[8%] animate-float" style="animation-duration: 11s; animation-delay: 3s;"><svg viewBox="0 0 120 120" fill="none" stroke="black" stroke-width="1.5"><path d="M40 50H80V90C80 95 70 100 40 90V50Z"/><path d="M80 60C95 60 95 90 80 90"/></svg></div>
 
-        <div class="container mx-auto max-w-[1000px] relative z-20">
-            <div class="text-center mb-16 md:mb-24 reveal">
-                <h2 class="text-[9px] uppercase tracking-[0.4em] text-gray-400 font-bold mb-6">02 / CHRONICLE</h2>
-                <span class="text-xs md:text-sm font-mono text-gray-400 mb-4 block">2024 — 2028</span>
-                <h3 class="text-4xl md:text-7xl font-space font-bold mb-8 tracking-tighter leading-none">VBIT Hyderabad</h3>
-                <p class="text-lg md:text-3xl text-gray-400 font-light leading-tight mb-12 md:mb-16 max-w-2xl mx-auto">
+        <div class="container mx-auto max-w-[1100px] relative z-10">
+            <div class="text-center mb-24 reveal">
+                <h2 class="text-[10px] uppercase tracking-[0.5em] text-gray-300 font-bold mb-8">02 / CHRONICLE</h2>
+                <span class="text-sm font-mono text-gray-400 mb-4 block">2024 — 2028</span>
+                <h3 class="text-5xl md:text-8xl font-space font-bold mb-8 tracking-tighter leading-none">VBIT Hyderabad</h3>
+                <p class="text-xl md:text-4xl text-gray-400 font-light leading-tight mb-20 max-w-2xl mx-auto">
                     B.Tech in <span class="text-black">Computer Science & Business Systems</span>.
                 </p>
                 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 max-w-xl mx-auto">
-                    <div class="p-8 md:p-10 bg-white border border-gray-100 rounded-2xl md:rounded-3xl shadow-sm">
-                        <p class="text-[9px] uppercase font-bold text-gray-300 tracking-widest mb-3 md:mb-4">Cumulative GPA</p>
-                        <p class="text-4xl md:text-6xl font-space font-bold tracking-tighter text-black">8.40</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-xl mx-auto">
+                    <div class="p-12 bg-white border border-gray-100 rounded-3xl shadow-sm">
+                        <p class="text-[9px] uppercase font-bold text-gray-300 tracking-widest mb-4">Cumulative GPA</p>
+                        <p class="text-6xl md:text-8xl font-space font-bold tracking-tighter text-black">8.40</p>
                     </div>
-                    <div class="p-8 md:p-10 bg-black text-white rounded-2xl md:rounded-3xl shadow-xl">
-                        <p class="text-[9px] uppercase font-bold text-gray-500 tracking-widest mb-3 md:mb-4">Current Sem</p>
-                        <p class="text-4xl md:text-6xl font-space font-bold tracking-tighter">9.00</p>
+                    <div class="p-12 bg-black text-white rounded-3xl shadow-2xl">
+                        <p class="text-[9px] uppercase font-bold text-gray-500 tracking-widest mb-4">Latest Sem</p>
+                        <p class="text-6xl md:text-8xl font-space font-bold tracking-tighter">9.00</p>
                     </div>
                 </div>
             </div>
 
-            <div class="grid md:grid-cols-2 gap-10 md:gap-12 pt-12 md:pt-16 border-t border-gray-100 reveal">
-                <div class="space-y-8 md:space-y-12">
+            <div class="grid md:grid-cols-2 gap-16 pt-20 border-t border-gray-100 reveal">
+                <div class="space-y-12">
                     <h4 class="text-xs font-bold uppercase tracking-widest text-gray-400">Awards</h4>
-                    <div class="space-y-6 md:space-y-8">
+                    <div class="space-y-8">
                         <div class="flex gap-4">
                             <span class="text-xs font-mono text-gray-300 pt-1">01</span>
-                            <p class="text-sm md:text-lg font-bold leading-tight">Poster Design 1st Prize <span class="block text-xs font-normal text-gray-400 mt-1">Anti-Drug Event, VBIT 2025</span></p>
+                            <p class="text-base md:text-xl font-bold leading-tight">Poster Design 1st Prize <span class="block text-xs font-normal text-gray-400 mt-2">Anti-Drug Awareness Event, VBIT 2025</span></p>
                         </div>
                         <div class="flex gap-4">
                             <span class="text-xs font-mono text-gray-300 pt-1">02</span>
-                            <p class="text-sm md:text-lg font-bold leading-tight">GenAI Hackathon <span class="block text-xs font-normal text-gray-400 mt-1">MeitY Participation 2025</span></p>
+                            <p class="text-base md:text-xl font-bold leading-tight">GenAI Hackathon <span class="block text-xs font-normal text-gray-400 mt-2">MeitY Participation 2025</span></p>
                         </div>
                     </div>
                 </div>
-                <div class="space-y-8 md:space-y-12">
-                    <h4 class="text-xs font-bold uppercase tracking-widest text-gray-400">Leadership</h4>
+                <div class="space-y-12">
+                    <h4 class="text-xs font-bold uppercase tracking-widest text-gray-400">Involvement</h4>
                     <div class="flex gap-4">
                         <span class="text-xs font-mono text-gray-300 pt-1">L1</span>
-                        <p class="text-sm md:text-lg font-bold leading-tight">Design Lead <span class="block text-xs font-normal text-gray-400 mt-1">Google Crowdsource OC Member</span></p>
+                        <p class="text-base md:text-xl font-bold leading-tight">Design Lead <span class="block text-xs font-normal text-gray-400 mt-2">Google Crowdsource OC Member</span></p>
                     </div>
                 </div>
             </div>
@@ -270,27 +275,28 @@
     </section>
 
     <!-- Footer -->
-    <footer class="py-24 md:py-32 bg-gray-50 px-6">
-        <div class="container mx-auto max-w-[1400px]">
-            <div class="flex flex-col gap-20">
-                <div class="max-w-4xl">
-                    <h2 class="text-4xl md:text-[8rem] font-space font-bold tracking-tighter leading-[0.9] mb-12 md:mb-16">
+    <footer class="py-32 bg-gray-50 px-6">
+        <div class="container mx-auto max-w-[1500px]">
+            <div class="flex flex-col gap-24">
+                <div class="max-w-5xl">
+                    <h2 class="text-5xl md:text-[9rem] font-space font-bold tracking-tighter leading-[0.85] mb-16">
                         LET'S <br/>BUILD <span class="italic font-light text-gray-300">FUTURE</span>.
                     </h2>
-                    <div class="grid md:grid-cols-2 gap-12 md:gap-16">
+                    <div class="grid md:grid-cols-2 gap-16">
                         <div>
-                            <p class="text-[9px] uppercase font-bold text-gray-400 tracking-widest mb-5">Contact</p>
-                            <a href="mailto:prashanthgarigaboina@gmail.com" class="text-xl md:text-4xl font-light tracking-tighter border-b border-black pb-2 hover:opacity-50 transition-all block w-fit mb-4">prashanthgarigaboina@gmail.com</a>
+                            <p class="text-[9px] uppercase font-bold text-gray-400 tracking-widest mb-6">Correspondence</p>
+                            <a href="mailto:prashanthgarigaboina@gmail.com" class="text-2xl md:text-4xl font-light tracking-tighter border-b border-black pb-2 hover:opacity-50 transition-all block w-fit mb-4">prashanthgarigaboina@gmail.com</a>
                             <p class="text-xs font-bold text-gray-400 uppercase tracking-widest">+91 99595 95137</p>
                         </div>
-                        <div class="flex flex-col gap-3 md:gap-4 justify-end">
-                            <a href="https://linkedin.com/in/prashanthgarigaboina" class="text-[10px] md:text-xs font-bold uppercase tracking-widest hover:opacity-50 transition-opacity">LinkedIn</a>
-                            <a href="https://github.com/prasshhhzanth" class="text-[10px] md:text-xs font-bold uppercase tracking-widest hover:opacity-50 transition-opacity">GitHub</a>
+                        <div class="flex flex-col gap-4 justify-end md:items-end">
+                            <a href="https://linkedin.com/in/prashanthgarigaboina" target="_blank" class="text-xs font-bold uppercase tracking-widest hover:opacity-50 transition-opacity">LinkedIn</a>
+                            <a href="https://github.com/prasshhhzanth" target="_blank" class="text-xs font-bold uppercase tracking-widest hover:opacity-50 transition-opacity">GitHub</a>
                         </div>
                     </div>
                 </div>
-                <div class="text-[9px] text-gray-300 uppercase tracking-widest font-bold border-t border-gray-100 pt-8">
+                <div class="text-[9px] text-gray-300 uppercase tracking-widest font-bold border-t border-gray-200 pt-10 flex flex-col md:flex-row justify-between gap-4">
                     <p>© 2025 GARIGABOINA PRASHANTH</p>
+                    <p>ENGINEERING THE FUTURE</p>
                 </div>
             </div>
         </div>
@@ -299,15 +305,20 @@
     <script>
         lucide.createIcons();
 
-        // Reveal animations
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
-        }, { threshold: 0.1 });
-        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        // Optimized Intersection Observer
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.15 });
 
-        // Cursor logic
+        document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+        // Precision Cursor System
         if (window.matchMedia("(pointer: fine)").matches) {
             const cursor = document.getElementById('cursor');
             const follower = document.getElementById('cursor-follower');
-            let mouseX = 0, mouseY = 0, followerX = 0, followerY = 0;
-            document.addEventListener('mousemove', (e) => { mouseX = 
+            let mouseX = -100, 
