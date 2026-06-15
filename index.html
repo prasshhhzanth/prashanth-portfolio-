@@ -4,8 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Garigaboina Prashanth | Portfolio</title>
+    <!-- Tailwind CSS for utility styles -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- GSAP for premium preloader & content reveal animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800&family=Inter:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -22,7 +27,124 @@
             -webkit-font-smoothing: antialiased;
         }
 
+        /* Prevent interaction or scrolling while the preloader is executing */
+        body.loading {
+            overflow: hidden !important;
+            height: 100vh;
+        }
+
         .font-space { font-family: 'Space Grotesk', sans-serif; }
+
+        /* PRELOADER STYLES */
+        #preloader-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: #0d0e12; /* Sleek dark intro layer */
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            pointer-events: all;
+        }
+
+        .loader-bg-panel {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: #0a0b0d;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+
+        .loader-content {
+            position: relative;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            pointer-events: none;
+        }
+
+        /* Precise masking bounds for the text transitions */
+        .greetings-mask {
+            height: 110px;
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .greeting-word {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2.5rem, 7vw, 5rem);
+            font-weight: 800;
+            line-height: 1;
+            letter-spacing: -0.05em;
+            color: #ffffff;
+            position: absolute;
+            opacity: 0;
+            transform: translateY(110%) rotateX(40deg);
+            filter: blur(12px);
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+        }
+
+        @media (max-width: 640px) {
+            .greetings-mask {
+                height: 70px;
+            }
+        }
+
+        /* Micro-Status Indicator */
+        .status-dot-wrapper {
+            margin-top: 32px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            opacity: 0;
+            transform: translateY(20px);
+            filter: blur(4px);
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: #ffffff;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+        }
+
+        .status-text {
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.3em;
+            color: rgba(255, 255, 255, 0.5);
+            font-weight: 700;
+        }
+
+        /* Portfolio Entry Animations */
+        #main-site-wrapper {
+            opacity: 0;
+            filter: blur(8px);
+            transform: translateY(25px);
+            transition: opacity 1.6s cubic-bezier(0.16, 1, 0.3, 1),
+                        filter 1.6s cubic-bezier(0.16, 1, 0.3, 1),
+                        transform 1.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        #main-site-wrapper.ready {
+            opacity: 1;
+            filter: blur(0px);
+            transform: translateY(0px);
+        }
 
         /* HEADER IDENTITY */
         .header-identity {
@@ -52,7 +174,7 @@
             text-transform: uppercase;
             position: relative;
             z-index: 20;
-            pointer-events: none; /* Allows clicks to pass through to the buttons below */
+            pointer-events: none;
         }
 
         /* 3D GLASS TEXT STYLE - GREY */
@@ -72,7 +194,7 @@
             max-width: 400px;
             min-width: 260px;
             z-index: 10;
-            pointer-events: auto; /* Ensures the card container is interactive */
+            pointer-events: auto;
         }
 
         @media (max-width: 1024px) {
@@ -87,7 +209,7 @@
             }
             .name-display { font-size: clamp(2.2rem, 12vw, 7.5rem); line-height: 0.85; text-align: center; }
             .hero-content { text-align: center; pointer-events: none; }
-            .hero-content > * { pointer-events: auto; } /* Re-enable for children */
+            .hero-content > * { pointer-events: auto; }
             .mailbox-center { justify-content: center !important; margin-left: auto; margin-right: auto; }
         }
 
@@ -131,7 +253,7 @@
             display: flex; align-items: center; justify-content: center;
         }
 
-        /* CARD ACTION BAR - HIGHER Z-INDEX FOR DIRECT INTERACTION */
+        /* CARD ACTION BAR */
         .card-footer-actions {
             position: absolute;
             bottom: 1.2rem; left: 1.2rem; right: 1.2rem;
@@ -199,6 +321,8 @@
         .note-pink { background-color: #FF6AC2; }
         .note-green { background-color: #C9F4AA; }
         .note-blue { background-color: #AEE2FF; }
+        .note-purple { background-color: #D5CAFA; }
+        .note-orange { background-color: #FFE5D9; }
 
         /* CHRONICLE ICONS */
         .aesthetic-icon {
@@ -231,286 +355,460 @@
         html { scroll-behavior: smooth; }
     </style>
 </head>
-<body class="noise antialiased bg-white">
+<body class="noise antialiased bg-white loading">
 
-    <!-- Header -->
-    <header class="py-5 fixed top-0 w-full z-[100] bg-white/80 backdrop-blur-md border-b border-gray-50">
-        <div class="px-6 md:px-12 mx-auto max-w-[1600px] flex items-center justify-between">
-            
-            <a href="#" class="header-identity">
-                <div class="header-profile-avatar">
-                    <img src="prashanth.png" 
-                         alt="P" 
-                         class="w-full h-full object-cover"
-                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                    <div class="flex items-center justify-center bg-black text-white w-full h-full text-[10px]" style="display:none">GP</div>
-                </div>
-                <div class="flex flex-col">
-                    <span class="text-sm font-space font-extrabold tracking-tighter text-black leading-none mb-0.5">G. PRASHANTH</span>
-                    <span class="text-[8px] uppercase tracking-widest text-gray-400 font-bold leading-none">Engineering '28</span>
-                </div>
-            </a>
+    <!-- GREETING MULTILINGUAL PRELOADER -->
+    <div id="preloader-container">
+        <!-- Vertical Curtain Slide Panel -->
+        <div class="loader-bg-panel" id="loader-slide-curtain"></div>
+        
+        <div class="loader-content">
+            <!-- Rotating Text Segment Mask -->
+            <div class="greetings-mask w-[290px] sm:w-[480px]">
+                <span class="greeting-word" data-lang="en">Hello</span>
+                <span class="greeting-word" data-lang="fr">Bonjour</span>
+                <span class="greeting-word" data-lang="it">Ciao</span>
+                <span class="greeting-word" data-lang="es">Hola</span>
+                <span class="greeting-word" data-lang="de">Hallo</span>
+                <span class="greeting-word" data-lang="jp">こんにちは</span>
+                <span class="greeting-word" data-lang="in">नमस्ते</span>
+                <span class="greeting-word" data-lang="ta">வணக்கம்</span>
+            </div>
 
-            <nav class="flex items-center space-x-4 md:space-x-8">
-                <a href="#projects" class="text-black text-[10px] uppercase font-bold tracking-widest hover:opacity-50 hidden md:block">Work</a>
-                <a href="#skills" class="text-black text-[10px] uppercase font-bold tracking-widest hover:opacity-50 hidden md:block">Skills</a>
-                <a href="#chronicle" class="text-black text-[10px] uppercase font-bold tracking-widest hover:opacity-50 hidden md:block">Chronicle</a>
-                <a href="mailto:prashanthgarigaboina@gmail.com" class="p-2.5 border border-black/10 rounded-xl hover:bg-black hover:text-white transition-all">
-                    <i data-lucide="mail" class="w-4 h-4"></i>
-                </a>
-            </nav>
+            <!-- Pulsing Loading State Dot & Progress Ticks -->
+            <div class="status-dot-wrapper" id="loader-status">
+                <span class="status-dot"></span>
+                <span class="status-text" id="status-string">CONNECTING [0%]</span>
+            </div>
         </div>
-    </header>
+    </div>
 
-    <!-- Hero Section -->
-    <section class="min-h-screen flex flex-col justify-center relative pt-32 pb-12 px-6 md:px-12">
-        <div class="container mx-auto max-w-[1500px] relative">
-            
-            <!-- THE PROFILE CARD (BEHIND THE NAME) -->
-            <div class="profile-card-wrapper animate-up" style="animation-delay: 0.2s">
-                <div class="profile-card-fintech">
-                    <img src="prashanth.png" 
-                         class="profile-img-bg" 
-                         alt="Prashanth"
-                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                    <div class="flex items-center justify-center bg-zinc-900 text-white w-full h-full" style="display:none">Profile Image</div>
+    <!-- MAIN PORTFOLIO WRAPPER -->
+    <div id="main-site-wrapper">
+        <!-- Header -->
+        <header class="py-5 fixed top-0 w-full z-[100] bg-white/80 backdrop-blur-md border-b border-gray-50">
+            <div class="px-6 md:px-12 mx-auto max-w-[1600px] flex items-center justify-between">
+                
+                <a href="#" class="header-identity">
+                    <div class="header-profile-avatar">
+                        <img src="prashanth.png" 
+                             alt="P" 
+                             class="w-full h-full object-cover"
+                             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="flex items-center justify-center bg-black text-white w-full h-full text-[10px]" style="display:none">GP</div>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="text-sm font-space font-extrabold tracking-tighter text-black leading-none mb-0.5">G. PRASHANTH</span>
+                        <span class="text-[8px] uppercase tracking-widest text-gray-400 font-bold leading-none">Engineering '28</span>
+                    </div>
+                </a>
 
-                    <!-- Interactive Buttons -->
-                    <div class="card-footer-actions">
-                        <a href="https://linkedin.com/in/prashanthgarigaboina" target="_blank" rel="noopener noreferrer" class="btn-card-sm btn-white-solid">
-                            <i data-lucide="linkedin" class="w-3.5 h-3.5"></i>
-                            <span class="hidden sm:inline">Connect</span>
-                        </a>
-                        <a href="https://github.com/prasshhhzanth" target="_blank" rel="noopener noreferrer" class="btn-card-sm btn-glass-light">
-                            <i data-lucide="github" class="w-3.5 h-3.5"></i>
-                            <span class="hidden sm:inline">GitHub</span>
+                <nav class="flex items-center space-x-4 md:space-x-8">
+                    <a href="#projects" class="text-black text-[10px] uppercase font-bold tracking-widest hover:opacity-50 hidden md:block">Work</a>
+                    <a href="#skills" class="text-black text-[10px] uppercase font-bold tracking-widest hover:opacity-50 hidden md:block">Skills</a>
+                    <a href="#chronicle" class="text-black text-[10px] uppercase font-bold tracking-widest hover:opacity-50 hidden md:block">Chronicle</a>
+                    <a href="mailto:prashanthgarigaboina@gmail.com" class="p-2.5 border border-black/10 rounded-xl hover:bg-black hover:text-white transition-all">
+                        <i data-lucide="mail" class="w-4 h-4"></i>
+                    </a>
+                </nav>
+            </div>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="min-h-screen flex flex-col justify-center relative pt-32 pb-12 px-6 md:px-12">
+            <div class="container mx-auto max-w-[1500px] relative">
+                
+                <!-- THE PROFILE CARD (BEHIND THE NAME) -->
+                <div class="profile-card-wrapper animate-up" style="animation-delay: 0.2s">
+                    <div class="profile-card-fintech">
+                        <img src="prashanth.png" 
+                             class="profile-img-bg" 
+                             alt="Prashanth"
+                             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="flex items-center justify-center bg-zinc-900 text-white w-full h-full" style="display:none">Profile Image</div>
+
+                        <!-- Interactive Buttons -->
+                        <div class="card-footer-actions">
+                            <a href="https://linkedin.com/in/prashanthgarigaboina" target="_blank" rel="noopener noreferrer" class="btn-card-sm btn-white-solid">
+                                <i data-lucide="linkedin" class="w-3.5 h-3.5"></i>
+                                <span class="hidden sm:inline">Connect</span>
+                            </a>
+                            <a href="https://github.com/prasshhhzanth" target="_blank" rel="noopener noreferrer" class="btn-card-sm btn-glass-light">
+                                <i data-lucide="github" class="w-3.5 h-3.5"></i>
+                                <span class="hidden sm:inline">GitHub</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- NAME DISPLAY (OVERLAPPING THE CARD) -->
+                <div class="relative z-10 hero-content">
+                    <div class="mb-6 overflow-hidden hidden lg:block">
+                        <span class="inline-block text-[10px] font-bold tracking-[0.7em] text-gray-400 uppercase animate-up">CRAFTING DIGITAL LOGIC</span>
+                    </div>
+                    
+                    <h1 class="name-display tracking-tighter">
+                        <span class="inline-block animate-up glass-3d-text" style="animation-delay: 0.3s">GARIGABOINA</span><br/>
+                        <span class="inline-block animate-up text-black" style="animation-delay: 0.4s">PRASHANTH</span>
+                    </h1>
+
+                    <p class="text-base md:text-2xl font-light leading-relaxed text-gray-500 max-w-2xl animate-up mt-8 mb-10 mx-auto lg:ml-0" style="animation-delay: 0.5s">
+                        Engineering specializing in <span class="text-black font-semibold">Computer Science & Business Systems</span>. Building robust digital systems that blend high-performance logic with scalable user experiences.
+                    </p>
+
+                    <div class="animate-up flex mailbox-wrapper mailbox-center lg:justify-start" style="animation-delay: 0.6s">
+                        <a href="mailto:prashanthgarigaboina@gmail.com" class="mailbox-card">
+                            <div class="mailbox-icon-wrapper">
+                                <i data-lucide="inbox" class="w-6 h-6"></i>
+                            </div>
+                            <div class="flex flex-col text-left">
+                                <span class="text-[8px] uppercase font-bold text-gray-400 tracking-widest leading-none mb-1">Mailbox</span>
+                                <span class="text-sm md:text-base font-semibold text-black leading-none">Drop an enquiry</span>
+                            </div>
                         </a>
                     </div>
                 </div>
+
             </div>
+        </section>
 
-            <!-- NAME DISPLAY (OVERLAPPING THE CARD) -->
-            <div class="relative z-10 hero-content">
-                <div class="mb-6 overflow-hidden hidden lg:block">
-                    <span class="inline-block text-[10px] font-bold tracking-[0.7em] text-gray-400 uppercase animate-up">CRAFTING DIGITAL LOGIC</span>
+        <!-- Work Gallery -->
+        <section id="projects" class="bg-gray-50/50 pt-32 pb-48 px-6">
+            <div class="container mx-auto max-w-[1200px]">
+                <div class="mb-24 text-center reveal">
+                    <h2 class="text-[9px] uppercase tracking-[0.5em] text-gray-300 font-bold mb-4">01 / SELECTED WORKS</h2>
+                    <p class="text-4xl md:text-6xl font-space font-bold tracking-tighter">Project <span class="italic font-light text-gray-400">Gallery</span></p>
                 </div>
-                
-                <h1 class="name-display tracking-tighter">
-                    <span class="inline-block animate-up glass-3d-text" style="animation-delay: 0.3s">GARIGABOINA</span><br/>
-                    <span class="inline-block animate-up text-black" style="animation-delay: 0.4s">PRASHANTH</span>
-                </h1>
 
-                <p class="text-base md:text-2xl font-light leading-relaxed text-gray-500 max-w-2xl animate-up mt-8 mb-10 mx-auto lg:ml-0" style="animation-delay: 0.5s">
-                    Engineering specializing in <span class="text-black font-semibold">Computer Science & Business Systems</span>. Building robust digital systems that blend high-performance logic with scalable user experiences.
-                </p>
-
-                <div class="animate-up flex mailbox-wrapper mailbox-center lg:justify-start" style="animation-delay: 0.6s">
-                    <a href="mailto:prashanthgarigaboina@gmail.com" class="mailbox-card">
-                        <div class="mailbox-icon-wrapper">
-                            <i data-lucide="inbox" class="w-6 h-6"></i>
+                <div class="space-y-[10vh] md:space-y-[15vh] pb-[15vh]">
+                    <!-- Project 01 -->
+                    <a href="https://github.com/prasshhhzanth" target="_blank" class="project-card note-yellow">
+                        <div class="h-1/2 flex items-center justify-center pointer-events-none">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="1.2" class="w-2/3 h-2/3"><path d="M22 2L11 13"/><path d="M22 2L15 22L11 13L2 9L22 2Z"/></svg>
                         </div>
-                        <div class="flex flex-col text-left">
-                            <span class="text-[8px] uppercase font-bold text-gray-400 tracking-widest leading-none mb-1">Mailbox</span>
-                            <span class="text-sm md:text-base font-semibold text-black leading-none">Drop an enquiry</span>
+                        <div class="flex flex-col">
+                            <h3 class="text-2xl md:text-4xl font-space font-bold mb-3 tracking-tighter">Clothing.ai</h3>
+                            <p class="text-black/60 text-sm md:text-base font-medium leading-tight mb-8">GenAI & AR Fashion Assistant. Generates unique patterns and maps designs to purchase links.</p>
+                            <div class="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest opacity-80"><span class="border-b-2 border-black pb-1">GitHub Profile</span><i data-lucide="arrow-up-right" class="w-3 h-3"></i></div>
+                        </div>
+                    </a>
+
+                    <!-- Project 02 -->
+                    <a href="https://github.com/prasshhhzanth" target="_blank" class="project-card note-pink">
+                        <div class="h-1/2 flex items-center justify-center pointer-events-none">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="1.2" class="w-2/3 h-2/3"><path d="M4 20H20M4 4V20" stroke-opacity="0.2"/><path d="M7 16C7 16 9 10 12 10C15 10 17 14 20 14" stroke-width="2"/></svg>
+                        </div>
+                        <div class="flex flex-col">
+                            <h3 class="text-2xl md:text-4xl font-space font-bold mb-3 tracking-tighter">Dhanvantri AI</h3>
+                            <p class="text-black/60 text-sm md:text-base font-medium leading-tight mb-8">Intelligent Medical Assistant using FastAPI and NLP for symptom-based disease prediction.</p>
+                            <div class="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest opacity-80"><span class="border-b-2 border-black pb-1">GitHub Profile</span><i data-lucide="arrow-up-right" class="w-3 h-3"></i></div>
+                        </div>
+                    </a>
+
+                    <!-- Project 03 -->
+                    <a href="https://github.com/prasshhhzanth" target="_blank" class="project-card note-green">
+                        <div class="h-1/2 flex items-center justify-center pointer-events-none">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="1.2" class="w-2/3 h-2/3"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+                        </div>
+                        <div class="flex flex-col">
+                            <h3 class="text-2xl md:text-4xl font-space font-bold mb-3 tracking-tighter">YOCTRON-RMS</h3>
+                            <p class="text-black/60 text-sm md:text-base font-medium leading-tight mb-8">Restaurant Management Interface for real-time tracking of order status and table reservations.</p>
+                            <div class="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest opacity-80"><span class="border-b-2 border-black pb-1">GitHub Profile</span><i data-lucide="arrow-up-right" class="w-3 h-3"></i></div>
+                        </div>
+                    </a>
+
+                    <!-- Project 04 -->
+                    <a href="https://github.com/prasshhhzanth" target="_blank" class="project-card note-blue">
+                        <div class="h-1/2 flex items-center justify-center pointer-events-none">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="1.2" class="w-2/3 h-2/3"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                        </div>
+                        <div class="flex flex-col">
+                            <h3 class="text-2xl md:text-4xl font-space font-bold mb-3 tracking-tighter">Pet Welfare</h3>
+                            <p class="text-black/60 text-sm md:text-base font-medium leading-tight mb-8">Community-driven adoption platform focused on responsive UX and conversion rates.</p>
+                            <div class="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest opacity-80"><span class="border-b-2 border-black pb-1">GitHub Profile</span><i data-lucide="arrow-up-right" class="w-3 h-3"></i></div>
+                        </div>
+                    </a>
+
+                    <!-- Project 05: MyUnity -->
+                    <a href="https://github.com/prasshhhzanth" target="_blank" class="project-card note-purple">
+                        <div class="h-1/2 flex items-center justify-center pointer-events-none">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="1.2" class="w-2/3 h-2/3">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                                <circle cx="9" cy="7" r="4" />
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                            </svg>
+                        </div>
+                        <div class="flex flex-col">
+                            <h3 class="text-2xl md:text-4xl font-space font-bold mb-3 tracking-tighter">MyUnity</h3>
+                            <p class="text-black/60 text-sm md:text-base font-medium leading-tight mb-8">Smart community system with features like visitor, complaint, event tracking, and a custom EV reservation scheduler. Built with Flutter, Python, and PostgreSQL.</p>
+                            <div class="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest opacity-80"><span class="border-b-2 border-black pb-1">GitHub Profile</span><i data-lucide="arrow-up-right" class="w-3 h-3"></i></div>
+                        </div>
+                    </a>
+
+                    <!-- Project 06: DEPay -->
+                    <a href="https://github.com/prasshhhzanth" target="_blank" class="project-card note-orange">
+                        <div class="h-1/2 flex items-center justify-center pointer-events-none">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="1.2" class="w-2/3 h-2/3">
+                                <circle cx="12" cy="12" r="10" />
+                                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+                                <path d="M2 12h20" />
+                            </svg>
+                        </div>
+                        <div class="flex flex-col">
+                            <h3 class="text-2xl md:text-4xl font-space font-bold mb-3 tracking-tighter">DEPay</h3>
+                            <p class="text-black/60 text-sm md:text-base font-medium leading-tight mb-8">Decentralized payment bridge featuring Solidity atomic swaps, UPI onboarding, automated currency converter, and real-time ledger auditing. Powered by Node.js, Kotlin, and Solidity.</p>
+                            <div class="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest opacity-80"><span class="border-b-2 border-black pb-1">GitHub Profile</span><i data-lucide="arrow-up-right" class="w-3 h-3"></i></div>
                         </div>
                     </a>
                 </div>
             </div>
+        </section>
 
-        </div>
-    </section>
+        <!-- Skills Section - Synced with Resume -->
+        <section id="skills" class="py-32 bg-white px-6">
+            <div class="container mx-auto max-w-[1200px]">
+                <div class="mb-24 reveal text-center lg:text-left">
+                    <h2 class="text-[9px] uppercase tracking-[0.5em] text-gray-300 font-bold mb-4">02 / CAPABILITIES</h2>
+                    <p class="text-4xl md:text-6xl font-space font-bold tracking-tighter">Tools & <span class="italic font-light text-gray-400">Logic</span></p>
+                </div>
 
-    <!-- Work Gallery -->
-    <section id="projects" class="bg-gray-50/50 pt-32 pb-48 px-6">
-        <div class="container mx-auto max-w-[1200px]">
-            <div class="mb-24 text-center reveal">
-                <h2 class="text-[9px] uppercase tracking-[0.5em] text-gray-300 font-bold mb-4">01 / SELECTED WORKS</h2>
-                <p class="text-4xl md:text-6xl font-space font-bold tracking-tighter">Project <span class="italic font-light text-gray-400">Gallery</span></p>
-            </div>
-
-            <div class="space-y-[10vh] md:space-y-[15vh] pb-[15vh]">
-                <!-- Project 01 -->
-                <a href="https://github.com/prasshhhzanth" target="_blank" class="project-card note-yellow">
-                    <div class="h-1/2 flex items-center justify-center pointer-events-none">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="1.2" class="w-2/3 h-2/3"><path d="M22 2L11 13"/><path d="M22 2L15 22L11 13L2 9L22 2Z"/></svg>
-                    </div>
-                    <div class="flex flex-col">
-                        <h3 class="text-2xl md:text-4xl font-space font-bold mb-3 tracking-tighter">Clothing.ai</h3>
-                        <p class="text-black/60 text-sm md:text-base font-medium leading-tight mb-8">GenAI & AR Fashion Assistant. Generates unique patterns and maps designs to purchase links.</p>
-                        <div class="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest opacity-80"><span class="border-b-2 border-black pb-1">GitHub Profile</span><i data-lucide="arrow-up-right" class="w-3 h-3"></i></div>
-                    </div>
-                </a>
-
-                <!-- Project 02 -->
-                <a href="https://github.com/prasshhhzanth" target="_blank" class="project-card note-pink">
-                    <div class="h-1/2 flex items-center justify-center pointer-events-none">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="1.2" class="w-2/3 h-2/3"><path d="M4 20H20M4 4V20" stroke-opacity="0.2"/><path d="M7 16C7 16 9 10 12 10C15 10 17 14 20 14" stroke-width="2"/></svg>
-                    </div>
-                    <div class="flex flex-col">
-                        <h3 class="text-2xl md:text-4xl font-space font-bold mb-3 tracking-tighter">Dhanvantri AI</h3>
-                        <p class="text-black/60 text-sm md:text-base font-medium leading-tight mb-8">Intelligent Medical Assistant using FastAPI and NLP for symptom-based disease prediction.</p>
-                        <div class="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest opacity-80"><span class="border-b-2 border-black pb-1">GitHub Profile</span><i data-lucide="arrow-up-right" class="w-3 h-3"></i></div>
-                    </div>
-                </a>
-
-                <!-- Project 03 -->
-                <a href="https://github.com/prasshhhzanth" target="_blank" class="project-card note-green">
-                    <div class="h-1/2 flex items-center justify-center pointer-events-none">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="1.2" class="w-2/3 h-2/3"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
-                    </div>
-                    <div class="flex flex-col">
-                        <h3 class="text-2xl md:text-4xl font-space font-bold mb-3 tracking-tighter">YOCTRON-RMS</h3>
-                        <p class="text-black/60 text-sm md:text-base font-medium leading-tight mb-8">Restaurant Management Interface for real-time tracking of order status and table reservations.</p>
-                        <div class="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest opacity-80"><span class="border-b-2 border-black pb-1">GitHub Profile</span><i data-lucide="arrow-up-right" class="w-3 h-3"></i></div>
-                    </div>
-                </a>
-
-                <!-- Project 04 -->
-                <a href="https://github.com/prasshhhzanth" target="_blank" class="project-card note-blue">
-                    <div class="h-1/2 flex items-center justify-center pointer-events-none">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="1.2" class="w-2/3 h-2/3"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-                    </div>
-                    <div class="flex flex-col">
-                        <h3 class="text-2xl md:text-4xl font-space font-bold mb-3 tracking-tighter">Pet Welfare</h3>
-                        <p class="text-black/60 text-sm md:text-base font-medium leading-tight mb-8">Community-driven adoption platform focused on responsive UX and conversion rates.</p>
-                        <div class="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest opacity-80"><span class="border-b-2 border-black pb-1">GitHub Profile</span><i data-lucide="arrow-up-right" class="w-3 h-3"></i></div>
-                    </div>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Skills Section - Synced with Resume -->
-    <section id="skills" class="py-32 bg-white px-6">
-        <div class="container mx-auto max-w-[1200px]">
-            <div class="mb-24 reveal text-center lg:text-left">
-                <h2 class="text-[9px] uppercase tracking-[0.5em] text-gray-300 font-bold mb-4">02 / CAPABILITIES</h2>
-                <p class="text-4xl md:text-6xl font-space font-bold tracking-tighter">Tools & <span class="italic font-light text-gray-400">Logic</span></p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 reveal">
-                <!-- Development -->
-                <div class="skill-tile">
-                    <div class="p-3 bg-black text-white w-fit rounded-xl">
-                        <i data-lucide="code-2" class="w-5 h-5"></i>
-                    </div>
-                    <div>
-                        <h4 class="font-bold text-lg mb-4">Languages</h4>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="px-3 py-1 bg-gray-50 text-[10px] font-bold uppercase tracking-wider rounded-full border border-gray-100">Java (OOP)</span>
-                            <span class="px-3 py-1 bg-gray-50 text-[10px] font-bold uppercase tracking-wider rounded-full border border-gray-100">Python</span>
-                            <span class="px-3 py-1 bg-gray-50 text-[10px] font-bold uppercase tracking-wider rounded-full border border-gray-100">C</span>
-                            <span class="px-3 py-1 bg-gray-50 text-[10px] font-bold uppercase tracking-wider rounded-full border border-gray-100">Html</span>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 reveal">
+                    <!-- Development -->
+                    <div class="skill-tile">
+                        <div class="p-3 bg-black text-white w-fit rounded-xl">
+                            <i data-lucide="code-2" class="w-5 h-5"></i>
                         </div>
-                    </div>
-                </div>
-
-                <!-- Engineering Logic -->
-                <div class="skill-tile">
-                    <div class="p-3 bg-black text-white w-fit rounded-xl">
-                        <i data-lucide="cpu" class="w-5 h-5"></i>
-                    </div>
-                    <div>
-                        <h4 class="font-bold text-lg mb-4">Engineering</h4>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="px-3 py-1 bg-gray-50 text-[10px] font-bold uppercase tracking-wider rounded-full border border-gray-100">DSA</span>
-                            <span class="px-3 py-1 bg-gray-50 text-[10px] font-bold uppercase tracking-wider rounded-full border border-gray-100">FastAPI</span>
-                            <span class="px-3 py-1 bg-gray-50 text-[10px] font-bold uppercase tracking-wider rounded-full border border-gray-100">Computer Architecture</span>
-                            <span class="px-3 py-1 bg-gray-50 text-[10px] font-bold uppercase tracking-wider rounded-full border border-gray-100">Linux</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Tools & Platforms -->
-                <div class="skill-tile">
-                    <div class="p-3 bg-black text-white w-fit rounded-xl">
-                        <i data-lucide="layers" class="w-5 h-5"></i>
-                    </div>
-                    <div>
-                        <h4 class="font-bold text-lg mb-4">Technologies</h4>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="px-3 py-1 bg-gray-50 text-[10px] font-bold uppercase tracking-wider rounded-full border border-gray-100">Power BI</span>
-                            <span class="px-3 py-1 bg-gray-50 text-[10px] font-bold uppercase tracking-wider rounded-full border border-gray-100">Git</span>
-                            <span class="px-3 py-1 bg-gray-50 text-[10px] font-bold uppercase tracking-wider rounded-full border border-gray-100">Docker</span>
-                            <span class="px-3 py-1 bg-gray-50 text-[10px] font-bold uppercase tracking-wider rounded-full border border-gray-100">MS 365</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Business & AI -->
-                <div class="skill-tile">
-                    <div class="p-3 bg-black text-white w-fit rounded-xl">
-                        <i data-lucide="trending-up" class="w-5 h-5"></i>
-                    </div>
-                    <div>
-                        <h4 class="font-bold text-lg mb-4">Business & AI</h4>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="px-3 py-1 bg-gray-50 text-[10px] font-bold uppercase tracking-wider rounded-full border border-gray-100">Analytics</span>
-                            <span class="px-3 py-1 bg-gray-50 text-[10px] font-bold uppercase tracking-wider rounded-full border border-gray-100">GenAI</span>
-                            <span class="px-3 py-1 bg-gray-50 text-[10px] font-bold uppercase tracking-wider rounded-full border border-gray-100">NLP</span>
-                            <span class="px-3 py-1 bg-gray-50 text-[10px] font-bold uppercase tracking-wider rounded-full border border-gray-100">DevOps</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Chronicle Section -->
-    <section id="chronicle" class="py-32 md:py-60 bg-gray-50 relative overflow-hidden px-6">
-        <!-- 8 Hand-drawn Aesthetic Icons -->
-        <div class="aesthetic-icon top-[5%] left-[5%] animate-float" style="animation-duration: 8s;"><svg viewBox="0 0 120 120" fill="none" stroke="black" stroke-width="1.2"><rect x="20" y="20" width="80" height="60" rx="3"/><path d="M40 80L30 100H90L80 80"/></svg></div>
-        <div class="aesthetic-icon top-[35%] left-[3%] animate-float" style="animation-duration: 6s; animation-delay: 1s;"><svg viewBox="0 0 120 120" fill="none" stroke="black" stroke-width="1.2"><path d="M30 90L90 30M35 95L95 35"/></svg></div>
-        <div class="aesthetic-icon top-[65%] left-[8%] animate-float" style="animation-duration: 9s; animation-delay: 2s;"><svg viewBox="0 0 120 120" fill="none" stroke="black" stroke-width="1.2"><path d="M60 20C45 20 35 35 35 50C35 65 50 80 50 95H70C70 80 85 65 85 50C85 35 75 20 60 20Z"/></svg></div>
-        <div class="aesthetic-icon bottom-[10%] left-[5%] animate-float" style="animation-duration: 7s; animation-delay: 0.5s;"><svg viewBox="0 0 120 120" fill="none" stroke="black" stroke-width="1.2"><rect x="30" y="40" width="60" height="15" rx="1"/><rect x="25" y="55" width="70" height="15" rx="1"/></svg></div>
-        <div class="aesthetic-icon top-[10%] right-[5%] animate-float" style="animation-duration: 10s; animation-delay: 1.5s;"><svg viewBox="0 0 120 120" fill="none" stroke="black" stroke-width="1.2"><rect x="20" y="40" width="80" height="50" rx="3"/><circle cx="60" cy="65" r="18"/></svg></div>
-        <div class="aesthetic-icon top-[40%] right-[3%] animate-float" style="animation-duration: 8s; animation-delay: 2.5s;"><svg viewBox="0 0 120 120" fill="none" stroke="black" stroke-width="1.2"><path d="M60 30L20 50L60 70L100 50L60 30Z"/><path d="M35 55V75C35 75 60 85 85 75V55"/></svg></div>
-        <div class="aesthetic-icon top-[70%] right-[6%] animate-float" style="animation-duration: 6s; animation-delay: 1.2s;"><svg viewBox="0 0 120 120" fill="none" stroke="black" stroke-width="1.2"><path d="M30 90L90 90L30 30L30 90Z"/></svg></div>
-        <div class="aesthetic-icon bottom-[12%] right-[5%] animate-float" style="animation-duration: 11s; animation-delay: 3s;"><svg viewBox="0 0 120 120" fill="none" stroke="black" stroke-width="1.2"><path d="M40 50H80V90C80 95 70 100 40 90V50Z"/><path d="M80 60C95 60 95 90 80 90"/></svg></div>
-
-        <div class="container mx-auto max-w-[1100px] relative z-20">
-            <div class="text-center mb-24 reveal">
-                <h2 class="text-[9px] uppercase tracking-[0.5em] text-gray-300 font-bold mb-8">03 / CHRONICLE</h2>
-                <span class="text-sm font-mono text-gray-400 mb-4 block">2024 — 2028</span>
-                <h3 class="text-5xl md:text-8xl font-space font-bold mb-8 tracking-tighter leading-none text-black">VBIT Hyderabad</h3>
-                <p class="text-xl md:text-3xl text-gray-400 font-light leading-tight mb-20 max-w-2xl mx-auto">
-                    Bachelor of Technology in <span class="text-black">Computer Science & Business Systems</span>.
-                </p>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-2xl mx-auto">
-                    <div class="p-10 bg-white border border-gray-100 rounded-3xl shadow-sm"><p class="text-[9px] uppercase font-bold text-gray-300 tracking-widest mb-4">Cumulative GPA</p><p class="text-6xl md:text-8xl font-space font-bold tracking-tighter text-black">8.40</p></div>
-                    <div class="p-10 bg-black text-white rounded-3xl shadow-xl"><p class="text-[9px] uppercase font-bold text-gray-500 tracking-widest mb-4">Latest Sem</p><p class="text-6xl md:text-8xl font-space font-bold tracking-tighter">9.00</p></div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="py-32 bg-black text-white px-6">
-        <div class="container mx-auto max-w-[1500px]">
-            <div class="flex flex-col gap-24">
-                <div class="max-w-5xl">
-                    <h2 class="text-6xl md:text-[9rem] font-space font-bold tracking-tighter leading-[0.85] mb-16">READY FOR <br/>THE <span class="italic font-light text-gray-600">NEXT</span>.</h2>
-                    <div class="grid md:grid-cols-2 gap-16">
                         <div>
-                            <p class="text-[9px] uppercase font-bold text-gray-500 tracking-widest mb-6">Contact</p>
-                            <a href="mailto:prashanthgarigaboina@gmail.com" class="text-2xl md:text-4xl font-light tracking-tighter border-b border-white/20 pb-2 hover:opacity-50 transition-all block w-fit mb-4 text-white">Drop a mail</a>
-                            <p class="text-xs font-bold text-gray-500 uppercase tracking-widest">+91 99595 95137</p>
+                            <h4 class="font-bold text-lg mb-4">Languages & Web</h4>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1 bg-gray-50 text-[10px] font-bold uppercase tracking-wider rounded-full border border-gray-100">Java (OOP)</span>
+                                <span class="px-3 py-1 bg-gray-50 text-[10px] font-bold uppercase tracking-wider rounded-full border border-gray-100">Python</span>
+                                <span class="px-3 py-1 bg-gray-50 text-[10px] font-bold uppercase tracking-wider rounded-full border border-gray-100">SQL</span>
+                                <span class="px-3 py-1 bg-gray-50 text-[10px] font-bold uppercase tracking-wider rounded-full border border-gray-100">HTML</span>
+                                <span class="px-3 py-1 bg-gray-50 text-[10px] font-bold uppercase tracking-wider rounded-full border border-gray-100">CSS</span>
+                                <span class="px-3 py-1 bg-gray-50 text-[10px] font-bold uppercase tracking-wider rounded-full border border-gray-100">C</span>
+                            </div>
                         </div>
-                        <div class="flex flex-col gap-4 justify-end md:items-end">
-                            <a href="https://linkedin.com/in/prashanthgarigaboina" target="_blank" class="text-xs font-bold uppercase tracking-widest hover:opacity-50 text-white">LinkedIn</a>
-                            <a href="https://github.com/prasshhhzanth" target="_blank" class="text-xs font-bold uppercase tracking-widest hover:opacity-50 text-white">GitHub</a>
+                    </div>
+
+                    <!-- Engineering Logic -->
+                    <div class="skill-tile">
+                        <div class="p-3 bg-black text-white w-fit rounded-xl">
+                            <i data-lucide="cpu" class="w-5 h-5"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-lg mb-4">Engineering</h4>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1 bg-gray-50 text-[10px] font-bold uppercase tracking-wider rounded-full border border-gray-100">React</span>
+                                <span class="px-3 py-1 bg-gray-50 text-[10px] font-bold uppercase tracking-wider rounded-full border border-gray-100">Node.js</span>
+                                <span class="px-3 py-1 bg-gray-50 text-[10px] font-bold uppercase tracking-wider rounded-full border border-gray-100">DSA</span>
+                                <span class="px-3 py-1 bg-gray-50 text-[10px] font-bold uppercase tracking-wider rounded-full border border-gray-100">FastAPI</span>
+                                <span class="px-3 py-1 bg-gray-50 text-[10px] font-bold uppercase tracking-wider rounded-full border border-gray-100">Computer Architecture</span>
+                                <span class="px-3 py-1 bg-gray-50 text-[10px] font-bold uppercase tracking-wider rounded-full border border-gray-100">Linux</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tools & Platforms -->
+                    <div class="skill-tile">
+                        <div class="p-3 bg-black text-white w-fit rounded-xl">
+                            <i data-lucide="layers" class="w-5 h-5"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-lg mb-4">Technologies</h4>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1 bg-gray-50 text-[10px] font-bold uppercase tracking-wider rounded-full border border-gray-100">Power BI</span>
+                                <span class="px-3 py-1 bg-gray-50 text-[10px] font-bold uppercase tracking-wider rounded-full border border-gray-100">Git</span>
+                                <span class="px-3 py-1 bg-gray-50 text-[10px] font-bold uppercase tracking-wider rounded-full border border-gray-100">Docker</span>
+                                <span class="px-3 py-1 bg-gray-50 text-[10px] font-bold uppercase tracking-wider rounded-full border border-gray-100">MS 365</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Business & AI -->
+                    <div class="skill-tile">
+                        <div class="p-3 bg-black text-white w-fit rounded-xl">
+                            <i data-lucide="trending-up" class="w-5 h-5"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-lg mb-4">Business & AI</h4>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1 bg-gray-50 text-[10px] font-bold uppercase tracking-wider rounded-full border border-gray-100">Business Case Study</span>
+                                <span class="px-3 py-1 bg-gray-50 text-[10px] font-bold uppercase tracking-wider rounded-full border border-gray-100">Analytics</span>
+                                <span class="px-3 py-1 bg-gray-50 text-[10px] font-bold uppercase tracking-wider rounded-full border border-gray-100">GenAI</span>
+                                <span class="px-3 py-1 bg-gray-50 text-[10px] font-bold uppercase tracking-wider rounded-full border border-gray-100">NLP</span>
+                                <span class="px-3 py-1 bg-gray-50 text-[10px] font-bold uppercase tracking-wider rounded-full border border-gray-100">DevOps</span>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="text-[9px] text-gray-600 uppercase tracking-widest font-bold border-t border-white/10 pt-10 flex flex-col md:flex-row justify-between gap-4">
-                    <p>© 2025 GARIGABOINA PRASHANTH</p>
-                    <p>ENGINEERED IN HYDERABAD</p>
+            </div>
+        </section>
+
+        <!-- Chronicle Section -->
+        <section id="chronicle" class="py-32 md:py-60 bg-gray-50 relative overflow-hidden px-6">
+            <!-- 8 Hand-drawn Aesthetic Icons -->
+            <div class="aesthetic-icon top-[5%] left-[5%] animate-float" style="animation-duration: 8s;"><svg viewBox="0 0 120 120" fill="none" stroke="black" stroke-width="1.2"><rect x="20" y="20" width="80" height="60" rx="3"/><path d="M40 80L30 100H90L80 80"/></svg></div>
+            <div class="aesthetic-icon top-[35%] left-[3%] animate-float" style="animation-duration: 6s; animation-delay: 1s;"><svg viewBox="0 0 120 120" fill="none" stroke="black" stroke-width="1.2"><path d="M30 90L90 30M35 95L95 35"/></svg></div>
+            <div class="aesthetic-icon top-[65%] left-[8%] animate-float" style="animation-duration: 9s; animation-delay: 2s;"><svg viewBox="0 0 120 120" fill="none" stroke="black" stroke-width="1.2"><path d="M60 20C45 20 35 35 35 50C35 65 50 80 50 95H70C70 80 85 65 85 50C85 35 75 20 60 20Z"/></svg></div>
+            <div class="aesthetic-icon bottom-[10%] left-[5%] animate-float" style="animation-duration: 7s; animation-delay: 0.5s;"><svg viewBox="0 0 120 120" fill="none" stroke="black" stroke-width="1.2"><rect x="30" y="40" width="60" height="15" rx="1"/><rect x="25" y="55" width="70" height="15" rx="1"/></svg></div>
+            <div class="aesthetic-icon top-[10%] right-[5%] animate-float" style="animation-duration: 10s; animation-delay: 1.5s;"><svg viewBox="0 0 120 120" fill="none" stroke="black" stroke-width="1.2"><rect x="20" y="40" width="80" height="50" rx="3"/><circle cx="60" cy="65" r="18"/></svg></div>
+            <div class="aesthetic-icon top-[40%] right-[3%] animate-float" style="animation-duration: 8s; animation-delay: 2.5s;"><svg viewBox="0 0 120 120" fill="none" stroke="black" stroke-width="1.2"><path d="M60 30L20 50L60 70L100 50L60 30Z"/><path d="M35 55V75C35 75 60 85 85 75V55"/></svg></div>
+            <div class="aesthetic-icon top-[70%] right-[6%] animate-float" style="animation-duration: 6s; animation-delay: 1.2s;"><svg viewBox="0 0 120 120" fill="none" stroke="black" stroke-width="1.2"><path d="M30 90L90 90L30 30L30 90Z"/></svg></div>
+            <div class="aesthetic-icon bottom-[12%] right-[5%] animate-float" style="animation-duration: 11s; animation-delay: 3s;"><svg viewBox="0 0 120 120" fill="none" stroke="black" stroke-width="1.2"><path d="M40 50H80V90C80 95 70 100 40 90V50Z"/><path d="M80 60C95 60 95 90 80 90"/></svg></div>
+
+            <div class="container mx-auto max-w-[1100px] relative z-20">
+                <div class="text-center mb-24 reveal">
+                    <h2 class="text-[9px] uppercase tracking-[0.5em] text-gray-300 font-bold mb-8">03 / CHRONICLE</h2>
+                    <span class="text-sm font-mono text-gray-400 mb-4 block">2024 — 2028</span>
+                    <h3 class="text-5xl md:text-8xl font-space font-bold mb-8 tracking-tighter leading-none text-black">VBIT Hyderabad</h3>
+                    <p class="text-xl md:text-3xl text-gray-400 font-light leading-tight mb-20 max-w-2xl mx-auto">
+                        Bachelor of Technology in <span class="text-black">Computer Science & Business Systems</span>.
+                    </p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-2xl mx-auto">
+                        <div class="p-10 bg-white border border-gray-100 rounded-3xl shadow-sm"><p class="text-[9px] uppercase font-bold text-gray-300 tracking-widest mb-4">Cumulative GPA</p><p class="text-6xl md:text-8xl font-space font-bold tracking-tighter text-black">8.40</p></div>
+                        <div class="p-10 bg-black text-white rounded-3xl shadow-xl"><p class="text-[9px] uppercase font-bold text-gray-500 tracking-widest mb-4">Latest Sem</p><p class="text-6xl md:text-8xl font-space font-bold tracking-tighter">8.40</p></div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </footer>
+        </section>
 
+        <!-- Footer -->
+        <footer class="py-32 bg-black text-white px-6">
+            <div class="container mx-auto max-w-[1500px]">
+                <div class="flex flex-col gap-24">
+                    <div class="max-w-5xl">
+                        <h2 class="text-6xl md:text-[9rem] font-space font-bold tracking-tighter leading-[0.85] mb-16">READY FOR <br/>THE <span class="italic font-light text-gray-600">NEXT</span>.</h2>
+                        <div class="grid md:grid-cols-2 gap-16">
+                            <div>
+                                <p class="text-[9px] uppercase font-bold text-gray-500 tracking-widest mb-6">Contact</p>
+                                <a href="mailto:prashanthgarigaboina@gmail.com" class="text-2xl md:text-4xl font-light tracking-tighter border-b border-white/20 pb-2 hover:opacity-50 transition-all block w-fit mb-4 text-white">Drop a mail</a>
+                                <p class="text-xs font-bold text-gray-500 uppercase tracking-widest">+91 99595 95137</p>
+                            </div>
+                            <div class="flex flex-col gap-4 justify-end md:items-end">
+                                <a href="https://linkedin.com/in/prashanthgarigaboina" target="_blank" class="text-xs font-bold uppercase tracking-widest hover:opacity-50 text-white">LinkedIn</a>
+                                <a href="https://github.com/prasshhhzanth" target="_blank" class="text-xs font-bold uppercase tracking-widest hover:opacity-50 text-white">GitHub</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-[9px] text-gray-600 uppercase tracking-widest font-bold border-t border-white/10 pt-10 flex flex-col md:flex-row justify-between gap-4">
+                        <p>© 2025 GARIGABOINA PRASHANTH</p>
+                        <p>ENGINEERED IN HYDERABAD</p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- MAIN SCRIPTS -->
     <script>
+        // Start preloader animation immediately on DOM ready
+        document.addEventListener('DOMContentLoaded', () => {
+            initPremiumLoader();
+        });
+
+        function initPremiumLoader() {
+            const preloader = document.getElementById('preloader-container');
+            const mainSiteWrapper = document.getElementById('main-site-wrapper');
+            const words = document.querySelectorAll('.greeting-word');
+            const totalWords = words.length;
+
+            // Master Animation Timeline
+            const tl = gsap.timeline({
+                onComplete: () => {
+                    // Start rendering the portfolio entrance transitions
+                    document.body.classList.remove('loading');
+                    mainSiteWrapper.classList.add('ready');
+
+                    // Pull Up Curtain Animation Panel
+                    gsap.to("#loader-slide-curtain", {
+                        y: "-100%",
+                        duration: 1.1,
+                        ease: "power4.inOut",
+                        onComplete: () => {
+                            preloader.style.display = 'none';
+                            // Activate your existing portfolio scroll tracking
+                            stackNotes();
+                        }
+                    });
+                }
+            });
+
+            // Set initial parameters for loader components
+            gsap.set(words, { opacity: 0, y: "110%", rotateX: 45, filter: "blur(12px)" });
+            gsap.set("#loader-status", { opacity: 0, y: 20, filter: "blur(4px)" });
+
+            // Step 1: Reveal loader status indicator
+            tl.to("#loader-status", {
+                opacity: 1,
+                y: 0,
+                filter: "blur(0px)",
+                duration: 0.7,
+                ease: "power3.out"
+            });
+
+            // Step 2: Loop dynamically through words
+            words.forEach((word, index) => {
+                const currentPercentage = Math.round(((index + 1) / totalWords) * 100);
+
+                // Dynamically update status connecting percentage text
+                tl.to("#status-string", {
+                    duration: 0.05,
+                    onStart: () => {
+                        document.getElementById('status-string').innerText = `CONNECTING [${currentPercentage}%]`;
+                    }
+                }, index * 0.32);
+
+                // Word enters mask boundaries
+                tl.to(word, {
+                    opacity: 1,
+                    y: "0%",
+                    rotateX: 0,
+                    filter: "blur(0px)",
+                    duration: 0.42,
+                    ease: "power4.out"
+                }, index * 0.32);
+
+                // Word exits mask boundaries (except last item)
+                if (index < totalWords - 1) {
+                    tl.to(word, {
+                        opacity: 0,
+                        y: "-110%",
+                        rotateX: -45,
+                        filter: "blur(10px)",
+                        duration: 0.42,
+                        ease: "power4.in"
+                    }, (index * 0.32) + 0.3);
+                }
+            });
+
+            // Step 3: Polish the final word scale & transition out
+            const lastWord = words[words.length - 1];
+            tl.to(lastWord, {
+                scale: 1.06,
+                duration: 0.6,
+                ease: "power2.out"
+            }, "-=0.1");
+
+            tl.to(lastWord, {
+                opacity: 0,
+                y: "-50%",
+                filter: "blur(15px)",
+                duration: 0.45,
+                ease: "power3.in"
+            }, "+=0.1");
+
+            tl.to("#loader-status", {
+                opacity: 0,
+                y: -15,
+                filter: "blur(5px)",
+                duration: 0.35,
+                ease: "power3.in"
+            }, "-=0.25");
+        }
+
+        // ORIGINAL SITE SCRIPTS (Preserved Exactly)
         lucide.createIcons();
 
         const revealObserver = new IntersectionObserver((entries) => {
@@ -520,6 +818,9 @@
         document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
         function stackNotes() {
+            // Prevent execution if page is still in loading phase
+            if (document.body.classList.contains('loading')) return;
+
             const cards = document.querySelectorAll('.project-card');
             const threshold = 0.2;
             cards.forEach((card, i) => {
@@ -539,8 +840,6 @@
         }
 
         window.addEventListener('scroll', stackNotes, { passive: true });
-        stackNotes();
     </script>
 </body>
 </html>
-
