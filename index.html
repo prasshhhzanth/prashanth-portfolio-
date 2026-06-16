@@ -1,496 +1,577 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Garigaboina Prashanth | Portfolio</title>
-    <!-- Tailwind CSS for utility styles -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <!-- GSAP for premium preloader & content reveal animations -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800&family=Inter:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg-color: #ffffff;
-            --text-main: #000000;
-            --text-muted: #666666;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Garigaboina Prashanth | Portfolio</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://unpkg.com/lucide@latest" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800&family=Inter:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg-color:#ffffff;--text-main:#000000;--text-muted:#666666;}
+body{font-family:'Inter',sans-serif;background-color:var(--bg-color);color:var(--text-main);overflow-x:hidden;-webkit-font-smoothing:antialiased;}
+body.loading{overflow:hidden !important;height:100vh;}
+.font-space{font-family:'Space Grotesk',sans-serif;}
 
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
-        }
+#preloader-container{position:fixed;top:0;left:0;width:100vw;height:100vh;background-color:#0d0e12;z-index:9999;display:flex;justify-content:center;align-items:center;overflow:hidden;pointer-events:all;}
+.loader-bg-panel{position:absolute;width:100%;height:100%;background-color:#0a0b0d;top:0;left:0;z-index:1;}
+.loader-content{position:relative;z-index:10;display:flex;flex-direction:column;align-items:center;justify-content:center;pointer-events:none;}
+.greetings-mask{height:110px;overflow:hidden;position:relative;display:flex;align-items:center;justify-content:center;}
+.greeting-word{font-family:'Space Grotesk',sans-serif;font-size:clamp(2.5rem,7vw,5rem);font-weight:800;line-height:1;letter-spacing:-0.05em;color:#ffffff;position:absolute;opacity:0;transform:translateY(110%) rotateX(40deg);filter:blur(12px);white-space:nowrap;display:flex;align-items:center;}
+@media (max-width:640px){.greetings-mask{height:70px;}}
+.status-dot-wrapper{margin-top:32px;display:flex;align-items:center;gap:10px;opacity:0;transform:translateY(20px);filter:blur(4px);}
+.status-dot{width:8px;height:8px;border-radius:50%;background-color:#ffffff;box-shadow:0 0 10px rgba(255,255,255,0.8);}
+.status-text{font-size:10px;text-transform:uppercase;letter-spacing:0.3em;color:rgba(255,255,255,0.5);font-weight:700;}
 
-        /* Prevent interaction or scrolling while the preloader is executing */
-        body.loading {
-            overflow: hidden !important;
-            height: 100vh;
-        }
+#main-site-wrapper{opacity:0;filter:blur(8px);transform:translateY(25px);transition:opacity 1s cubic-bezier(0.16,1,0.3,1),filter 1s cubic-bezier(0.16,1,0.3,1),transform 1s cubic-bezier(0.16,1,0.3,1);}
+#main-site-wrapper.ready{opacity:1;filter:blur(0px);transform:translateY(0px);}
 
-        .font-space { font-family: 'Space Grotesk', sans-serif; }
+.header-identity{display:flex;align-items:center;gap:0.75rem;text-decoration:none;color:inherit;z-index:110;}
+.header-profile-avatar{width:38px;height:38px;border-radius:12px;overflow:hidden;background:#f0f0f0;flex-shrink:0;border:1px solid rgba(0,0,0,0.05);transition:transform 0.3s cubic-bezier(0.175,0.885,0.32,1.275);}
+.header-identity:hover .header-profile-avatar{transform:scale(1.1) rotate(-5deg);}
 
-        /* PRELOADER STYLES */
-        #preloader-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background-color: #0d0e12; /* Sleek dark intro layer */
-            z-index: 9999;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-            pointer-events: all;
-        }
+.name-display{font-size:clamp(2.3rem,8.2vw,10.5rem);line-height:0.8;font-family:'Space Grotesk',sans-serif;font-weight:800;letter-spacing:-0.06em;text-transform:uppercase;position:relative;z-index:20;pointer-events:none;}
+.glass-3d-text{color:#9ca3af;backdrop-filter:blur(4px);text-shadow:1px 1px 2px rgba(0,0,0,0.05),-1px -1px 0px rgba(255,255,255,0.8);display:inline-block;}
 
-        .loader-bg-panel {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background-color: #0a0b0d;
-            top: 0;
-            left: 0;
-            z-index: 1;
-        }
+.profile-card-wrapper{position:absolute;right:8%;top:50%;transform:translateY(-40%);width:28vw;max-width:400px;min-width:260px;z-index:30;pointer-events:auto;}
+@media (max-width:1024px){
+.profile-card-wrapper{position:relative;right:auto;top:auto;transform:none;margin-top:-6vh;margin-left:auto;margin-right:auto;width:85%;z-index:40;}
+.name-display{font-size:clamp(2.2rem,12vw,7.5rem);line-height:0.85;text-align:center;}
+.hero-content{text-align:center;pointer-events:none;}
+.hero-content > *{pointer-events:auto;}
+.mailbox-center{justify-content:center !important;margin-left:auto;margin-right:auto;}
+}
 
-        .loader-content {
-            position: relative;
-            z-index: 10;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            pointer-events: none;
-        }
+.profile-card-fintech{width:100%;aspect-ratio:1/1.2;border-radius:3rem;position:relative;overflow:hidden;background:#f7f7f7;box-shadow:0 50px 100px -20px rgba(0,0,0,0.15);transition:transform 0.8s cubic-bezier(0.16,1,0.3,1);}
+.profile-img-bg{width:100%;height:100%;object-fit:cover;filter:contrast(1.05) brightness(0.9);}
 
-        /* Precise masking bounds for the text transitions */
-        .greetings-mask {
-            height: 110px;
-            overflow: hidden;
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+.mailbox-card{background:rgba(0,0,0,0.02);border:1px solid rgba(0,0,0,0.05);padding:1.2rem 1.8rem;border-radius:2rem;display:inline-flex;align-items:center;gap:1.2rem;transition:all 0.3s ease;text-decoration:none;color:black;z-index:30;position:relative;}
+.mailbox-card:hover{transform:translateX(10px);background:rgba(0,0,0,0.04);}
+.mailbox-icon-wrapper{width:45px;height:45px;background:black;color:white;border-radius:1rem;display:flex;align-items:center;justify-content:center;}
 
-        .greeting-word {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: clamp(2.5rem, 7vw, 5rem);
-            font-weight: 800;
-            line-height: 1;
-            letter-spacing: -0.05em;
-            color: #ffffff;
-            position: absolute;
-            opacity: 0;
-            transform: translateY(110%) rotateX(40deg);
-            filter: blur(12px);
-            white-space: nowrap;
-            display: flex;
-            align-items: center;
-        }
+.card-footer-actions{position:absolute;bottom:1.2rem;left:1.2rem;right:1.2rem;display:flex;gap:0.5rem;padding:0.6rem;background:rgba(15,15,18,0.92);backdrop-filter:blur(25px);-webkit-backdrop-filter:blur(25px);border:1px solid rgba(255,255,255,0.15);border-radius:1.8rem;z-index:100;pointer-events:auto;}
+.btn-card-sm{flex:1;height:40px;border-radius:100px;display:flex;align-items:center;justify-content:center;gap:6px;font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;transition:all 0.3s cubic-bezier(0.23,1,0.32,1);text-decoration:none !important;cursor:pointer;position:relative;z-index:110;}
+.btn-glass-light{background:rgba(255,255,255,0.15);color:#ffffff;border:1px solid rgba(255,255,255,0.2);}
+.btn-glass-light:hover{background:rgba(255,255,255,0.25);border-color:rgba(255,255,255,0.35);}
+.btn-white-solid{background:#ffffff;color:#000000;}
+.btn-white-solid:hover{background:#e2e8f0;transform:scale(1.03);}
 
-        @media (max-width: 640px) {
-            .greetings-mask {
-                height: 70px;
-            }
-        }
+.skill-tile{background:#fcfcfc;border:1px solid #f0f0f0;padding:1.5rem;border-radius:1.5rem;transition:all 0.4s cubic-bezier(0.165,0.84,0.44,1);display:flex;flex-direction:column;gap:1rem;}
+.skill-tile:hover{background:white;box-shadow:0 20px 40px rgba(0,0,0,0.04);transform:translateY(-5px);border-color:#000;}
 
-        /* Micro-Status Indicator */
-        .status-dot-wrapper {
-            margin-top: 32px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            opacity: 0;
-            transform: translateY(20px);
-            filter: blur(4px);
-        }
+.project-card{position:sticky;top:15vh;width:92%;max-width:420px;margin:0 auto;aspect-ratio:1/1.2;display:flex;flex-direction:column;justify-content:space-between;padding:clamp(1.5rem,5vw,2.5rem);border-radius:0.5rem;box-shadow:15px 15px 45px rgba(0,0,0,0.05);transform-origin:center top;transition:all 0.4s cubic-bezier(0.16,1,0.3,1);text-decoration:none;color:inherit;}
+.note-yellow{background-color:#FED049;}
+.note-pink{background-color:#FF6AC2;}
+.note-green{background-color:#C9F4AA;}
+.note-blue{background-color:#AEE2FF;}
+.note-purple{background-color:#E2D4F0;}
+.note-orange{background-color:#FFDEB4;}
 
-        .status-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background-color: #ffffff;
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
-        }
+.aesthetic-icon{position:absolute;width:clamp(45px,7vw,110px);opacity:0.8;pointer-events:none;z-index:1;filter:grayscale(1);}
 
-        .status-text {
-            font-size: 10px;
-            text-transform: uppercase;
-            letter-spacing: 0.3em;
-            color: rgba(255, 255, 255, 0.5);
-            font-weight: 700;
-        }
+@keyframes float{0%,100%{transform:translateY(0) rotate(-2deg);}50%{transform:translateY(-15px) rotate(3deg);}}
+.animate-float{animation:float 6s ease-in-out infinite;}
 
-        /* Portfolio Entry Animations */
-        #main-site-wrapper {
-            opacity: 0;
-            filter: blur(8px);
-            transform: translateY(25px);
-            transition: opacity 1.6s cubic-bezier(0.16, 1, 0.3, 1),
-                        filter 1.6s cubic-bezier(0.16, 1, 0.3, 1),
-                        transform 1.6s cubic-bezier(0.16, 1, 0.3, 1);
-        }
+.reveal{opacity:0;transform:translateY(30px);transition:all 1s cubic-bezier(0.16,1,0.3,1);}
+.reveal.active{opacity:1;transform:translateY(0);}
 
-        #main-site-wrapper.ready {
-            opacity: 1;
-            filter: blur(0px);
-            transform: translateY(0px);
-        }
+.noise::before{content:"";position:fixed;top:0;left:0;width:100%;height:100%;background:url('https://grainy-gradients.vercel.app/noise.svg');opacity:0.05;pointer-events:none;z-index:9998;}
 
-        /* HEADER IDENTITY */
-        .header-identity {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            text-decoration: none;
-            color: inherit;
-            z-index: 110;
-        }
+html{scroll-behavior:smooth;}
 
-        .header-profile-avatar {
-            width: 38px; height: 38px; border-radius: 12px;
-            overflow: hidden; background: #f0f0f0; flex-shrink: 0;
-            border: 1px solid rgba(0,0,0,0.05);
-            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-        .header-identity:hover .header-profile-avatar { transform: scale(1.1) rotate(-5deg); }
+/* GLASSMORPHISM CORE */
+.glass{
+  background: rgba(255,255,255,0.55);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255,255,255,0.6);
+  box-shadow: 0 8px 32px rgba(31,38,135,0.08), inset 0 1px 0 rgba(255,255,255,0.7);
+}
+.glass-dark{
+  background: rgba(20,20,25,0.55);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255,255,255,0.12);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.08);
+}
+.glass-icon{
+  width:48px; height:48px;
+  display:flex; align-items:center; justify-content:center;
+  border-radius:1rem;
+  background: linear-gradient(135deg, rgba(255,255,255,0.65), rgba(255,255,255,0.25));
+  backdrop-filter: blur(12px) saturate(160%);
+  -webkit-backdrop-filter: blur(12px) saturate(160%);
+  border: 1px solid rgba(255,255,255,0.7);
+  box-shadow: 0 6px 18px rgba(31,38,135,0.10), inset 0 1px 0 rgba(255,255,255,0.8);
+  color:#1f2430;
+  transition: transform 0.35s cubic-bezier(0.16,1,0.3,1), box-shadow 0.35s ease;
+}
+.glass-icon:hover{
+  transform: translateY(-4px) scale(1.05);
+  box-shadow: 0 12px 28px rgba(31,38,135,0.16), inset 0 1px 0 rgba(255,255,255,0.9);
+}
+.glass-icon-dark{
+  background: linear-gradient(135deg, rgba(255,255,255,0.18), rgba(255,255,255,0.04));
+  border: 1px solid rgba(255,255,255,0.18);
+  color:#ffffff;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.15);
+}
 
-        /* HERO NAME & BEHIND-CARD LAYOUT */
-        .name-display {
-            font-size: clamp(2.3rem, 8.2vw, 10.5rem);
-            line-height: 0.8;
-            font-family: 'Space Grotesk', sans-serif;
-            font-weight: 800;
-            letter-spacing: -0.06em;
-            text-transform: uppercase;
-            position: relative;
-            z-index: 20;
-            pointer-events: none;
-        }
-
-        /* 3D GLASS TEXT STYLE - GREY */
-        .glass-3d-text {
-            color: #9ca3af; 
-            backdrop-filter: blur(4px);
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.05), -1px -1px 0px rgba(255,255,255,0.8);
-            display: inline-block;
-        }
-
-        .profile-card-wrapper {
-            position: absolute;
-            right: 8%;
-            top: 50%;
-            transform: translateY(-40%);
-            width: 28vw;
-            max-width: 400px;
-            min-width: 260px;
-            z-index: 30;
-            pointer-events: auto;
-        }
-
-        @media (max-width: 1024px) {
-            .profile-card-wrapper {
-                position: relative;
-                right: auto; top: auto;
-                transform: none;
-                margin-top: -6vh;
-                margin-left: auto;
-                margin-right: auto;
-                width: 85%;
-                z-index: 40; /* Elevated z-index on mobile to prevent overlap */
-            }
-            .name-display { font-size: clamp(2.2rem, 12vw, 7.5rem); line-height: 0.85; text-align: center; }
-            .hero-content { text-align: center; pointer-events: none; }
-            .hero-content > * { pointer-events: auto; }
-            .mailbox-center { justify-content: center !important; margin-left: auto; margin-right: auto; }
-        }
-
-        .profile-card-fintech {
-            width: 100%;
-            aspect-ratio: 1 / 1.2;
-            border-radius: 3rem;
-            position: relative;
-            overflow: hidden;
-            background: #f7f7f7;
-            box-shadow: 0 50px 100px -20px rgba(0,0,0,0.15);
-            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .profile-img-bg {
-            width: 100%; height: 100%;
-            object-fit: cover;
-            filter: contrast(1.05) brightness(0.9);
-        }
-
-        /* MAIL BOX ICON CARD */
-        .mailbox-card {
-            background: rgba(0, 0, 0, 0.02);
-            border: 1px solid rgba(0,0,0,0.05);
-            padding: 1.2rem 1.8rem;
-            border-radius: 2rem;
-            display: inline-flex;
-            align-items: center;
-            gap: 1.2rem;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            color: black;
-            z-index: 30;
-            position: relative;
-        }
-        .mailbox-card:hover { transform: translateX(10px); background: rgba(0,0,0,0.04); }
-        .mailbox-icon-wrapper {
-            width: 45px; height: 45px;
-            background: black; color: white;
-            border-radius: 1rem;
-            display: flex; align-items: center; justify-content: center;
-        }
-
-        /*sleek, high-contrast black dynamic island action bar */
-        .card-footer-actions {
-            position: absolute;
-            bottom: 1.2rem; left: 1.2rem; right: 1.2rem;
-            display: flex; gap: 0.5rem;
-            padding: 0.6rem;
-            background: rgba(15, 15, 18, 0.88); /* Deep charcoal space color for maximum button pop */
-            backdrop-filter: blur(25px);
-            -webkit-backdrop-filter: blur(25px);
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            border-radius: 1.8rem;
-            z-index: 100;
-            pointer-events: auto;
-        }
-
-        .btn-card-sm {
-            flex: 1; height: 40px;
-            border-radius: 100px;
-            display: flex; align-items: center; justify-content: center;
-            gap: 6px; font-size: 0.7rem; font-weight: 700;
-            text-transform: uppercase; letter-spacing: 0.05em;
-            transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
-            text-decoration: none !important;
-            cursor: pointer;
-            position: relative;
-            z-index: 110;
-        }
-
-        /* Dark glass contrast configuration */
-        .btn-glass-light { 
-            background: rgba(255, 255, 255, 0.12); 
-            color: #ffffff; 
-            border: 1px solid rgba(255, 255, 255, 0.15); 
-        }
-        .btn-glass-light:hover { 
-            background: rgba(255, 255, 255, 0.22); 
-            border-color: rgba(255, 255, 255, 0.3);
-        }
-        .btn-white-solid { 
-            background: #ffffff; 
-            color: #000000; 
-        }
-        .btn-white-solid:hover { 
-            background: #e2e8f0; 
-            transform: scale(1.03); 
-        }
-
-        /* SKILLS TILES */
-        .skill-tile {
-            background: #fcfcfc;
-            border: 1px solid #f0f0f0;
-            padding: 1.5rem;
-            border-radius: 1.5rem;
-            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-        .skill-tile:hover {
-            background: white;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.04);
-            transform: translateY(-5px);
-            border-color: #000;
-        }
-
-        /* PROJECT CARDS */
-        .project-card {
-            position: sticky; top: 15vh;
-            width: 92%; max-width: 420px; 
-            margin: 0 auto; aspect-ratio: 1 / 1.2;
-            display: flex; flex-direction: column; justify-content: space-between;
-            padding: clamp(1.5rem, 5vw, 2.5rem); border-radius: 0.5rem;
-            box-shadow: 15px 15px 45px rgba(0,0,0,0.05);
-            transform-origin: center top;
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-            text-decoration: none; color: inherit;
-        }
-
-        .note-yellow { background-color: #FED049; }
-        .note-pink { background-color: #FF6AC2; }
-        .note-green { background-color: #C9F4AA; }
-        .note-blue { background-color: #AEE2FF; }
-        .note-purple { background-color: #E2D4F0; }
-        .note-orange { background-color: #FFDEB4; }
-
-        /* CHRONICLE ICONS */
-        .aesthetic-icon {
-            position: absolute;
-            width: clamp(45px, 7vw, 110px);
-            opacity: 0.8;
-            pointer-events: none;
-            z-index: 1;
-            filter: grayscale(1);
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0) rotate(-2deg); }
-            50% { transform: translateY(-15px) rotate(3deg); }
-        }
-        .animate-float { animation: float 6s ease-in-out infinite; }
-        
-        .reveal {
-            opacity: 0; transform: translateY(30px);
-            transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .reveal.active { opacity: 1; transform: translateY(0); }
-
-        .noise::before {
-            content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: url('https://grainy-gradients.vercel.app/noise.svg');
-            opacity: 0.05; pointer-events: none; z-index: 9998;
-        }
-
-        html { scroll-behavior: smooth; }
-    </style>
+</style>
 </head>
 <body class="noise antialiased bg-white loading">
 
-    <!-- GREETING MULTILINGUAL PRELOADER -->
-    <div id="preloader-container">
-        <!-- Vertical Curtain Slide Panel -->
-        <div class="loader-bg-panel" id="loader-slide-curtain"></div>
-        
-        <div class="loader-content">
-            <!-- Rotating Text Segment Mask -->
-            <div class="greetings-mask w-[290px] sm:w-[480px]">
-                <span class="greeting-word" data-lang="en">Hello</span>
-                <span class="greeting-word" data-lang="fr">Bonjour</span>
-                <span class="greeting-word" data-lang="it">Ciao</span>
-                <span class="greeting-word" data-lang="es">Hola</span>
-                <span class="greeting-word" data-lang="de">Hallo</span>
-                <span class="greeting-word" data-lang="jp">こんにちは</span>
-                <span class="greeting-word" data-lang="in">नमस्ते</span>
-                <span class="greeting-word" data-lang="ta">வணக்கம்</span>
-            </div>
-
-            <!-- Pulsing Loading State Dot & Progress Ticks -->
-            <div class="status-dot-wrapper" id="loader-status">
-                <span class="status-dot"></span>
-                <span class="status-text" id="status-string">CONNECTING [0%]</span>
-            </div>
-        </div>
+<div id="preloader-container">
+  <div class="loader-bg-panel" id="loader-slide-curtain"></div>
+  <div class="loader-content">
+    <div class="greetings-mask w-[290px] sm:w-[480px]">
+      <span class="greeting-word" data-lang="en">Hello</span>
+      <span class="greeting-word" data-lang="fr">Bonjour</span>
+      <span class="greeting-word" data-lang="it">Ciao</span>
+      <span class="greeting-word" data-lang="es">Hola</span>
+      <span class="greeting-word" data-lang="de">Hallo</span>
+      <span class="greeting-word" data-lang="jp">こんにちは</span>
+      <span class="greeting-word" data-lang="in">नमस्ते</span>
+      <span class="greeting-word" data-lang="ta">வணக்கம்</span>
     </div>
+    <div class="status-dot-wrapper" id="loader-status">
+      <span class="status-dot"></span>
+      <span class="status-text" id="status-string">CONNECTING [0%]</span>
+    </div>
+  </div>
+</div>
 
-    <!-- MAIN PORTFOLIO WRAPPER -->
-    <div id="main-site-wrapper">
-        <!-- Header -->
-        <header class="py-5 fixed top-0 w-full z-[100] bg-white/80 backdrop-blur-md border-b border-gray-50">
-            <div class="px-6 md:px-12 mx-auto max-w-[1600px] flex items-center justify-between">
-                
-                <a href="#" class="header-identity">
-                    <div class="header-profile-avatar">
-                        <img src="prashanth.png" 
-                             alt="P" 
-                             class="w-full h-full object-cover"
-                             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                        <div class="flex items-center justify-center bg-black text-white w-full h-full text-[10px]" style="display:none">GP</div>
-                    </div>
-                    <div class="flex flex-col">
-                        <span class="text-sm font-space font-extrabold tracking-tighter text-black leading-none mb-0.5">G. PRASHANTH</span>
-                        <span class="text-[8px] uppercase tracking-widest text-gray-400 font-bold leading-none">Engineering '28</span>
-                    </div>
-                </a>
+<div id="main-site-wrapper">
+  <header class="py-5 fixed top-0 w-full z-[100] glass border-b-0">
+    <div class="px-6 md:px-12 mx-auto max-w-[1600px] flex items-center justify-between">
+      <a href="#" class="header-identity">
+        <div class="header-profile-avatar glass-icon">
+          <img src="prashanth.png" alt="P" class="w-full h-full object-cover rounded-xl"
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="flex items-center justify-center bg-black text-white w-full h-full text-[10px] rounded-xl" style="display:none">GP</div>
+        </div>
+        <div class="flex flex-col">
+          <span class="text-sm font-space font-extrabold tracking-tighter text-black leading-none mb-0.5">G. PRASHANTH</span>
+          <span class="text-[8px] uppercase tracking-widest text-gray-400 font-bold leading-none">Engineering '28</span>
+        </div>
+      </a>
+      <nav class="flex items-center space-x-4 md:space-x-8">
+        <a href="#projects" class="text-black text-[10px] uppercase font-bold tracking-widest hover:opacity-50 hidden md:block">Work</a>
+        <a href="#skills" class="text-black text-[10px] uppercase font-bold tracking-widest hover:opacity-50 hidden md:block">Skills</a>
+        <a href="#chronicle" class="text-black text-[10px] uppercase font-bold tracking-widest hover:opacity-50 hidden md:block">Chronicle</a>
+        <a href="mailto:prashanthgarigaboina@gmail.com" class="glass-icon !w-10 !h-10 !rounded-xl">
+          <i data-lucide="mail" class="w-4 h-4"></i>
+        </a>
+      </nav>
+    </div>
+  </header>
 
-                <nav class="flex items-center space-x-4 md:space-x-8">
-                    <a href="#projects" class="text-black text-[10px] uppercase font-bold tracking-widest hover:opacity-50 hidden md:block">Work</a>
-                    <a href="#skills" class="text-black text-[10px] uppercase font-bold tracking-widest hover:opacity-50 hidden md:block">Skills</a>
-                    <a href="#chronicle" class="text-black text-[10px] uppercase font-bold tracking-widest hover:opacity-50 hidden md:block">Chronicle</a>
-                    <a href="mailto:prashanthgarigaboina@gmail.com" class="p-2.5 border border-black/10 rounded-xl hover:bg-black hover:text-white transition-all">
-                        <i data-lucide="mail" class="w-4 h-4"></i>
-                    </a>
-                </nav>
+  <section class="min-h-screen flex flex-col justify-center relative pt-32 pb-12 px-6 md:px-12">
+    <div class="container mx-auto max-w-[1500px] relative">
+      <div class="profile-card-wrapper">
+        <div class="profile-card-fintech glass">
+          <img src="prashanth.png" class="profile-img-bg" alt="Prashanth"
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="flex items-center justify-center bg-zinc-900 text-white w-full h-full" style="display:none">Profile Image</div>
+          <div class="card-footer-actions glass-dark">
+            <a href="https://www.linkedin.com/in/prashanthgarigaboina?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" rel="noopener noreferrer" class="btn-card-sm btn-white-solid">
+              <i data-lucide="linkedin" class="w-3.5 h-3.5"></i>
+              <span class="inline">LinkedIn</span>
+            </a>
+            <a href="https://github.com/prasshhhzanth" target="_blank" rel="noopener noreferrer" class="btn-card-sm btn-glass-light">
+              <i data-lucide="github" class="w-3.5 h-3.5"></i>
+              <span class="inline">GitHub</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="relative z-10 hero-content">
+        <div class="mb-6 overflow-hidden hidden lg:block">
+          <span class="inline-block text-[10px] font-bold tracking-[0.7em] text-gray-400 uppercase">CRAFTING DIGITAL LOGIC</span>
+        </div>
+        <h1 class="name-display tracking-tighter">
+          <span class="inline-block glass-3d-text">GARIGABOINA</span><br/>
+          <span class="inline-block text-black">PRASHANTH</span>
+        </h1>
+        <p class="text-base md:text-2xl font-light leading-relaxed text-gray-500 max-w-2xl mt-8 mb-10 mx-auto lg:ml-0">
+          Engineering specializing in <span class="text-black font-semibold">Computer Science & Business Systems</span>. Building robust digital systems that blend high-performance logic with scalable user experiences.
+        </p>
+        <div class="flex mailbox-wrapper mailbox-center lg:justify-start">
+          <a href="mailto:prashanthgarigaboina@gmail.com" class="mailbox-card glass">
+            <div class="mailbox-icon-wrapper glass-icon-dark !bg-black/0">
+              <i data-lucide="inbox" class="w-6 h-6"></i>
             </div>
-        </header>
-
-        <!-- Hero Section -->
-        <section class="min-h-screen flex flex-col justify-center relative pt-32 pb-12 px-6 md:px-12">
-            <div class="container mx-auto max-w-[1500px] relative">
-                
-                <!-- THE PROFILE CARD (BEHIND THE NAME) -->
-                <div class="profile-card-wrapper animate-up" style="animation-delay: 0.2s">
-                    <div class="profile-card-fintech">
-                        <img src="prashanth.png" 
-                             class="profile-img-bg" 
-                             alt="Prashanth"
-                             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                        <div class="flex items-center justify-center bg-zinc-900 text-white w-full h-full" style="display:none">Profile Image</div>
-
-                        <!-- Interactive Buttons - Perfect mobile high contrast design -->
-                        <div class="card-footer-actions">
-                            <a href="https://www.linkedin.com/in/prashanthgarigaboina?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" rel="noopener noreferrer" class="btn-card-sm btn-white-solid">
-                                <i data-lucide="linkedin" class="w-3.5 h-3.5"></i>
-                                <span class="inline">LinkedIn</span>
-                            </a>
-                            <a href="https://github.com/prasshhhzanth" target="_blank" rel="noopener noreferrer" class="btn-card-sm btn-glass-light">
-                                <i data-lucide="github" class="w-3.5 h-3.5"></i>
-                                <span class="inline">GitHub</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- NAME DISPLAY (OVERLAPPING THE CARD) -->
-                <div class="relative z-10 hero-content">
-                    <div class="mb-6 overflow-hidden hidden lg:block">
-                        <span class="inline-block text-[10px] font-bold tracking-[0.7em] text-gray-400 uppercase animate-up">CRAFTING DIGITAL LOGIC</span>
-                    </div>
-                    
-                    <h1 class="name-display tracking-tighter">
-                        <span class="inline-block animate-up glass-3d-text" style="animation-delay: 0.3s">GARIGABOINA</span><br/>
-                        <span class="inline-block animate-up text-black" style="animation-delay: 0.4s">PRASHANTH</span>
-                    </h1>
-
-                    <p class="text-base md:text-2xl font-light leading-relaxed text-gray-500 max-w-2xl animate-up mt-8 mb-10 mx-auto lg:ml-0" style="animation-delay: 0.5s">
-                        Engineering specializing in <span class="text-black font-semibold">Computer Science & Business Systems</span>. Building robust digital systems that blend high-performance logic with scalable user experiences.
-                    </p>
-
-                    <div class="animate-up flex mailbox-wrapper mailbox-center lg:justify-start" style="animation-delay: 0.6s">
-                        <a href="mailto:prashanthgarigaboina@gmail.com" class="mailbox-card">
-                            <div class="mailbox-icon-wrapper">
-                                <i data-lucide="inbox" class="w-6 h-6"></i>
-                            </div>
-                            <div class="flex flex-col text-left">
-                                <span class="text-[8px] uppercase font-bold text-gray-400 tracking-widest leading-none mb-1">Mailbox</span>
-                                <span class="text-sm md:text-base font-semibold text-black leading-none">Drop an enquiry</span>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-
+            <div class="flex flex-col text-left">
+              <span class="text-[8px] uppercase font-bold text-gray-400 tracking-widest leading-none mb-1">Mailbox</span>
+              <span class="text-sm md:text-base font-semibold text-black leading-none">Drop an enquiry</span>
             </div>
-        </section>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        <!-- Work Gallery -->
-        <section id="projects" class="bg-gray-50/50 pt-32 pb-48 px-6">
-            <div class="container mx-auto max-w-[1200px]">
-                <div class="mb-24 text-center reveal">
-                    <h2 class="text-[9px] uppercase tracking-[0.5em] text-gray-300 font-bold mb-4">01 / SELECTED WORKS</h2>
-                    <p class="text-4xl md:text-6xl font-space fon
+  <!-- Projects Section -->
+  <section id="projects" class="bg-gray-50/50 pt-32 pb-48 px-6">
+    <div class="container mx-auto max-w-[1200px]">
+      <div class="mb-24 text-center reveal">
+        <h2 class="text-[9px] uppercase tracking-[0.5em] text-gray-300 font-bold mb-4">01 / SELECTED WORKS</h2>
+        <p class="text-4xl md:text-6xl font-space font-bold tracking-tighter">Project <span class="italic font-light text-gray-400">Gallery</span></p>
+      </div>
+
+      <div class="space-y-[10vh] md:space-y-[15vh] pb-[15vh]">
+        
+        <!-- Project 01: MyUnity -->
+        <div class="project-card note-purple reveal">
+          <div class="flex justify-between items-start">
+            <span class="text-xs font-bold uppercase tracking-widest text-black/40">Project 01</span>
+            <div class="glass-icon !w-9 !h-9 !rounded-lg !bg-white/30 !border-white/40">
+              <i data-lucide="home" class="w-4 h-4 text-black"></i>
+            </div>
+          </div>
+          <div>
+            <h3 class="text-2xl md:text-4xl font-space font-extrabold tracking-tight mb-2 text-black">MyUnity</h3>
+            <p class="text-sm text-black/75 mb-6">Smart Community Management System. Full-stack society management platform featuring visitor validation, announcements, complaining modules, and a dynamic shared EV reservation scheme. Powered by Flutter, Python, and PostgreSQL.</p>
+            <div class="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest opacity-80">
+              <span class="border-b-2 border-black pb-1">Community Logic</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 02: DEPay -->
+        <div class="project-card note-orange reveal">
+          <div class="flex justify-between items-start">
+            <span class="text-xs font-bold uppercase tracking-widest text-black/40">Project 02</span>
+            <div class="glass-icon !w-9 !h-9 !rounded-lg !bg-white/30 !border-white/40">
+              <i data-lucide="globe" class="w-4 h-4 text-black"></i>
+            </div>
+          </div>
+          <div>
+            <h3 class="text-2xl md:text-4xl font-space font-extrabold tracking-tight mb-2 text-black">DEPay</h3>
+            <p class="text-sm text-black/75 mb-6">Decentralized sovereign cross-border payment bridge. Enabling atomic swaps through tokenization, automated currency conversion, fraud networks, and UPI onboarding. Powered by Solidity, Kotlin, and Node.js.</p>
+            <div class="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest opacity-80">
+              <span class="border-b-2 border-black pb-1">DeFi Settlement</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 03: Clothing.ai -->
+        <a href="https://github.com/prasshhhzanth" target="_blank" class="project-card note-yellow reveal">
+          <div class="flex justify-between items-start">
+            <span class="text-xs font-bold uppercase tracking-widest text-black/40">Project 03</span>
+            <div class="glass-icon !w-9 !h-9 !rounded-lg !bg-white/30 !border-white/40">
+              <i data-lucide="scissors" class="w-4 h-4 text-black"></i>
+            </div>
+          </div>
+          <div>
+            <h3 class="text-2xl md:text-4xl font-space font-extrabold tracking-tight mb-2 text-black">Clothing.ai</h3>
+            <p class="text-sm text-black/75 mb-6">GenAI & AR Fashion Assistant. Generates unique patterns and maps designs to purchase links. Tailored interface built for high-performance and fluid interaction.</p>
+            <div class="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest opacity-80">
+              <span class="border-b-2 border-black pb-1">GitHub Profile</span>
+              <i data-lucide="arrow-up-right" class="w-3 h-3 text-black"></i>
+            </div>
+          </div>
+        </a>
+
+        <!-- Project 04: Dhanvantri AI -->
+        <a href="https://github.com/prasshhhzanth" target="_blank" class="project-card note-pink reveal">
+          <div class="flex justify-between items-start">
+            <span class="text-xs font-bold uppercase tracking-widest text-black/40">Project 04</span>
+            <div class="glass-icon !w-9 !h-9 !rounded-lg !bg-white/30 !border-white/40">
+              <i data-lucide="heart" class="w-4 h-4 text-black"></i>
+            </div>
+          </div>
+          <div>
+            <h3 class="text-2xl md:text-4xl font-space font-extrabold tracking-tight mb-2 text-black">Dhanvantri AI</h3>
+            <p class="text-sm text-black/75 mb-6">Intelligent Medical Assistant using FastAPI and NLP for symptom-based disease prediction. Highly structured backend system configured with analytical models.</p>
+            <div class="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest opacity-80">
+              <span class="border-b-2 border-black pb-1">GitHub Profile</span>
+              <i data-lucide="arrow-up-right" class="w-3 h-3 text-black"></i>
+            </div>
+          </div>
+        </a>
+
+        <!-- Project 05: YOCTRON-RMS -->
+        <a href="https://github.com/prasshhhzanth" target="_blank" class="project-card note-green reveal">
+          <div class="flex justify-between items-start">
+            <span class="text-xs font-bold uppercase tracking-widest text-black/40">Project 05</span>
+            <div class="glass-icon !w-9 !h-9 !rounded-lg !bg-white/30 !border-white/40">
+              <i data-lucide="utensils" class="w-4 h-4 text-black"></i>
+            </div>
+          </div>
+          <div>
+            <h3 class="text-2xl md:text-4xl font-space font-extrabold tracking-tight mb-2 text-black">YOCTRON-RMS</h3>
+            <p class="text-sm text-black/75 mb-6">Restaurant Management Interface for real-time tracking of order status and table reservations. High speed communication and data alignment dashboard layout.</p>
+            <div class="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest opacity-80">
+              <span class="border-b-2 border-black pb-1">GitHub Profile</span>
+              <i data-lucide="arrow-up-right" class="w-3 h-3 text-black"></i>
+            </div>
+          </div>
+        </a>
+
+        <!-- Project 06: Pet Welfare -->
+        <a href="https://github.com/prasshhhzanth" target="_blank" class="project-card note-blue reveal">
+          <div class="flex justify-between items-start">
+            <span class="text-xs font-bold uppercase tracking-widest text-black/40">Project 06</span>
+            <div class="glass-icon !w-9 !h-9 !rounded-lg !bg-white/30 !border-white/40">
+              <i data-lucide="paw-print" class="w-4 h-4 text-black"></i>
+            </div>
+          </div>
+          <div>
+            <h3 class="text-2xl md:text-4xl font-space font-extrabold tracking-tight mb-2 text-black">Pet Welfare</h3>
+            <p class="text-sm text-black/75 mb-6">Community-driven adoption platform focused on responsive UX and conversion rates. Interactive state-driven pages built to support stray animal rescue networks.</p>
+            <div class="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest opacity-80">
+              <span class="border-b-2 border-black pb-1">GitHub Profile</span>
+              <i data-lucide="arrow-up-right" class="w-3 h-3 text-black"></i>
+            </div>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section id="skills" class="py-32 px-6">
+    <div class="container mx-auto max-w-[1200px]">
+      <div class="mb-24 reveal text-center lg:text-left">
+        <h2 class="text-[9px] uppercase tracking-[0.5em] text-gray-300 font-bold mb-4">02 / CAPABILITIES</h2>
+        <p class="text-4xl md:text-6xl font-space font-bold tracking-tighter">Tools & <span class="italic font-light text-gray-400">Logic</span></p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 reveal">
+        <!-- Languages & Web -->
+        <div class="skill-tile glass">
+          <div class="glass-icon">
+            <i data-lucide="code-2" class="w-5 h-5"></i>
+          </div>
+          <div>
+            <h4 class="font-bold text-lg mb-4">Languages & Web</h4>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-3 py-1 bg-white text-[10px] font-bold uppercase tracking-wider rounded-full border border-gray-200">Java (OOP)</span>
+              <span class="px-3 py-1 bg-white text-[10px] font-bold uppercase tracking-wider rounded-full border border-gray-200">Python</span>
+              <span class="px-3 py-1 bg-white text-[10px] font-bold uppercase tracking-wider rounded-full border border-gray-200">SQL</span>
+              <span class="px-3 py-1 bg-white text-[10px] font-bold uppercase tracking-wider rounded-full border border-gray-200">HTML</span>
+              <span class="px-3 py-1 bg-white text-[10px] font-bold uppercase tracking-wider rounded-full border border-gray-200">CSS</span>
+              <span class="px-3 py-1 bg-white text-[10px] font-bold uppercase tracking-wider rounded-full border border-gray-200">C</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Engineering -->
+        <div class="skill-tile glass">
+          <div class="glass-icon">
+            <i data-lucide="cpu" class="w-5 h-5"></i>
+          </div>
+          <div>
+            <h4 class="font-bold text-lg mb-4">Engineering</h4>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-3 py-1 bg-white text-[10px] font-bold uppercase tracking-wider rounded-full border border-gray-200">React</span>
+              <span class="px-3 py-1 bg-white text-[10px] font-bold uppercase tracking-wider rounded-full border border-gray-200">Node.js</span>
+              <span class="px-3 py-1 bg-white text-[10px] font-bold uppercase tracking-wider rounded-full border border-gray-200">DSA</span>
+              <span class="px-3 py-1 bg-white text-[10px] font-bold uppercase tracking-wider rounded-full border border-gray-200">FastAPI</span>
+              <span class="px-3 py-1 bg-white text-[10px] font-bold uppercase tracking-wider rounded-full border border-gray-200">Computer Architecture</span>
+              <span class="px-3 py-1 bg-white text-[10px] font-bold uppercase tracking-wider rounded-full border border-gray-200">Linux</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Technologies -->
+        <div class="skill-tile glass">
+          <div class="glass-icon">
+            <i data-lucide="layers" class="w-5 h-5"></i>
+          </div>
+          <div>
+            <h4 class="font-bold text-lg mb-4">Technologies</h4>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-3 py-1 bg-white text-[10px] font-bold uppercase tracking-wider rounded-full border border-gray-200">Power BI</span>
+              <span class="px-3 py-1 bg-white text-[10px] font-bold uppercase tracking-wider rounded-full border border-gray-200">Git</span>
+              <span class="px-3 py-1 bg-white text-[10px] font-bold uppercase tracking-wider rounded-full border border-gray-200">Docker</span>
+              <span class="px-3 py-1 bg-white text-[10px] font-bold uppercase tracking-wider rounded-full border border-gray-200">MS 365</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Business & AI -->
+        <div class="skill-tile glass">
+          <div class="glass-icon">
+            <i data-lucide="trending-up" class="w-5 h-5"></i>
+          </div>
+          <div>
+            <h4 class="font-bold text-lg mb-4">Business & AI</h4>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-3 py-1 bg-white text-[10px] font-bold uppercase tracking-wider rounded-full border border-gray-200">Business Case Study</span>
+              <span class="px-3 py-1 bg-white text-[10px] font-bold uppercase tracking-wider rounded-full border border-gray-200">Analytics</span>
+              <span class="px-3 py-1 bg-white text-[10px] font-bold uppercase tracking-wider rounded-full border border-gray-200">GenAI</span>
+              <span class="px-3 py-1 bg-white text-[10px] font-bold uppercase tracking-wider rounded-full border border-gray-200">NLP</span>
+              <span class="px-3 py-1 bg-white text-[10px] font-bold uppercase tracking-wider rounded-full border border-gray-200">DevOps</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Chronicle Section -->
+  <section id="chronicle" class="py-32 md:py-60 bg-gray-50 relative overflow-hidden px-6">
+    <!-- 8 Hand-drawn Aesthetic Icons -->
+    <div class="aesthetic-icon top-[5%] left-[5%] animate-float" style="animation-duration: 8s;"><svg viewBox="0 0 120 120" fill="none" stroke="black" stroke-width="1.2"><rect x="20" y="20" width="80" height="60" rx="3"/><path d="M40 80L30 100H90L80 80"/></svg></div>
+    <div class="aesthetic-icon top-[35%] left-[3%] animate-float" style="animation-duration: 6s; animation-delay: 1s;"><svg viewBox="0 0 120 120" fill="none" stroke="black" stroke-width="1.2"><path d="M30 90L90 30M35 95L95 35"/></svg></div>
+    <div class="aesthetic-icon top-[65%] left-[8%] animate-float" style="animation-duration: 9s; animation-delay: 2s;"><svg viewBox="0 0 120 120" fill="none" stroke="black" stroke-width="1.2"><path d="M60 20C45 20 35 35 35 50C35 65 50 80 50 95H70C70 80 85 65 85 50C85 35 75 20 60 20Z"/></svg></div>
+    <div class="aesthetic-icon bottom-[10%] left-[5%] animate-float" style="animation-duration: 7s; animation-delay: 0.5s;"><svg viewBox="0 0 120 120" fill="none" stroke="black" stroke-width="1.2"><rect x="30" y="40" width="60" height="15" rx="1"/><rect x="25" y="55" width="70" height="15" rx="1"/></svg></div>
+    <div class="aesthetic-icon top-[10%] right-[5%] animate-float" style="animation-duration: 10s; animation-delay: 1.5s;"><svg viewBox="0 0 120 120" fill="none" stroke="black" stroke-width="1.2"><rect x="20" y="40" width="80" height="50" rx="3"/><circle cx="60" cy="65" r="18"/></svg></div>
+    <div class="aesthetic-icon top-[40%] right-[3%] animate-float" style="animation-duration: 8s; animation-delay: 2.5s;"><svg viewBox="0 0 120 120" fill="none" stroke="black" stroke-width="1.2"><path d="M60 30L20 50L60 70L100 50L60 30Z"/><path d="M35 55V75C35 75 60 85 85 75V55"/></svg></div>
+    <div class="aesthetic-icon top-[70%] right-[6%] animate-float" style="animation-duration: 6s; animation-delay: 1.2s;"><svg viewBox="0 0 120 120" fill="none" stroke="black" stroke-width="1.2"><path d="M30 90L90 90L30 30L30 90Z"/></svg></div>
+    <div class="aesthetic-icon bottom-[12%] right-[5%] animate-float" style="animation-duration: 11s; animation-delay: 3s;"><svg viewBox="0 0 120 120" fill="none" stroke="black" stroke-width="1.2"><path d="M40 50H80V90C80 95 70 100 40 90V50Z"/><path d="M80 60C95 60 95 90 80 90"/></svg></div>
+
+    <div class="container mx-auto max-w-[1100px] relative z-20">
+      <div class="text-center mb-24 reveal">
+        <h2 class="text-[9px] uppercase tracking-[0.5em] text-gray-300 font-bold mb-8">03 / CHRONICLE</h2>
+        <span class="text-sm font-mono text-gray-400 mb-4 block">2024 — 2028</span>
+        <h3 class="text-5xl md:text-8xl font-space font-bold mb-8 tracking-tighter leading-none text-black">VBIT Hyderabad</h3>
+        <p class="text-xl md:text-3xl text-gray-400 font-light leading-tight mb-20 max-w-2xl mx-auto">
+          Bachelor of Technology in <span class="text-black">Computer Science & Business Systems</span>.
+        </p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-2xl mx-auto">
+          <div class="p-10 bg-white border border-gray-100 rounded-3xl shadow-sm"><p class="text-[9px] uppercase font-bold text-gray-300 tracking-widest mb-4">Cumulative GPA</p><p class="text-6xl md:text-8xl font-space font-bold tracking-tighter text-black">8.40</p></div>
+          <div class="p-10 bg-black text-white rounded-3xl shadow-xl"><p class="text-[9px] uppercase font-bold text-gray-500 tracking-widest mb-4">Latest Sem</p><p class="text-6xl md:text-8xl font-space font-bold tracking-tighter">8.40</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-32 bg-black text-white px-6">
+    <div class="container mx-auto max-w-[1500px]">
+      <div class="flex flex-col gap-24">
+        <div class="max-w-5xl">
+          <h2 class="text-6xl md:text-[9rem] font-space font-bold tracking-tighter leading-[0.85] mb-16">READY FOR <br/>THE <span class="italic font-light text-gray-600">NEXT</span>.</h2>
+          <div class="grid md:grid-cols-2 gap-16">
+            <div>
+              <p class="text-[9px] uppercase font-bold text-gray-500 tracking-widest mb-6">Contact</p>
+              <a href="mailto:prashanthgarigaboina@gmail.com" class="text-2xl md:text-4xl font-light tracking-tighter border-b border-white/20 pb-2 hover:opacity-50 transition-all block w-fit mb-4 text-white">Drop a mail</a>
+              <p class="text-xs font-bold text-gray-500 uppercase tracking-widest">+91 99595 95137</p>
+            </div>
+            <div class="flex flex-col gap-4 justify-end md:items-end">
+              <a href="https://www.linkedin.com/in/prashanthgarigaboina?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" class="text-xs font-bold uppercase tracking-widest hover:opacity-50 text-white">LinkedIn</a>
+              <a href="https://github.com/prasshhhzanth" target="_blank" class="text-xs font-bold uppercase tracking-widest hover:opacity-50 text-white">GitHub</a>
+            </div>
+          </div>
+        </div>
+        <div class="text-[9px] text-gray-600 uppercase tracking-widest font-bold border-t border-white/10 pt-10 flex flex-col md:flex-row justify-between gap-4">
+          <p>© 2026 GARIGABOINA PRASHANTH</p>
+          <p>ENGINEERED IN HYDERABAD</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<script defer>
+function boot() {
+  if (typeof lucide === 'undefined' || typeof gsap === 'undefined') {
+    requestAnimationFrame(boot);
+    return;
+  }
+  lucide.createIcons();
+  runPreloader();
+}
+boot();
+
+function runPreloader() {
+const greetings = document.querySelectorAll('.greeting-word');
+const statusEl = document.getElementById('status-string');
+const wrapper = document.getElementById('main-site-wrapper');
+const preloader = document.getElementById('preloader-container');
+let idx = 0;
+const total = greetings.length;
+
+function showWord(i) {
+  greetings.forEach((w, n) => {
+    if (n === i) {
+      gsap.to(w, { opacity: 1, y: 0, filter: 'blur(0px)', rotateX: 0, duration: 0.25, ease: 'power3.out' });
+    } else {
+      gsap.set(w, { opacity: 0, y: '110%', filter: 'blur(12px)', rotateX: 40 });
+    }
+  });
+}
+
+gsap.to('#loader-status', { opacity: 1, y: 0, filter: 'blur(0px)', duration: 0.4, delay: 0.1 });
+showWord(0);
+
+// Snappy flip interval (160ms transitions)
+const interval = setInterval(() => {
+  idx++;
+  if (idx >= total) {
+    clearInterval(interval);
+    finishLoading();
+    return;
+  }
+  showWord(idx);
+  statusEl.textContent = `CONNECTING [${Math.round((idx / total) * 100)}%]`;
+}, 160);
+
+function finishLoading() {
+  statusEl.textContent = 'CONNECTING [100%]';
+  
+  // Instant curtain pull
+  gsap.to("#loader-slide-curtain", {
+    y: "-100%",
+    duration: 0.6,
+    ease: "power4.inOut"
+  });
+
+  gsap.to(preloader, {
+    opacity: 0,
+    duration: 0.5,
+    delay: 0.1,
+    onComplete: () => {
+      preloader.style.display = 'none';
+      document.body.classList.remove('loading');
+      wrapper.classList.add('ready');
+      initReveal();
+      stackNotes();
+    }
+  });
+}
+
+function initReveal() {
+  const reveals = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) e.target.classList.add('active');
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => obs.observe(el));
+}
+}
+
+function stackNotes() {
+  // Prevent execution if page is still loading
+  if (document.body.classList.contains('loading')) return;
+
+  const cards = document.querySelectorAll('.project-card');
+  const threshold = 0.2;
+  cards.forEach((card, i) => {
+    const rect = card.getBoundingClientRect();
+    const scrollProgress = rect.top / window.innerHeight;
+    if (scrollProgress < threshold) {
+      const progress = Math.max(0, threshold - scrollProgress) * 5; 
+      card.style.transform = `scale(${1 - (progress * 0.05)}) rotate(${i % 2 === 0 ? progress * -1.5 : progress * 1.5}deg)`;
+      card.style.filter = `blur(${progress * 1}px)`;
+      card.style.opacity = 1 - (progress * 0.25);
+    } else {
+      card.style.transform = `scale(1) rotate(${i % 2 === 0 ? -1.2 : 1.2}deg)`;
+      card.style.filter = `blur(0px)`;
+      card.style.opacity = 1;
+    }
+  });
+}
+
+window.addEventListener('scroll', stackNotes, { passive: true });
+</script>
+</body>
+</html>
