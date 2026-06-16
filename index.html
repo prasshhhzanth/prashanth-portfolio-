@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>Garigaboina Prashanth | Portfolio</title>
 <script src="https://cdn.tailwindcss.com"></script>
-<script src="https://unpkg.com/lucide@latest" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800&family=Inter:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -14,6 +13,7 @@ body{font-family:'Inter',sans-serif;background-color:var(--bg-color);color:var(-
 body.loading{overflow:hidden !important;height:100vh;}
 .font-space{font-family:'Space Grotesk',sans-serif;}
 
+/* PRELOADER STYLING */
 #preloader-container{position:fixed;top:0;left:0;width:100vw;height:100vh;background-color:#0d0e12;z-index:9999;display:flex;justify-content:center;align-items:center;overflow:hidden;pointer-events:all;}
 .loader-bg-panel{position:absolute;width:100%;height:100%;background-color:#0a0b0d;top:0;left:0;z-index:1;}
 .loader-content{position:relative;z-index:10;display:flex;flex-direction:column;align-items:center;justify-content:center;pointer-events:none;}
@@ -24,16 +24,48 @@ body.loading{overflow:hidden !important;height:100vh;}
 .status-dot{width:8px;height:8px;border-radius:50%;background-color:#ffffff;box-shadow:0 0 10px rgba(255,255,255,0.8);}
 .status-text{font-size:10px;text-transform:uppercase;letter-spacing:0.3em;color:rgba(255,255,255,0.5);font-weight:700;}
 
+/* MAIN WRAPPER EXIT MOTION */
 #main-site-wrapper{opacity:0;filter:blur(8px);transform:translateY(25px);transition:opacity 1s cubic-bezier(0.16,1,0.3,1),filter 1s cubic-bezier(0.16,1,0.3,1),transform 1s cubic-bezier(0.16,1,0.3,1);}
 #main-site-wrapper.ready{opacity:1;filter:blur(0px);transform:translateY(0px);}
 
-.header-identity{display:flex;align-items:center;gap:0.75rem;text-decoration:none;color:inherit;z-index:110;}
-.header-profile-avatar{width:38px;height:38px;border-radius:12px;overflow:hidden;background:#f0f0f0;flex-shrink:0;border:1px solid rgba(0,0,0,0.05);transition:transform 0.3s cubic-bezier(0.175,0.885,0.32,1.275);}
-.header-identity:hover .header-profile-avatar{transform:scale(1.1) rotate(-5deg);}
+/* GLASS COMPONENT SYSTEM */
+.glass-icon{
+  width:44px; height:48px;
+  display:flex; align-items:center; justify-content:center;
+  border-radius:1rem;
+  background: linear-gradient(135deg, rgba(255,255,255,0.7), rgba(255,255,255,0.3));
+  backdrop-filter: blur(12px) saturate(160%);
+  -webkit-backdrop-filter: blur(12px) saturate(160%);
+  border: 1px solid rgba(255,255,255,0.8);
+  box-shadow: 0 6px 18px rgba(31,38,135,0.06), inset 0 1px 0 rgba(255,255,255,0.9);
+  color:#111111;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease, border-color 0.4s;
+}
+.glass-icon svg {
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), stroke-width 0.3s;
+}
+.glass-icon:hover {
+  transform: translateY(-4px) scale(1.06);
+  box-shadow: 0 12px 24px rgba(0,0,0,0.08), inset 0 1px 0 rgba(255,255,255,1);
+  border-color: rgba(0,0,0,0.15);
+  color: #000000;
+}
+.glass-icon:hover svg {
+  transform: scale(1.15) rotate(8deg);
+}
 
+.glass-icon-dark{
+  background: linear-gradient(135deg, rgba(255,255,255,0.18), rgba(255,255,255,0.04));
+  border: 1px solid rgba(255,255,255,0.18);
+  color:#ffffff;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.15);
+}
+
+/* TYPOGRAPHY CONFIGURATION */
 .name-display{font-size:clamp(2.3rem,8.2vw,10.5rem);line-height:0.8;font-family:'Space Grotesk',sans-serif;font-weight:800;letter-spacing:-0.06em;text-transform:uppercase;position:relative;z-index:20;pointer-events:none;}
 .glass-3d-text{color:#9ca3af;backdrop-filter:blur(4px);text-shadow:1px 1px 2px rgba(0,0,0,0.05),-1px -1px 0px rgba(255,255,255,0.8);display:inline-block;}
 
+/* PORTFOLIO CARD LAYOUTS */
 .profile-card-wrapper{position:absolute;right:8%;top:50%;transform:translateY(-40%);width:28vw;max-width:400px;min-width:260px;z-index:30;pointer-events:auto;}
 @media (max-width:1024px){
 .profile-card-wrapper{position:relative;right:auto;top:auto;transform:none;margin-top:-6vh;margin-left:auto;margin-right:auto;width:85%;z-index:40;}
@@ -46,21 +78,65 @@ body.loading{overflow:hidden !important;height:100vh;}
 .profile-card-fintech{width:100%;aspect-ratio:1/1.2;border-radius:3rem;position:relative;overflow:hidden;background:#f7f7f7;box-shadow:0 50px 100px -20px rgba(0,0,0,0.15);transition:transform 0.8s cubic-bezier(0.16,1,0.3,1);}
 .profile-img-bg{width:100%;height:100%;object-fit:cover;filter:contrast(1.05) brightness(0.9);}
 
-.mailbox-card{background:rgba(0,0,0,0.02);border:1px solid rgba(0,0,0,0.05);padding:1.2rem 1.8rem;border-radius:2rem;display:inline-flex;align-items:center;gap:1.2rem;transition:all 0.3s ease;text-decoration:none;color:black;z-index:30;position:relative;}
-.mailbox-card:hover{transform:translateX(10px);background:rgba(0,0,0,0.04);}
-.mailbox-icon-wrapper{width:45px;height:45px;background:black;color:white;border-radius:1rem;display:flex;align-items:center;justify-content:center;}
+/* MAIL SYSTEM CARDS */
+.mailbox-card{background:rgba(0,0,0,0.02);border:1px solid rgba(0,0,0,0.05);padding:1.2rem 1.8rem;border-radius:2rem;display:inline-flex;align-items:center;gap:1.2rem;transition:all 0.3s ease;text-decoration:none;color:black;z-index:30;position:relative;overflow:hidden;}
+.mailbox-card::before {
+  content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent);
+  transition: 0.5s; pointer-events: none;
+}
+.mailbox-card:hover::before { left: 100%; }
+.mailbox-card:hover{transform:translateX(10px);background:rgba(0,0,0,0.04);box-shadow: 0 10px 20px rgba(0,0,0,0.02);}
+.mailbox-icon-wrapper{
+  width:45px;height:45px;background:black;color:white;border-radius:1rem;
+  display:flex;align-items:center;justify-content:center;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.mailbox-card:hover .mailbox-icon-wrapper {
+  background: #111111;
+  transform: scale(1.1) rotate(-8deg);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
 
 .card-footer-actions{position:absolute;bottom:1.2rem;left:1.2rem;right:1.2rem;display:flex;gap:0.5rem;padding:0.6rem;background:rgba(15,15,18,0.92);backdrop-filter:blur(25px);-webkit-backdrop-filter:blur(25px);border:1px solid rgba(255,255,255,0.15);border-radius:1.8rem;z-index:100;pointer-events:auto;}
 .btn-card-sm{flex:1;height:40px;border-radius:100px;display:flex;align-items:center;justify-content:center;gap:6px;font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;transition:all 0.3s cubic-bezier(0.23,1,0.32,1);text-decoration:none !important;cursor:pointer;position:relative;z-index:110;}
 .btn-glass-light{background:rgba(255,255,255,0.15);color:#ffffff;border:1px solid rgba(255,255,255,0.2);}
-.btn-glass-light:hover{background:rgba(255,255,255,0.25);border-color:rgba(255,255,255,0.35);}
+.btn-glass-light:hover{background:rgba(255,255,255,0.25);border-color:rgba(255,255,255,0.35);box-shadow: 0 0 10px rgba(255,255,255,0.2);}
 .btn-white-solid{background:#ffffff;color:#000000;}
-.btn-white-solid:hover{background:#e2e8f0;transform:scale(1.03);}
+.btn-white-solid:hover{background:#e2e8f0;transform:scale(1.03);box-shadow: 0 5px 15px rgba(255,255,255,0.4);}
 
+/* SKILL TILE GRAPHICS */
 .skill-tile{background:#fcfcfc;border:1px solid #f0f0f0;padding:1.5rem;border-radius:1.5rem;transition:all 0.4s cubic-bezier(0.165,0.84,0.44,1);display:flex;flex-direction:column;gap:1rem;}
 .skill-tile:hover{background:white;box-shadow:0 20px 40px rgba(0,0,0,0.04);transform:translateY(-5px);border-color:#000;}
 
+.skill-tile:nth-child(1) .glass-icon {
+  background: linear-gradient(135deg, rgba(147, 51, 234, 0.15), rgba(147, 51, 234, 0.02));
+  border-color: rgba(147, 51, 234, 0.4);
+  color: rgb(147, 51, 234);
+  box-shadow: 0 0 15px rgba(147, 51, 234, 0.08);
+}
+.skill-tile:nth-child(2) .glass-icon {
+  background: linear-gradient(135deg, rgba(34, 197, 94, 0.15), rgba(34, 197, 94, 0.02));
+  border-color: rgba(34, 197, 94, 0.4);
+  color: rgb(22, 163, 74);
+  box-shadow: 0 0 15px rgba(34, 197, 94, 0.08);
+}
+.skill-tile:nth-child(3) .glass-icon {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.15), rgba(59, 130, 246, 0.02));
+  border-color: rgba(59, 130, 246, 0.4);
+  color: rgb(37, 99, 235);
+  box-shadow: 0 0 15px rgba(59, 130, 246, 0.08);
+}
+.skill-tile:nth-child(4) .glass-icon {
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.15), rgba(245, 158, 11, 0.02));
+  border-color: rgba(245, 158, 11, 0.4);
+  color: rgb(217, 119, 6);
+  box-shadow: 0 0 15px rgba(245, 158, 11, 0.08);
+}
+
+/* POST-IT STYLE PROJECT STACKING ENGINE */
 .project-card{position:sticky;top:15vh;width:92%;max-width:420px;margin:0 auto;aspect-ratio:1/1.2;display:flex;flex-direction:column;justify-content:space-between;padding:clamp(1.5rem,5vw,2.5rem);border-radius:0.5rem;box-shadow:15px 15px 45px rgba(0,0,0,0.05);transform-origin:center top;transition:all 0.4s cubic-bezier(0.16,1,0.3,1);text-decoration:none;color:inherit;}
+
 .note-yellow{background-color:#FED049;}
 .note-pink{background-color:#FF6AC2;}
 .note-green{background-color:#C9F4AA;}
@@ -68,19 +144,14 @@ body.loading{overflow:hidden !important;height:100vh;}
 .note-purple{background-color:#E2D4F0;}
 .note-orange{background-color:#FFDEB4;}
 
-.aesthetic-icon{position:absolute;width:clamp(45px,7vw,110px);opacity:0.8;pointer-events:none;z-index:1;filter:grayscale(1);}
-
-@keyframes float{0%,100%{transform:translateY(0) rotate(-2deg);}50%{transform:translateY(-15px) rotate(3deg);}}
-.animate-float{animation:float 6s ease-in-out infinite;}
-
 .reveal{opacity:0;transform:translateY(30px);transition:all 1s cubic-bezier(0.16,1,0.3,1);}
 .reveal.active{opacity:1;transform:translateY(0);}
 
-.noise::before{content:"";position:fixed;top:0;left:0;width:100%;height:100%;background:url('https://grainy-gradients.vercel.app/noise.svg');opacity:0.05;pointer-events:none;z-index:9998;}
+header { transition: background 0.3s ease; }
 
 html{scroll-behavior:smooth;}
 
-/* GLASSMORPHISM CORE */
+/* INTERACTIVE LAB WIDGETS */
 .glass{
   background: rgba(255,255,255,0.55);
   backdrop-filter: blur(20px) saturate(180%);
@@ -95,33 +166,67 @@ html{scroll-behavior:smooth;}
   border: 1px solid rgba(255,255,255,0.12);
   box-shadow: 0 8px 32px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.08);
 }
-.glass-icon{
-  width:48px; height:48px;
-  display:flex; align-items:center; justify-content:center;
-  border-radius:1rem;
-  background: linear-gradient(135deg, rgba(255,255,255,0.65), rgba(255,255,255,0.25));
-  backdrop-filter: blur(12px) saturate(160%);
-  -webkit-backdrop-filter: blur(12px) saturate(160%);
-  border: 1px solid rgba(255,255,255,0.7);
-  box-shadow: 0 6px 18px rgba(31,38,135,0.10), inset 0 1px 0 rgba(255,255,255,0.8);
-  color:#1f2430;
-  transition: transform 0.35s cubic-bezier(0.16,1,0.3,1), box-shadow 0.35s ease;
-}
-.glass-icon:hover{
-  transform: translateY(-4px) scale(1.05);
-  box-shadow: 0 12px 28px rgba(31,38,135,0.16), inset 0 1px 0 rgba(255,255,255,0.9);
-}
-.glass-icon-dark{
-  background: linear-gradient(135deg, rgba(255,255,255,0.18), rgba(255,255,255,0.04));
-  border: 1px solid rgba(255,255,255,0.18);
-  color:#ffffff;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.15);
-}
 
+.widget-card {
+  background: #ffffff;
+  border-radius: 2.2rem;
+  padding: 2.5rem 1.8rem;
+  box-shadow: 0 25px 50px -12px rgba(0,0,0,0.07);
+  border: 1.5px solid rgba(240,240,243,0.9);
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+.widget-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 35px 60px -10px rgba(0,0,0,0.12);
+  border-color: rgba(0,0,0,0.06);
+}
+.widget-card:hover .hover-offset-1 { transform: translate(-8px, -8px) rotate(-4deg); }
+.widget-card:hover .hover-offset-2 { transform: translate(8px, 8px) rotate(4deg); }
+.widget-card:hover .hover-scale-up { transform: scale(1.12); }
+
+/* STAMP / BADGE COLLECTION (Achievements) */
+.stamp-card{
+  position:relative;
+  border-radius:1.4rem;
+  padding:1.6rem 1.2rem 1.3rem;
+  display:flex; flex-direction:column; align-items:center; justify-content:flex-end;
+  aspect-ratio: 1 / 1.12;
+  box-shadow: 0 14px 28px -10px rgba(0,0,0,0.18);
+  transition: transform 0.4s cubic-bezier(0.16,1,0.3,1), box-shadow 0.4s ease;
+  overflow:hidden;
+}
+.stamp-card::before{
+  content:'';
+  position:absolute; inset:6px;
+  border-radius:1.1rem;
+  border: 2px dashed rgba(255,255,255,0.35);
+  pointer-events:none;
+}
+.stamp-card:hover{ transform: translateY(-6px) rotate(-1deg); box-shadow: 0 22px 38px -10px rgba(0,0,0,0.25); }
+.stamp-icon-wrap{
+  width:100%; flex:1;
+  display:flex; align-items:center; justify-content:center;
+  margin-bottom:0.9rem;
+}
+.stamp-label{
+  font-family:'Space Grotesk',sans-serif;
+  font-weight:800; font-size:0.95rem; letter-spacing:-0.02em;
+  color:#fff; text-align:center; line-height:1.1;
+}
+.stamp-sub{
+  font-size:0.58rem; letter-spacing:0.12em; text-transform:uppercase;
+  font-weight:700; color:rgba(255,255,255,0.75); margin-top:0.25rem; text-align:center;
+}
 </style>
 </head>
 <body class="noise antialiased bg-white loading">
 
+<!-- PRELOADER LAYER -->
 <div id="preloader-container">
   <div class="loader-bg-panel" id="loader-slide-curtain"></div>
   <div class="loader-content">
@@ -142,14 +247,14 @@ html{scroll-behavior:smooth;}
   </div>
 </div>
 
+<!-- MAIN SITE -->
 <div id="main-site-wrapper">
+  <!-- Header identity -->
   <header class="py-5 fixed top-0 w-full z-[100] glass border-b-0">
     <div class="px-6 md:px-12 mx-auto max-w-[1600px] flex items-center justify-between">
-      <a href="#" class="header-identity">
-        <div class="header-profile-avatar glass-icon">
-          <img src="prashanth.png" alt="P" class="w-full h-full object-cover rounded-xl"
-               onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-          <div class="flex items-center justify-center bg-black text-white w-full h-full text-[10px] rounded-xl" style="display:none">GP</div>
+      <a href="#" class="header-identity flex items-center gap-3">
+        <div class="header-profile-avatar glass-icon !w-[38px] !h-[38px] overflow-hidden">
+          <img src="prashanth.png" alt="Prashanth" class="w-full h-full object-cover rounded-xl" />
         </div>
         <div class="flex flex-col">
           <span class="text-sm font-space font-extrabold tracking-tighter text-black leading-none mb-0.5">G. PRASHANTH</span>
@@ -158,29 +263,37 @@ html{scroll-behavior:smooth;}
       </a>
       <nav class="flex items-center space-x-4 md:space-x-8">
         <a href="#projects" class="text-black text-[10px] uppercase font-bold tracking-widest hover:opacity-50 hidden md:block">Work</a>
+        <a href="#labs" class="text-black text-[10px] uppercase font-bold tracking-widest hover:opacity-50 hidden md:block">Labs</a>
         <a href="#skills" class="text-black text-[10px] uppercase font-bold tracking-widest hover:opacity-50 hidden md:block">Skills</a>
         <a href="#chronicle" class="text-black text-[10px] uppercase font-bold tracking-widest hover:opacity-50 hidden md:block">Chronicle</a>
         <a href="mailto:prashanthgarigaboina@gmail.com" class="glass-icon !w-10 !h-10 !rounded-xl">
-          <i data-lucide="mail" class="w-4 h-4"></i>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+          </svg>
         </a>
       </nav>
     </div>
   </header>
 
+  <!-- Hero Section -->
   <section class="min-h-screen flex flex-col justify-center relative pt-32 pb-12 px-6 md:px-12">
-    <div class="container mx-auto max-w-[1500px] relative">
+      <div class="container mx-auto max-w-[1500px] relative">
       <div class="profile-card-wrapper">
         <div class="profile-card-fintech glass">
-          <img src="prashanth.png" class="profile-img-bg" alt="Prashanth"
-               onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-          <div class="flex items-center justify-center bg-zinc-900 text-white w-full h-full" style="display:none">Profile Image</div>
+          <div class="profile-img-bg flex items-center justify-center bg-zinc-900 overflow-hidden">
+            <img src="prashanth.png" alt="Prashanth" class="w-full h-full object-cover" />
+          </div>
           <div class="card-footer-actions glass-dark">
             <a href="https://www.linkedin.com/in/prashanthgarigaboina?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" rel="noopener noreferrer" class="btn-card-sm btn-white-solid">
-              <i data-lucide="linkedin" class="w-3.5 h-3.5"></i>
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+              </svg>
               <span class="inline">LinkedIn</span>
             </a>
             <a href="https://github.com/prasshhhzanth" target="_blank" rel="noopener noreferrer" class="btn-card-sm btn-glass-light">
-              <i data-lucide="github" class="w-3.5 h-3.5"></i>
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 3.518 1.304 4.376.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+              </svg>
               <span class="inline">GitHub</span>
             </a>
           </div>
@@ -196,12 +309,14 @@ html{scroll-behavior:smooth;}
           <span class="inline-block text-black">PRASHANTH</span>
         </h1>
         <p class="text-base md:text-2xl font-light leading-relaxed text-gray-500 max-w-2xl mt-8 mb-10 mx-auto lg:ml-0">
-          Engineering specializing in <span class="text-black font-semibold">Computer Science & Business Systems</span>. Building robust digital systems that blend high-performance logic with scalable user experiences.
+          Engineering student specializing in <span class="text-black font-semibold">Computer Science & Business System</span>. Building robust digital systems that blend high-performance logic with scalable user experiences.
         </p>
         <div class="flex mailbox-wrapper mailbox-center lg:justify-start">
           <a href="mailto:prashanthgarigaboina@gmail.com" class="mailbox-card glass">
             <div class="mailbox-icon-wrapper glass-icon-dark !bg-black/0">
-              <i data-lucide="inbox" class="w-6 h-6"></i>
+              <svg class="w-6 h-6 text-black" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0a2 2 0 01-2 2H6a2 2 0 01-2-2m16 0l-4 4m-8-4l-4 4"/>
+              </svg>
             </div>
             <div class="flex flex-col text-left">
               <span class="text-[8px] uppercase font-bold text-gray-400 tracking-widest leading-none mb-1">Mailbox</span>
@@ -214,7 +329,8 @@ html{scroll-behavior:smooth;}
   </section>
 
   <!-- Projects Section -->
-  <section id="projects" class="bg-gray-50/50 pt-32 pb-48 px-6">
+  <section id="projects" class="bg-gray-50/50 pt-32 pb-48 px-6 relative">
+
     <div class="container mx-auto max-w-[1200px]">
       <div class="mb-24 text-center reveal">
         <h2 class="text-[9px] uppercase tracking-[0.5em] text-gray-300 font-bold mb-4">01 / SELECTED WORKS</h2>
@@ -222,20 +338,22 @@ html{scroll-behavior:smooth;}
       </div>
 
       <div class="space-y-[10vh] md:space-y-[15vh] pb-[15vh]">
-        
+
         <!-- Project 01: MyUnity -->
         <div class="project-card note-purple reveal">
           <div class="flex justify-between items-start">
-            <span class="text-xs font-bold uppercase tracking-widest text-black/40">Project 01</span>
-            <div class="glass-icon !w-9 !h-9 !rounded-lg !bg-white/30 !border-white/40">
-              <i data-lucide="home" class="w-4 h-4 text-black"></i>
+            <span class="text-xs font-bold uppercase tracking-widest text-black/40">Project 01 — 2026</span>
+            <div class="glass-icon !w-12 !h-12 !rounded-xl !bg-white/30 !border-white/40">
+              <svg class="w-6 h-6 text-black" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+              </svg>
             </div>
           </div>
           <div>
             <h3 class="text-2xl md:text-4xl font-space font-extrabold tracking-tight mb-2 text-black">MyUnity</h3>
-            <p class="text-sm text-black/75 mb-6">Smart Community Management System. Full-stack society management platform featuring visitor validation, announcements, complaining modules, and a dynamic shared EV reservation scheme. Powered by Flutter, Python, and PostgreSQL.</p>
-            <div class="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest opacity-80">
-              <span class="border-b-2 border-black pb-1">Community Logic</span>
+            <p class="text-sm text-black/75 mb-6 font-medium">Smart Community & Welfare Management System for modern residential societies. Streamlines digital visitor approvals, community EV reservations, amenity booking, real-time notifications, complaint management, and a local service marketplace.</p>
+            <div class="flex flex-wrap items-center gap-2 text-[10px] font-bold uppercase tracking-widest opacity-80">
+              <span class="border-b-2 border-black pb-1">Flutter · Python · PostgreSQL · Supabase · Firebase · Google Maps API</span>
             </div>
           </div>
         </div>
@@ -243,16 +361,18 @@ html{scroll-behavior:smooth;}
         <!-- Project 02: DEPay -->
         <div class="project-card note-orange reveal">
           <div class="flex justify-between items-start">
-            <span class="text-xs font-bold uppercase tracking-widest text-black/40">Project 02</span>
-            <div class="glass-icon !w-9 !h-9 !rounded-lg !bg-white/30 !border-white/40">
-              <i data-lucide="globe" class="w-4 h-4 text-black"></i>
+            <span class="text-xs font-bold uppercase tracking-widest text-black/40">Project 02 — 2026</span>
+            <div class="glass-icon !w-12 !h-12 !rounded-xl !bg-white/30 !border-white/40">
+              <svg class="w-6 h-6 text-black" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/>
+              </svg>
             </div>
           </div>
           <div>
             <h3 class="text-2xl md:text-4xl font-space font-extrabold tracking-tight mb-2 text-black">DEPay</h3>
-            <p class="text-sm text-black/75 mb-6">Decentralized sovereign cross-border payment bridge. Enabling atomic swaps through tokenization, automated currency conversion, fraud networks, and UPI onboarding. Powered by Solidity, Kotlin, and Node.js.</p>
-            <div class="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest opacity-80">
-              <span class="border-b-2 border-black pb-1">DeFi Settlement</span>
+            <p class="text-sm text-black/75 mb-6 font-medium">Decentralized sovereign payment bridge for cross-border transfers. Smart contract-driven currency conversion, secure peer-to-peer settlement, and real-time transaction tracking across chains.</p>
+            <div class="flex flex-wrap items-center gap-2 text-[10px] font-bold uppercase tracking-widest opacity-80">
+              <span class="border-b-2 border-black pb-1">Kotlin · Solidity · Node.js · Ethereum · Hyperledger · Web3j</span>
             </div>
           </div>
         </div>
@@ -261,16 +381,18 @@ html{scroll-behavior:smooth;}
         <a href="https://github.com/prasshhhzanth" target="_blank" class="project-card note-yellow reveal">
           <div class="flex justify-between items-start">
             <span class="text-xs font-bold uppercase tracking-widest text-black/40">Project 03</span>
-            <div class="glass-icon !w-9 !h-9 !rounded-lg !bg-white/30 !border-white/40">
-              <i data-lucide="scissors" class="w-4 h-4 text-black"></i>
+            <div class="glass-icon !w-12 !h-12 !rounded-xl !bg-white/30 !border-white/40">
+              <svg class="w-6 h-6 text-black" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+              </svg>
             </div>
           </div>
           <div>
             <h3 class="text-2xl md:text-4xl font-space font-extrabold tracking-tight mb-2 text-black">Clothing.ai</h3>
-            <p class="text-sm text-black/75 mb-6">GenAI & AR Fashion Assistant. Generates unique patterns and maps designs to purchase links. Tailored interface built for high-performance and fluid interaction.</p>
+            <p class="text-sm text-black/75 mb-6 font-medium">GenAI & AR fashion assistant. Generates unique fashion patterns with generative AI and automatically web-crawls to map designs to real purchase links. Building an AR module for live camera virtual try-ons.</p>
             <div class="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest opacity-80">
-              <span class="border-b-2 border-black pb-1">GitHub Profile</span>
-              <i data-lucide="arrow-up-right" class="w-3 h-3 text-black"></i>
+              <span class="border-b-2 border-black pb-1">Python · Generative AI · Computer Vision</span>
+              <svg class="w-3.5 h-3.5 inline ml-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
             </div>
           </div>
         </a>
@@ -278,17 +400,19 @@ html{scroll-behavior:smooth;}
         <!-- Project 04: Dhanvantri AI -->
         <a href="https://github.com/prasshhhzanth" target="_blank" class="project-card note-pink reveal">
           <div class="flex justify-between items-start">
-            <span class="text-xs font-bold uppercase tracking-widest text-black/40">Project 04</span>
-            <div class="glass-icon !w-9 !h-9 !rounded-lg !bg-white/30 !border-white/40">
-              <i data-lucide="heart" class="w-4 h-4 text-black"></i>
+            <span class="text-xs font-bold uppercase tracking-widest text-black/40">Project 04 — 2025</span>
+            <div class="glass-icon !w-12 !h-12 !rounded-xl !bg-white/30 !border-white/40">
+              <svg class="w-6 h-6 text-black" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19 10.5V20a2 2 0 01-2 2H5a2 2 0 01-2-2V4a2 2 0 012-2h12a2 2 0 012 2v2.5M19 10.5V6.5M19 10.5h2.5a2.5 2.5 0 012.5 2.5v5a2.5 2.5 0 01-2.5 2.5H19m0-10h-2M13 14H7m4-3H9m4 6H7"/>
+              </svg>
             </div>
           </div>
           <div>
             <h3 class="text-2xl md:text-4xl font-space font-extrabold tracking-tight mb-2 text-black">Dhanvantri AI</h3>
-            <p class="text-sm text-black/75 mb-6">Intelligent Medical Assistant using FastAPI and NLP for symptom-based disease prediction. Highly structured backend system configured with analytical models.</p>
+            <p class="text-sm text-black/75 mb-6 font-medium">Intelligent medical assistant using NLP to parse symptom-based queries. Applies classification algorithms to deliver diagnostic insights, lifestyle recommendations, and precautionary guidance.</p>
             <div class="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest opacity-80">
-              <span class="border-b-2 border-black pb-1">GitHub Profile</span>
-              <i data-lucide="arrow-up-right" class="w-3 h-3 text-black"></i>
+              <span class="border-b-2 border-black pb-1">FastAPI · React · NLP · Python</span>
+              <svg class="w-3.5 h-3.5 inline ml-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
             </div>
           </div>
         </a>
@@ -296,35 +420,19 @@ html{scroll-behavior:smooth;}
         <!-- Project 05: YOCTRON-RMS -->
         <a href="https://github.com/prasshhhzanth" target="_blank" class="project-card note-green reveal">
           <div class="flex justify-between items-start">
-            <span class="text-xs font-bold uppercase tracking-widest text-black/40">Project 05</span>
-            <div class="glass-icon !w-9 !h-9 !rounded-lg !bg-white/30 !border-white/40">
-              <i data-lucide="utensils" class="w-4 h-4 text-black"></i>
+            <span class="text-xs font-bold uppercase tracking-widest text-black/40">Project 05 — 2025</span>
+            <div class="glass-icon !w-12 !h-12 !rounded-xl !bg-white/30 !border-white/40">
+              <svg class="w-6 h-6 text-black" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+              </svg>
             </div>
           </div>
           <div>
             <h3 class="text-2xl md:text-4xl font-space font-extrabold tracking-tight mb-2 text-black">YOCTRON-RMS</h3>
-            <p class="text-sm text-black/75 mb-6">Restaurant Management Interface for real-time tracking of order status and table reservations. High speed communication and data alignment dashboard layout.</p>
+            <p class="text-sm text-black/75 mb-6 font-medium">High-fidelity, component-based restaurant management dashboard. Optimized for real-time tracking of order status, menu availability, and table reservations.</p>
             <div class="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest opacity-80">
-              <span class="border-b-2 border-black pb-1">GitHub Profile</span>
-              <i data-lucide="arrow-up-right" class="w-3 h-3 text-black"></i>
-            </div>
-          </div>
-        </a>
-
-        <!-- Project 06: Pet Welfare -->
-        <a href="https://github.com/prasshhhzanth" target="_blank" class="project-card note-blue reveal">
-          <div class="flex justify-between items-start">
-            <span class="text-xs font-bold uppercase tracking-widest text-black/40">Project 06</span>
-            <div class="glass-icon !w-9 !h-9 !rounded-lg !bg-white/30 !border-white/40">
-              <i data-lucide="paw-print" class="w-4 h-4 text-black"></i>
-            </div>
-          </div>
-          <div>
-            <h3 class="text-2xl md:text-4xl font-space font-extrabold tracking-tight mb-2 text-black">Pet Welfare</h3>
-            <p class="text-sm text-black/75 mb-6">Community-driven adoption platform focused on responsive UX and conversion rates. Interactive state-driven pages built to support stray animal rescue networks.</p>
-            <div class="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest opacity-80">
-              <span class="border-b-2 border-black pb-1">GitHub Profile</span>
-              <i data-lucide="arrow-up-right" class="w-3 h-3 text-black"></i>
+              <span class="border-b-2 border-black pb-1">JavaScript · Bootstrap · HTML5 · CSS3</span>
+              <svg class="w-3.5 h-3.5 inline ml-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
             </div>
           </div>
         </a>
@@ -333,29 +441,118 @@ html{scroll-behavior:smooth;}
     </div>
   </section>
 
+  <!-- Creative Labs / Micro-Apps Playground Section -->
+  <section id="labs" class="py-32 px-6 border-t border-gray-100 relative" style="background-image: url('https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=1600&q=80'); background-size: cover; background-position: center;">
+
+    <div class="container mx-auto max-w-[1200px]">
+      <div class="mb-24 text-center reveal">
+        <h2 class="text-[9px] uppercase tracking-[0.5em] text-gray-400 font-bold mb-4">02 / INTERACTIVE LABS</h2>
+        <p class="text-4xl md:text-6xl font-space font-bold tracking-tighter">OS <span class="italic font-light text-gray-400">Playground</span></p>
+        <p class="text-sm text-gray-400 mt-4 max-w-xl mx-auto font-medium">A set of re-engineered micro-apps and interactive widgets — small experiments built outside the main project list.</p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
+
+        <!-- Live Status/Hire Widget (Updated UI) -->
+        <div class="flex flex-col justify-between">
+          <div class="relative w-full">
+            <div class="bg-[#0f1722] text-white rounded-[2.5rem] shadow-2xl relative z-10 border border-neutral-800 transition-all duration-300 overflow-hidden hover:scale-[1.01]" style="aspect-ratio:1/1; display:flex; flex-direction:column;">
+              <div class="h-28 w-full">
+                <img src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=1600&q=80" alt="banner" class="w-full h-full object-cover" />
+              </div>
+              <div class="p-6 mt-auto">
+                <div class="flex items-center gap-4 -mt-8">
+                  <img src="prashanth.png" alt="avatar" class="w-16 h-16 rounded-full border-4 border-[#0f1722] object-cover" />
+                  <div>
+                    <div class="text-xl font-space font-extrabold">Prashanth Garigaboina</div>
+                    <div class="text-xs text-neutral-400 flex items-center gap-2">
+                      <span>Systems Engineer</span>
+                      <span class="ml-2 font-mono text-[11px] text-neutral-300">05:14 PM</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="mt-4 flex items-center justify-between">
+                  <div class="flex items-center gap-4 text-sm text-neutral-300">
+                    <div class="flex items-center gap-1">
+                      <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.957a1 1 0 00.95.69h4.162c.969 0 1.371 1.24.588 1.81l-3.37 2.455a1 1 0 00-.364 1.118l1.287 3.957c.3.921-.755 1.688-1.54 1.118l-3.37-2.455a1 1 0 00-1.176 0l-3.37 2.455c-.784.57-1.84-.197-1.54-1.118l1.287-3.957a1 1 0 00-.364-1.118L2.063 9.384c-.783-.57-.38-1.81.588-1.81h4.162a1 1 0 00.95-.69L9.05 2.927z"/></svg>
+                      <span class="font-semibold">5.0</span>
+                    </div>
+                    <div class="text-xs text-neutral-400">Available for interesting gigs</div>
+                  </div>
+
+                  <a href="mailto:prashanthgarigaboina@gmail.com" class="py-2 px-4 bg-[#2b6ff7] rounded-full text-white text-sm">Get In Touch</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Resume Snapshot Widget (Video only, autoplay muted loop) -->
+        <div class="flex flex-col justify-between">
+          <div class="bg-[#ffcc00] text-black p-0 rounded-[2.5rem] shadow-2xl h-full flex flex-col justify-between border-2 border-amber-500 relative transition-all duration-300 hover:scale-[1.01] overflow-hidden" style="aspect-ratio:1/1; display:flex; flex-direction:column;">
+            <div class="w-full flex-1">
+              <video src="bucket.mp4" autoplay muted loop playsinline class="w-full h-full object-cover bg-black"></video>
+            </div>
+          </div>
+        </div>
+
+        <!-- Schedule Calendar Widget -->
+        <div class="flex flex-col justify-between">
+          <div class="bg-white text-black p-6 rounded-[2.5rem] shadow-2xl h-full flex flex-col justify-between border border-gray-100 relative transition-all duration-300 hover:scale-[1.01]" style="aspect-ratio:1/1; display:flex; flex-direction:column;">
+            <div>
+              <div class="flex justify-between items-center mb-6">
+                <span class="text-xl font-space font-extrabold tracking-tight">Schedule</span>
+                <span class="text-[9px] uppercase font-mono bg-orange-100 text-orange-600 px-2 py-0.5 rounded-full font-bold">Dynamic</span>
+              </div>
+
+              <div class="relative min-h-[135px]">
+                <div id="calendar-grid" class="grid grid-cols-7 gap-y-5 gap-x-2 justify-items-center relative pt-4"></div>
+              </div>
+            </div>
+
+            <div class="mt-4 pt-4 border-t border-gray-50">
+              <button id="sprint-btn" onclick="toggleFocusSprint()" class="w-full py-4 rounded-3xl bg-[#c5fc1a] hover:bg-[#b0e610] text-black font-space font-bold text-sm tracking-tight flex items-center justify-center gap-2.5 shadow-md transition-all">
+                <div class="w-5 h-5 bg-white rounded-full flex items-center justify-center shadow-sm">
+                  <svg id="sprint-btn-icon" class="w-2.5 h-2.5 text-black fill-current" viewBox="0 0 24 24">
+                    <path d="M8 5v14l11-7z"/>
+                  </svg>
+                </div>
+                <span id="sprint-btn-text">Start Focus Session</span>
+              </button>
+              <div id="sprint-timer-panel" class="hidden text-center mt-3 font-mono text-xl font-bold tracking-wider text-orange-600 animate-pulse">25:00</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
   <!-- Skills Section -->
-  <section id="skills" class="py-32 px-6">
+  <section id="skills" class="py-32 px-6 relative">
+
     <div class="container mx-auto max-w-[1200px]">
       <div class="mb-24 reveal text-center lg:text-left">
-        <h2 class="text-[9px] uppercase tracking-[0.5em] text-gray-300 font-bold mb-4">02 / CAPABILITIES</h2>
+        <h2 class="text-[9px] uppercase tracking-[0.5em] text-gray-300 font-bold mb-4">03 / CAPABILITIES</h2>
         <p class="text-4xl md:text-6xl font-space font-bold tracking-tighter">Tools & <span class="italic font-light text-gray-400">Logic</span></p>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 reveal">
-        <!-- Languages & Web -->
+        <!-- Languages -->
         <div class="skill-tile glass">
           <div class="glass-icon">
-            <i data-lucide="code-2" class="w-5 h-5"></i>
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
+            </svg>
           </div>
           <div>
-            <h4 class="font-bold text-lg mb-4">Languages & Web</h4>
+            <h4 class="font-bold text-lg mb-4 text-black font-space">Languages</h4>
             <div class="flex flex-wrap gap-2">
               <span class="px-3 py-1 bg-white text-[10px] font-bold uppercase tracking-wider rounded-full border border-gray-200">Java (OOP)</span>
               <span class="px-3 py-1 bg-white text-[10px] font-bold uppercase tracking-wider rounded-full border border-gray-200">Python</span>
-              <span class="px-3 py-1 bg-white text-[10px] font-bold uppercase tracking-wider rounded-full border border-gray-200">SQL</span>
-              <span class="px-3 py-1 bg-white text-[10px] font-bold uppercase tracking-wider rounded-full border border-gray-200">HTML</span>
-              <span class="px-3 py-1 bg-white text-[10px] font-bold uppercase tracking-wider rounded-full border border-gray-200">CSS</span>
               <span class="px-3 py-1 bg-white text-[10px] font-bold uppercase tracking-wider rounded-full border border-gray-200">C</span>
+              <span class="px-3 py-1 bg-white text-[10px] font-bold uppercase tracking-wider rounded-full border border-gray-200">SQL</span>
             </div>
           </div>
         </div>
@@ -363,50 +560,55 @@ html{scroll-behavior:smooth;}
         <!-- Engineering -->
         <div class="skill-tile glass">
           <div class="glass-icon">
-            <i data-lucide="cpu" class="w-5 h-5"></i>
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"/>
+            </svg>
           </div>
           <div>
-            <h4 class="font-bold text-lg mb-4">Engineering</h4>
+            <h4 class="font-bold text-lg mb-4 text-black font-space">Engineering</h4>
             <div class="flex flex-wrap gap-2">
               <span class="px-3 py-1 bg-white text-[10px] font-bold uppercase tracking-wider rounded-full border border-gray-200">React</span>
               <span class="px-3 py-1 bg-white text-[10px] font-bold uppercase tracking-wider rounded-full border border-gray-200">Node.js</span>
               <span class="px-3 py-1 bg-white text-[10px] font-bold uppercase tracking-wider rounded-full border border-gray-200">DSA</span>
-              <span class="px-3 py-1 bg-white text-[10px] font-bold uppercase tracking-wider rounded-full border border-gray-200">FastAPI</span>
-              <span class="px-3 py-1 bg-white text-[10px] font-bold uppercase tracking-wider rounded-full border border-gray-200">Computer Architecture</span>
-              <span class="px-3 py-1 bg-white text-[10px] font-bold uppercase tracking-wider rounded-full border border-gray-200">Linux</span>
+              <span class="px-3 py-1 bg-white text-[10px] font-bold uppercase tracking-wider rounded-full border border-gray-200">Linux Commands</span>
             </div>
           </div>
         </div>
 
-        <!-- Technologies -->
+        <!-- Technologies & Tools -->
         <div class="skill-tile glass">
           <div class="glass-icon">
-            <i data-lucide="layers" class="w-5 h-5"></i>
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
+            </svg>
           </div>
           <div>
-            <h4 class="font-bold text-lg mb-4">Technologies</h4>
+            <h4 class="font-bold text-lg mb-4 text-black font-space">Technologies & Tools</h4>
             <div class="flex flex-wrap gap-2">
               <span class="px-3 py-1 bg-white text-[10px] font-bold uppercase tracking-wider rounded-full border border-gray-200">Power BI</span>
               <span class="px-3 py-1 bg-white text-[10px] font-bold uppercase tracking-wider rounded-full border border-gray-200">Git</span>
               <span class="px-3 py-1 bg-white text-[10px] font-bold uppercase tracking-wider rounded-full border border-gray-200">Docker</span>
               <span class="px-3 py-1 bg-white text-[10px] font-bold uppercase tracking-wider rounded-full border border-gray-200">MS 365</span>
+              <span class="px-3 py-1 bg-white text-[10px] font-bold uppercase tracking-wider rounded-full border border-gray-200">Photoshop</span>
+              <span class="px-3 py-1 bg-white text-[10px] font-bold uppercase tracking-wider rounded-full border border-gray-200">Illustrator</span>
             </div>
           </div>
         </div>
 
-        <!-- Business & AI -->
+        <!-- Coursework -->
         <div class="skill-tile glass">
           <div class="glass-icon">
-            <i data-lucide="trending-up" class="w-5 h-5"></i>
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13M12 6.253C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s4.832.477 6 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+            </svg>
           </div>
           <div>
-            <h4 class="font-bold text-lg mb-4">Business & AI</h4>
+            <h4 class="font-bold text-lg mb-4 text-black font-space">Coursework</h4>
             <div class="flex flex-wrap gap-2">
-              <span class="px-3 py-1 bg-white text-[10px] font-bold uppercase tracking-wider rounded-full border border-gray-200">Business Case Study</span>
-              <span class="px-3 py-1 bg-white text-[10px] font-bold uppercase tracking-wider rounded-full border border-gray-200">Analytics</span>
-              <span class="px-3 py-1 bg-white text-[10px] font-bold uppercase tracking-wider rounded-full border border-gray-200">GenAI</span>
-              <span class="px-3 py-1 bg-white text-[10px] font-bold uppercase tracking-wider rounded-full border border-gray-200">NLP</span>
-              <span class="px-3 py-1 bg-white text-[10px] font-bold uppercase tracking-wider rounded-full border border-gray-200">DevOps</span>
+              <span class="px-3 py-1 bg-white text-[10px] font-bold uppercase tracking-wider rounded-full border border-gray-200">Data Structures & Algorithms</span>
+              <span class="px-3 py-1 bg-white text-[10px] font-bold uppercase tracking-wider rounded-full border border-gray-200">Computer Architecture</span>
+              <span class="px-3 py-1 bg-white text-[10px] font-bold uppercase tracking-wider rounded-full border border-gray-200">Digital Logic Design</span>
+              <span class="px-3 py-1 bg-white text-[10px] font-bold uppercase tracking-wider rounded-full border border-gray-200">Probability & Statistics</span>
             </div>
           </div>
         </div>
@@ -415,31 +617,113 @@ html{scroll-behavior:smooth;}
     </div>
   </section>
 
-  <!-- Chronicle Section -->
+  <!-- Chronicle & Education Section -->
   <section id="chronicle" class="py-32 md:py-60 bg-gray-50 relative overflow-hidden px-6">
-    <!-- 8 Hand-drawn Aesthetic Icons -->
-    <div class="aesthetic-icon top-[5%] left-[5%] animate-float" style="animation-duration: 8s;"><svg viewBox="0 0 120 120" fill="none" stroke="black" stroke-width="1.2"><rect x="20" y="20" width="80" height="60" rx="3"/><path d="M40 80L30 100H90L80 80"/></svg></div>
-    <div class="aesthetic-icon top-[35%] left-[3%] animate-float" style="animation-duration: 6s; animation-delay: 1s;"><svg viewBox="0 0 120 120" fill="none" stroke="black" stroke-width="1.2"><path d="M30 90L90 30M35 95L95 35"/></svg></div>
-    <div class="aesthetic-icon top-[65%] left-[8%] animate-float" style="animation-duration: 9s; animation-delay: 2s;"><svg viewBox="0 0 120 120" fill="none" stroke="black" stroke-width="1.2"><path d="M60 20C45 20 35 35 35 50C35 65 50 80 50 95H70C70 80 85 65 85 50C85 35 75 20 60 20Z"/></svg></div>
-    <div class="aesthetic-icon bottom-[10%] left-[5%] animate-float" style="animation-duration: 7s; animation-delay: 0.5s;"><svg viewBox="0 0 120 120" fill="none" stroke="black" stroke-width="1.2"><rect x="30" y="40" width="60" height="15" rx="1"/><rect x="25" y="55" width="70" height="15" rx="1"/></svg></div>
-    <div class="aesthetic-icon top-[10%] right-[5%] animate-float" style="animation-duration: 10s; animation-delay: 1.5s;"><svg viewBox="0 0 120 120" fill="none" stroke="black" stroke-width="1.2"><rect x="20" y="40" width="80" height="50" rx="3"/><circle cx="60" cy="65" r="18"/></svg></div>
-    <div class="aesthetic-icon top-[40%] right-[3%] animate-float" style="animation-duration: 8s; animation-delay: 2.5s;"><svg viewBox="0 0 120 120" fill="none" stroke="black" stroke-width="1.2"><path d="M60 30L20 50L60 70L100 50L60 30Z"/><path d="M35 55V75C35 75 60 85 85 75V55"/></svg></div>
-    <div class="aesthetic-icon top-[70%] right-[6%] animate-float" style="animation-duration: 6s; animation-delay: 1.2s;"><svg viewBox="0 0 120 120" fill="none" stroke="black" stroke-width="1.2"><path d="M30 90L90 90L30 30L30 90Z"/></svg></div>
-    <div class="aesthetic-icon bottom-[12%] right-[5%] animate-float" style="animation-duration: 11s; animation-delay: 3s;"><svg viewBox="0 0 120 120" fill="none" stroke="black" stroke-width="1.2"><path d="M40 50H80V90C80 95 70 100 40 90V50Z"/><path d="M80 60C95 60 95 90 80 90"/></svg></div>
 
     <div class="container mx-auto max-w-[1100px] relative z-20">
       <div class="text-center mb-24 reveal">
-        <h2 class="text-[9px] uppercase tracking-[0.5em] text-gray-300 font-bold mb-8">03 / CHRONICLE</h2>
+        <h2 class="text-[9px] uppercase tracking-[0.5em] text-gray-300 font-bold mb-8">04 / CHRONICLE</h2>
         <span class="text-sm font-mono text-gray-400 mb-4 block">2024 — 2028</span>
         <h3 class="text-5xl md:text-8xl font-space font-bold mb-8 tracking-tighter leading-none text-black">VBIT Hyderabad</h3>
         <p class="text-xl md:text-3xl text-gray-400 font-light leading-tight mb-20 max-w-2xl mx-auto">
           Bachelor of Technology in <span class="text-black">Computer Science & Business Systems</span>.
         </p>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-2xl mx-auto">
-          <div class="p-10 bg-white border border-gray-100 rounded-3xl shadow-sm"><p class="text-[9px] uppercase font-bold text-gray-300 tracking-widest mb-4">Cumulative GPA</p><p class="text-6xl md:text-8xl font-space font-bold tracking-tighter text-black">8.40</p></div>
-          <div class="p-10 bg-black text-white rounded-3xl shadow-xl"><p class="text-[9px] uppercase font-bold text-gray-500 tracking-widest mb-4">Latest Sem</p><p class="text-6xl md:text-8xl font-space font-bold tracking-tighter">8.40</p></div>
+          <div class="p-10 bg-white border border-gray-100 rounded-3xl shadow-sm"><p class="text-[9px] uppercase font-bold text-gray-300 tracking-widest mb-4">Cumulative GPA</p><p class="text-6xl md:text-8xl font-space font-bold tracking-tighter text-black">8.41</p></div>
+          <div class="p-10 bg-black text-white rounded-3xl shadow-xl"><p class="text-[9px] uppercase font-bold text-gray-500 tracking-widest mb-4">Latest Sem</p><p class="text-6xl md:text-8xl font-space font-bold tracking-tighter">8.50</p></div>
         </div>
       </div>
+
+      <!-- ACHIEVEMENTS — STAMP / BADGE COLLECTION -->
+      <div class="mt-28 reveal">
+        <div class="text-center mb-12">
+          <h4 class="text-[9px] uppercase tracking-[0.4em] text-gray-300 font-extrabold mb-3">Awards Collected</h4>
+          <p class="text-2xl md:text-3xl font-space font-bold tracking-tight text-black">Complete challenges, collect <span class="italic font-light text-gray-400">stamps</span></p>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-5 max-w-3xl mx-auto">
+
+          <!-- Stamp 1: Poster Design 1st Prize -->
+          <div class="stamp-card" style="background:linear-gradient(160deg,#ff8a3d,#e6432a);">
+            <div class="stamp-icon-wrap">
+              <svg class="w-12 h-12" viewBox="0 0 48 48" fill="none">
+                <path d="M16 8h16v8c0 5.5-3 9.5-7 9.5s-7-4-7-9.5z" fill="#fff" opacity="0.92"/>
+                <path d="M16 9.5c-3.6-.5-6 1.8-6 5s2.7 5.4 6.3 5.4" stroke="#fff" stroke-width="2" fill="none"/>
+                <path d="M32 9.5c3.6-.5 6 1.8 6 5s-2.7 5.4-6.3 5.4" stroke="#fff" stroke-width="2" fill="none"/>
+                <rect x="21" y="25.5" width="6" height="5" fill="#fff" opacity="0.92"/>
+                <path d="M14 36h20l3 6H11z" fill="#fff" opacity="0.92"/>
+              </svg>
+            </div>
+            <div class="stamp-label">Poster Design</div>
+            <div class="stamp-sub">1st Prize · 2025</div>
+          </div>
+
+          <!-- Stamp 2: GenAI Hackathon -->
+          <div class="stamp-card" style="background:linear-gradient(160deg,#7c5cff,#4527a0);">
+            <div class="stamp-icon-wrap">
+              <svg class="w-12 h-12" viewBox="0 0 48 48" fill="none">
+                <circle cx="24" cy="22" r="13" fill="#fff" opacity="0.92"/>
+                <path d="M24 12v3M24 31v3M14 22h3M31 22h3M17.5 15.5l2 2M30.5 15.5l-2 2M17.5 28.5l2-2M30.5 28.5l-2-2" stroke="#4527a0" stroke-width="2.4" stroke-linecap="round"/>
+                <circle cx="24" cy="22" r="4.2" fill="#4527a0"/>
+              </svg>
+            </div>
+            <div class="stamp-label">GenAI Hackathon</div>
+            <div class="stamp-sub">MeitY × NASSCOM</div>
+          </div>
+
+          <!-- Stamp 3: GDG Solution Challenge -->
+          <div class="stamp-card" style="background:linear-gradient(160deg,#3ddc97,#0e8a5f);">
+            <div class="stamp-icon-wrap">
+              <svg class="w-12 h-12" viewBox="0 0 48 48" fill="none">
+                <circle cx="24" cy="20" r="10" fill="#fff" opacity="0.92"/>
+                <path d="M14 36c2-7 7-10 10-10s8 3 10 10" stroke="#fff" stroke-width="3" stroke-linecap="round" fill="none" opacity="0.92"/>
+                <circle cx="24" cy="20" r="4" fill="#0e8a5f"/>
+              </svg>
+            </div>
+            <div class="stamp-label">GDG Solution<br/>Challenge</div>
+            <div class="stamp-sub">Participant · 2025</div>
+          </div>
+
+          <!-- Stamp 4: Build with India -->
+          <div class="stamp-card" style="background:linear-gradient(160deg,#3da9fc,#1c4f9c);">
+            <div class="stamp-icon-wrap">
+              <svg class="w-12 h-12" viewBox="0 0 48 48" fill="none">
+                <path d="M24 8c8 6 11 18 9 28-1.5 6-5 9-9 9s-7.5-3-9-9c-2-10 1-22 9-28z" fill="#fff" opacity="0.92"/>
+                <circle cx="24" cy="22" r="4" fill="#1c4f9c"/>
+                <path d="M16 33l-6 4 2-8M32 33l6 4-2-8" stroke="#fff" stroke-width="2.4" stroke-linecap="round" fill="none" opacity="0.92"/>
+              </svg>
+            </div>
+            <div class="stamp-label">Build with India</div>
+            <div class="stamp-sub">Team Blocks-Z</div>
+          </div>
+
+          <!-- Stamp 5: Infosys Springboard -->
+          <div class="stamp-card" style="background:linear-gradient(160deg,#ffd23d,#e6a30f);">
+            <div class="stamp-icon-wrap">
+              <svg class="w-12 h-12" viewBox="0 0 48 48" fill="none">
+                <rect x="11" y="14" width="26" height="20" rx="3" fill="#fff" opacity="0.92"/>
+                <path d="M16 19h16M16 24h16M16 29h10" stroke="#e6a30f" stroke-width="2.2" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div class="stamp-label">DevOps & Agile</div>
+            <div class="stamp-sub">Infosys Springboard</div>
+          </div>
+
+          <!-- Stamp 6: Google Developer Profile -->
+          <div class="stamp-card" style="background:linear-gradient(160deg,#5cc8ff,#1c7fc9);">
+            <div class="stamp-icon-wrap">
+              <svg class="w-12 h-12" viewBox="0 0 48 48" fill="none">
+                <circle cx="24" cy="24" r="13" fill="#fff" opacity="0.92"/>
+                <path d="M24 16v8l6 4" stroke="#1c7fc9" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+              </svg>
+            </div>
+            <div class="stamp-label">ML Crash Course</div>
+            <div class="stamp-sub">Google Cloud Innovator</div>
+          </div>
+
+        </div>
+      </div>
+
     </div>
   </section>
 
@@ -470,14 +754,14 @@ html{scroll-behavior:smooth;}
   </footer>
 </div>
 
-<script defer>
+<script>
 function boot() {
-  if (typeof lucide === 'undefined' || typeof gsap === 'undefined') {
+  if (typeof gsap === 'undefined') {
     requestAnimationFrame(boot);
     return;
   }
-  lucide.createIcons();
   runPreloader();
+  startWidgetScripts();
 }
 boot();
 
@@ -502,7 +786,6 @@ function showWord(i) {
 gsap.to('#loader-status', { opacity: 1, y: 0, filter: 'blur(0px)', duration: 0.4, delay: 0.1 });
 showWord(0);
 
-// Snappy flip interval (160ms transitions)
 const interval = setInterval(() => {
   idx++;
   if (idx >= total) {
@@ -516,8 +799,7 @@ const interval = setInterval(() => {
 
 function finishLoading() {
   statusEl.textContent = 'CONNECTING [100%]';
-  
-  // Instant curtain pull
+
   gsap.to("#loader-slide-curtain", {
     y: "-100%",
     duration: 0.6,
@@ -550,7 +832,6 @@ function initReveal() {
 }
 
 function stackNotes() {
-  // Prevent execution if page is still loading
   if (document.body.classList.contains('loading')) return;
 
   const cards = document.querySelectorAll('.project-card');
@@ -559,7 +840,7 @@ function stackNotes() {
     const rect = card.getBoundingClientRect();
     const scrollProgress = rect.top / window.innerHeight;
     if (scrollProgress < threshold) {
-      const progress = Math.max(0, threshold - scrollProgress) * 5; 
+      const progress = Math.max(0, threshold - scrollProgress) * 5;
       card.style.transform = `scale(${1 - (progress * 0.05)}) rotate(${i % 2 === 0 ? progress * -1.5 : progress * 1.5}deg)`;
       card.style.filter = `blur(${progress * 1}px)`;
       card.style.opacity = 1 - (progress * 0.25);
@@ -572,6 +853,179 @@ function stackNotes() {
 }
 
 window.addEventListener('scroll', stackNotes, { passive: true });
+
+function startWidgetScripts() {
+  function updateWidgetClock() {
+    const timeEl = document.getElementById('widget-local-time');
+    if (!timeEl) return;
+    const now = new Date();
+    let hours = now.getHours();
+    let minutes = now.getMinutes();
+    const ampm = hours >= 12 ? 'PM' : 'AM';
+    hours = hours % 12;
+    hours = hours ? hours : 12;
+    minutes = minutes < 10 ? '0'+minutes : minutes;
+    const timeString = `${hours < 10 ? '0' + hours : hours}:${minutes} ${ampm}`;
+    timeEl.textContent = timeString;
+  }
+  updateWidgetClock();
+  setInterval(updateWidgetClock, 10000);
+
+  renderRollingCalendar();
+}
+
+function renderRollingCalendar() {
+  const calendarGrid = document.getElementById('calendar-grid');
+  if (!calendarGrid) return;
+  calendarGrid.innerHTML = '';
+
+  const today = new Date();
+  const startOffset = today.getDay() + 7;
+  const startDate = new Date(today);
+  startDate.setDate(today.getDate() - startOffset);
+
+  for (let i = 0; i < 21; i++) {
+    const current = new Date(startDate);
+    current.setDate(startDate.getDate() + i);
+
+    const isPast = current < today && current.toDateString() !== today.toDateString();
+    const isToday = current.toDateString() === today.toDateString();
+    const isFirstOfMonth = current.getDate() === 1;
+
+    const dayDiv = document.createElement('div');
+    dayDiv.className = 'relative flex flex-col items-center justify-center w-9 h-9 sm:w-10 sm:h-10 rounded-xl text-xs font-semibold font-space select-none transition-transform duration-300';
+
+    if (isFirstOfMonth || i === 0) {
+      const monthBadge = document.createElement('div');
+      monthBadge.className = 'absolute -top-3 bg-white text-[8px] font-extrabold text-black border border-gray-100 px-1.5 py-0.5 rounded-md shadow-sm z-10 leading-none';
+      monthBadge.textContent = current.toLocaleString('default', { month: 'short' });
+      dayDiv.appendChild(monthBadge);
+    }
+
+    const dateSpan = document.createElement('span');
+    dateSpan.textContent = current.getDate();
+
+    if (isToday) {
+      dayDiv.className += ' bg-[#ff5511] text-white shadow-md shadow-orange-500/30';
+      dateSpan.className = 'relative z-10 font-bold';
+    } else if (isPast) {
+      dayDiv.className += ' bg-[#c5fc1a] text-black border border-transparent';
+      dateSpan.className = 'relative z-10 font-bold';
+
+      const scribbleSvg = `
+        <svg class="absolute inset-0 w-full h-full text-black opacity-85 select-none pointer-events-none" viewBox="0 0 100 100" preserveAspectRatio="none">
+          <path d="M15,40 Q35,15 65,30 T85,25 M10,55 Q40,30 75,65 T90,45 M20,75 Q50,50 80,80" fill="none" stroke="currentColor" stroke-width="4.5" stroke-linecap="round"/>
+        </svg>
+      `;
+      dayDiv.insertAdjacentHTML('beforeend', scribbleSvg);
+    } else {
+      dayDiv.className += ' bg-gray-50 text-zinc-900 border border-gray-100 hover:bg-zinc-100';
+    }
+
+    dayDiv.appendChild(dateSpan);
+    calendarGrid.appendChild(dayDiv);
+  }
+}
+
+let timerInterval = null;
+let timerRunning = false;
+let duration = 25 * 60;
+
+function toggleFocusSprint() {
+  const panel = document.getElementById('sprint-timer-panel');
+  const btnText = document.getElementById('sprint-btn-text');
+  const btnIcon = document.getElementById('sprint-btn-icon');
+
+  if (timerRunning) {
+    clearInterval(timerInterval);
+    timerRunning = false;
+    btnText.textContent = "Resume Focus";
+    btnIcon.innerHTML = `<path d="M8 5v14l11-7z"/>`;
+  } else {
+    panel.classList.remove('hidden');
+    timerRunning = true;
+    btnText.textContent = "Pause Session";
+    btnIcon.innerHTML = `<path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>`;
+
+    timerInterval = setInterval(() => {
+      duration--;
+      if (duration <= 0) {
+        clearInterval(timerInterval);
+        timerRunning = false;
+        btnText.textContent = "Session Complete!";
+        btnIcon.innerHTML = `<path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>`;
+        panel.textContent = "Nice work!";
+        return;
+      }
+      const mins = Math.floor(duration / 60);
+      const secs = duration % 60;
+      panel.textContent = `${mins < 10 ? '0' + mins : mins}:${secs < 10 ? '0' + secs : secs}`;
+    }, 1000);
+  }
+}
+
+function copyWidgetEmail(btnElement) {
+  const emailText = "prashanthgarigaboina@gmail.com";
+  const labelSpan = document.getElementById('copy-btn-text');
+
+  const textArea = document.createElement("textarea");
+  textArea.value = emailText;
+  textArea.style.position = "absolute";
+  textArea.style.left = "-9999px";
+  document.body.appendChild(textArea);
+  textArea.select();
+
+  try {
+    document.execCommand('copy');
+    if (labelSpan) {
+      labelSpan.textContent = "Copied!";
+      setTimeout(() => {
+        labelSpan.textContent = "Copy Email";
+      }, 2000);
+    }
+  } catch (err) {
+    console.error("Fallback copy execution error", err);
+  }
+  document.body.removeChild(textArea);
+}
+
+let currentTaxiLocState = 1;
+function toggleTaxiLocation() {
+  const addrEl = document.getElementById('taxi-location-address');
+  if (!addrEl) return;
+  if (currentTaxiLocState === 0) {
+    addrEl.textContent = "VBIT Campus, Hyderabad, TS 501301";
+    currentTaxiLocState = 1;
+  } else {
+    addrEl.textContent = "111 Fifth Ave New York, NY 10003";
+    currentTaxiLocState = 0;
+  }
+}
+
+function requestCabSimulation(btn) {
+  if (btn.disabled) return;
+  btn.disabled = true;
+  const originalText = btn.textContent;
+  btn.innerHTML = `
+    <svg class="animate-spin h-5 h-5 text-amber-500 inline-block mr-2" fill="none" viewBox="0 0 24 24">
+      <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+      <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+    </svg> Loading...
+  `;
+
+  setTimeout(() => {
+    btn.innerHTML = "On its Way!";
+    btn.classList.remove('bg-black', 'text-[#ffcc00]');
+    btn.classList.add('bg-white', 'text-black', 'border-2', 'border-black');
+
+    setTimeout(() => {
+      btn.textContent = originalText;
+      btn.classList.remove('bg-white', 'text-black', 'border-2', 'border-black');
+      btn.classList.add('bg-black', 'text-[#ffcc00]');
+      btn.disabled = false;
+    }, 4000);
+  }, 1800);
+}
 </script>
 </body>
 </html>
