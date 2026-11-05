@@ -93,40 +93,16 @@ body{font-family:'Inter',sans-serif;background-color:var(--bg-color);color:var(-
 .skill-tile{background:#fcfcfc;border:1px solid #f0f0f0;padding:1.5rem;border-radius:1.5rem;transition:all 0.4s cubic-bezier(0.165,0.84,0.44,1);display:flex;flex-direction:column;gap:1rem;}
 .skill-tile:hover{background:white;box-shadow:0 20px 40px rgba(0,0,0,0.04);transform:translateY(-5px);border-color:#000;}
 
-.skill-tile:nth-child(1) .glass-icon {
-  background: linear-gradient(135deg, rgba(147, 51, 234, 0.15), rgba(147, 51, 234, 0.02));
-  border-color: rgba(147, 51, 234, 0.4);
-  color: rgb(147, 51, 234);
-  box-shadow: 0 0 15px rgba(147, 51, 234, 0.08);
-}
-.skill-tile:nth-child(2) .glass-icon {
-  background: linear-gradient(135deg, rgba(34, 197, 94, 0.15), rgba(34, 197, 94, 0.02));
-  border-color: rgba(34, 197, 94, 0.4);
-  color: rgb(22, 163, 74);
-  box-shadow: 0 0 15px rgba(34, 197, 94, 0.08);
-}
-.skill-tile:nth-child(3) .glass-icon {
-  background: linear-gradient(135deg, rgba(59, 130, 246, 0.15), rgba(59, 130, 246, 0.02));
-  border-color: rgba(59, 130, 246, 0.4);
-  color: rgb(37, 99, 235);
-  box-shadow: 0 0 15px rgba(59, 130, 246, 0.08);
-}
-.skill-tile:nth-child(4) .glass-icon {
-  background: linear-gradient(135deg, rgba(245, 158, 11, 0.15), rgba(245, 158, 11, 0.02));
-  border-color: rgba(245, 158, 11, 0.4);
-  color: rgb(217, 119, 6);
-  box-shadow: 0 0 15px rgba(245, 158, 11, 0.08);
-}
+/* POST-IT STYLE PROJECT STACKING ENGINE (HIGHER OPACITY & SATURATION) */
+.project-card{position:sticky;top:15vh;width:92%;max-width:420px;margin:0 auto;aspect-ratio:1/1.2;display:flex;flex-direction:column;justify-content:space-between;padding:clamp(1.5rem,5vw,2.5rem);border-radius:0.75rem;box-shadow:0 20px 50px rgba(0,0,0,0.12);transform-origin:center top;transition:all 0.4s cubic-bezier(0.16,1,0.3,1);text-decoration:none;color:inherit;border: 1px solid rgba(0,0,0,0.08);}
 
-/* POST-IT STYLE PROJECT STACKING ENGINE */
-.project-card{position:sticky;top:15vh;width:92%;max-width:420px;margin:0 auto;aspect-ratio:1/1.2;display:flex;flex-direction:column;justify-content:space-between;padding:clamp(1.5rem,5vw,2.5rem);border-radius:0.5rem;box-shadow:15px 15px 45px rgba(0,0,0,0.05);transform-origin:center top;transition:all 0.4s cubic-bezier(0.16,1,0.3,1);text-decoration:none;color:inherit;}
-
-.note-yellow{background-color:#FED049;}
-.note-pink{background-color:#FF6AC2;}
-.note-green{background-color:#C9F4AA;}
-.note-blue{background-color:#AEE2FF;}
-.note-purple{background-color:#E2D4F0;}
-.note-orange{background-color:#FFDEB4;}
+.note-purple{background-color:#c084fc; color:#180828;}
+.note-orange{background-color:#fb923c; color:#290d00;}
+.note-yellow{background-color:#facc15; color:#261d00;}
+.note-pink{background-color:#f472b6; color:#2d061a;}
+.note-green{background-color:#4ade80; color:#03240e;}
+.note-blue{background-color:#38bdf8; color:#022033;}
+.note-red{background-color:#f87171; color:#2c0505;}
 
 .reveal{opacity:0;transform:translateY(30px);transition:all 1s cubic-bezier(0.16,1,0.3,1);}
 .reveal.active{opacity:1;transform:translateY(0);}
@@ -134,7 +110,6 @@ body{font-family:'Inter',sans-serif;background-color:var(--bg-color);color:var(-
 header { transition: background 0.3s ease; }
 html{scroll-behavior:smooth;}
 
-/* INTERACTIVE LAB WIDGETS */
 .glass{
   background: rgba(255,255,255,0.55);
   backdrop-filter: blur(20px) saturate(180%);
@@ -150,7 +125,7 @@ html{scroll-behavior:smooth;}
   box-shadow: 0 8px 32px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.08);
 }
 
-/* STAMP / BADGE COLLECTION (Achievements) */
+/* STAMP / BADGE COLLECTION */
 .stamp-card{
   position:relative;
   border-radius:1.4rem;
@@ -184,16 +159,16 @@ html{scroll-behavior:smooth;}
   font-weight:700; color:rgba(255,255,255,0.75); margin-top:0.25rem; text-align:center;
 }
 
-/* REALISTIC ROTARY PHONE DIAL UI (MATCHING IMAGE_7E501C) */
+/* REALISTIC ROTARY PHONE DIAL UI (BRUSHED STAINLESS MINIMALIST STEEL) */
 .rotary-dial-body {
-  width: min(380px, 85vw);
-  height: min(380px, 85vw);
+  width: min(390px, 86vw);
+  height: min(390px, 86vw);
   border-radius: 50%;
-  background: radial-gradient(circle at 35% 35%, #d1d5db, #9ca3af 60%, #4b5563);
+  background: radial-gradient(circle at 35% 30%, #e2e8f0, #94a3b8 55%, #334155 90%);
   box-shadow: 
-    0 25px 50px -12px rgba(0, 0, 0, 0.35),
-    inset 0 4px 10px rgba(255, 255, 255, 0.8),
-    inset 0 -6px 12px rgba(0, 0, 0, 0.4);
+    0 30px 60px -15px rgba(0, 0, 0, 0.45),
+    inset 0 4px 10px rgba(255, 255, 255, 0.9),
+    inset 0 -8px 16px rgba(0, 0, 0, 0.5);
   position: relative;
   display: flex;
   align-items: center;
@@ -202,11 +177,11 @@ html{scroll-behavior:smooth;}
   user-select: none;
 }
 .rotary-wheel {
-  width: 90%;
-  height: 90%;
+  width: 88%;
+  height: 88%;
   border-radius: 50%;
-  background: radial-gradient(circle at 40% 40%, #e5e7eb, #b8c0cc 70%, #6b7280);
-  box-shadow: inset 0 2px 6px rgba(255, 255, 255, 0.9), inset 0 -4px 8px rgba(0,0,0,0.3);
+  background: radial-gradient(circle at 38% 38%, #f1f5f9, #cbd5e1 65%, #475569);
+  box-shadow: inset 0 3px 8px rgba(255, 255, 255, 0.95), inset 0 -6px 12px rgba(0,0,0,0.35);
   position: relative;
   transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
 }
@@ -214,8 +189,8 @@ html{scroll-behavior:smooth;}
   width: 48%;
   height: 48%;
   border-radius: 50%;
-  background: radial-gradient(circle at 30% 30%, #fdfbf7, #e2ded8);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2), inset 0 2px 4px rgba(255,255,255,0.9);
+  background: radial-gradient(circle at 30% 30%, #ffffff, #f1f5f9 80%, #cbd5e1);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.25), inset 0 2px 5px rgba(255,255,255,1);
   position: absolute;
   top: 26%;
   left: 26%;
@@ -226,16 +201,16 @@ html{scroll-behavior:smooth;}
   text-align: center;
   padding: 1rem;
   z-index: 10;
-  border: 1px solid rgba(0,0,0,0.08);
+  border: 1px solid rgba(0,0,0,0.06);
 }
 .rotary-slot {
   position: absolute;
-  width: 18%;
-  height: 18%;
+  width: 17%;
+  height: 17%;
   border-radius: 50%;
-  background: radial-gradient(circle at 30% 30%, #ffffff, #dcdfe5);
-  border: 2px solid #8c95a3;
-  box-shadow: inset 0 3px 6px rgba(0,0,0,0.3), 0 2px 4px rgba(255,255,255,0.8);
+  background: radial-gradient(circle at 30% 30%, #ffffff, #e2e8f0);
+  border: 2px solid #64748b;
+  box-shadow: inset 0 3px 6px rgba(0,0,0,0.35), 0 2px 5px rgba(255,255,255,0.9);
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -244,71 +219,115 @@ html{scroll-behavior:smooth;}
 }
 .rotary-slot:hover {
   transform: scale(1.15);
-  border-color: #111;
-  box-shadow: 0 0 12px rgba(0,0,0,0.25), inset 0 1px 3px rgba(255,255,255,1);
+  border-color: #0f172a;
+  box-shadow: 0 0 15px rgba(0,0,0,0.3), inset 0 1px 4px rgba(255,255,255,1);
 }
 .rotary-stop-lever {
   position: absolute;
-  bottom: 12%;
-  right: 18%;
+  bottom: 11%;
+  right: 17%;
   width: 22%;
   height: 25%;
-  background: linear-gradient(135deg, #e5e7eb, #9ca3af, #4b5563);
+  background: linear-gradient(135deg, #f1f5f9, #94a3b8, #334155);
   clip-path: polygon(0% 0%, 100% 50%, 40% 100%, 0% 80%);
-  filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.3));
+  filter: drop-shadow(2px 5px 8px rgba(0,0,0,0.35));
   z-index: 12;
   pointer-events: none;
 }
 
-/* FOLDER CARD SYSTEM (MATCHING IMAGE_7DF9E9) */
-.folder-card {
+/* 100% REALISTIC APPLE macOS STYLE FOLDER CARDS */
+.apple-folder-container {
   position: relative;
-  border-radius: 1.8rem;
-  padding: 1.5rem;
-  padding-top: 3.5rem;
+  width: 100%;
+  max-width: 320px;
+  margin: 0 auto;
+  aspect-ratio: 1 / 0.85;
+  cursor: pointer;
+  transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.apple-folder-container:hover {
+  transform: translateY(-8px) scale(1.03);
+}
+/* Folder Back Layer */
+.apple-folder-back {
+  position: absolute;
+  inset: 0;
+  border-radius: 1.2rem;
+  background: linear-gradient(180deg, #60a5fa 0%, #2563eb 100%);
+  box-shadow: 0 15px 35px -10px rgba(37, 99, 235, 0.35);
+}
+/* Folder Top Tab Notch */
+.apple-folder-tab {
+  position: absolute;
+  top: -14px;
+  left: 18px;
+  width: 42%;
+  height: 24px;
+  border-radius: 0.8rem 0.8rem 0 0;
+  background: #3b82f6;
+}
+/* Folder Front Pocket (Translucent Glass Layer) */
+.apple-folder-front {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 78%;
+  border-radius: 0.4rem 1rem 1.2rem 1.2rem;
+  background: linear-gradient(180deg, rgba(147, 197, 253, 0.95) 0%, rgba(59, 130, 246, 0.98) 100%);
+  box-shadow: inset 0 2px 2px rgba(255, 255, 255, 0.8), 0 -4px 12px rgba(0, 0, 0, 0.12);
+  backdrop-filter: blur(12px);
+  padding: 1.2rem;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  min-height: 230px;
-  cursor: pointer;
-  transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.35s ease;
-  box-shadow: 0 12px 30px -10px rgba(0,0,0,0.1);
+  z-index: 10;
+  border-t: 1px solid rgba(255, 255, 255, 0.6);
 }
-.folder-card:hover {
-  transform: translateY(-8px) scale(1.02);
-  box-shadow: 0 20px 40px -12px rgba(0,0,0,0.18);
-}
-.folder-contents-peek {
+/* Peeked Thumbnails Inside Notch */
+.apple-folder-peek-stack {
   position: absolute;
-  top: -24px;
+  top: 10px;
   left: 50%;
   transform: translateX(-50%);
+  width: 82%;
+  height: 68%;
   display: flex;
   align-items: flex-end;
   justify-content: center;
-  gap: -8px;
-  z-index: 1;
+  z-index: 5;
 }
-.folder-peek-item {
-  width: 52px;
-  height: 64px;
-  border-radius: 8px;
-  background: #ffffff;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-  border: 1px solid rgba(0,0,0,0.08);
+.apple-peek-card {
+  width: 32%;
+  height: 85%;
+  border-radius: 0.5rem;
+  background: #fff;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.22);
+  border: 1px solid rgba(255,255,255,0.9);
   overflow: hidden;
-  transition: transform 0.3s ease;
+  transition: transform 0.35s ease;
+  position: absolute;
 }
-.folder-card:hover .folder-peek-item:nth-child(1) { transform: rotate(-10deg) translateY(-6px); }
-.folder-card:hover .folder-peek-item:nth-child(2) { transform: translateY(-10px); }
-.folder-card:hover .folder-peek-item:nth-child(3) { transform: rotate(10deg) translateY(-6px); }
+.apple-peek-card:nth-child(1) { transform: rotate(-14deg) translateX(-36px) translateY(-8px); }
+.apple-peek-card:nth-child(2) { transform: translateY(-16px); z-index: 2; }
+.apple-peek-card:nth-child(3) { transform: rotate(14deg) translateX(36px) translateY(-8px); }
 
-/* PASTEL FOLDER COLORS */
-.folder-pink { background-color: #fbcfe8; border: 1px solid #f472b6; }
-.folder-green { background-color: #a7f3d0; border: 1px solid #34d399; }
-.folder-amber { background-color: #fef08a; border: 1px solid #facc15; }
-.folder-blue { background-color: #bae6fd; border: 1px solid #38bdf8; }
-.folder-purple { background-color: #e9d5ff; border: 1px solid #c084fc; }
+.apple-folder-container:hover .apple-peek-card:nth-child(1) { transform: rotate(-22deg) translateX(-50px) translateY(-22px); }
+.apple-folder-container:hover .apple-peek-card:nth-child(2) { transform: translateY(-32px) scale(1.05); }
+.apple-folder-container:hover .apple-peek-card:nth-child(3) { transform: rotate(22deg) translateX(50px) translateY(-22px); }
+
+/* Folder Color Themes */
+.theme-pink .apple-folder-back { background: linear-gradient(180deg, #f472b6, #db2777); }
+.theme-pink .apple-folder-tab { background: #e11d48; }
+.theme-pink .apple-folder-front { background: linear-gradient(180deg, rgba(251, 207, 232, 0.95), rgba(219, 39, 119, 0.95)); }
+
+.theme-green .apple-folder-back { background: linear-gradient(180deg, #34d399, #059669); }
+.theme-green .apple-folder-tab { background: #047857; }
+.theme-green .apple-folder-front { background: linear-gradient(180deg, rgba(167, 243, 208, 0.95), rgba(5, 150, 105, 0.95)); }
+
+.theme-amber .apple-folder-back { background: linear-gradient(180deg, #fbbf24, #d97706); }
+.theme-amber .apple-folder-tab { background: #b45309; }
+.theme-amber .apple-folder-front { background: linear-gradient(180deg, rgba(254, 240, 138, 0.95), rgba(217, 119, 6, 0.95)); }
 </style>
 </head>
 <body class="noise antialiased bg-white">
@@ -330,14 +349,14 @@ html{scroll-behavior:smooth;}
       </a>
       <nav class="flex items-center space-x-4 md:space-x-8">
         <a href="#projects" class="text-black text-[10px] uppercase font-bold tracking-widest hover:opacity-50 hidden md:block">Work</a>
+        <a href="#experience" class="text-black text-[10px] uppercase font-bold tracking-widest hover:opacity-50 hidden md:block">Experience</a>
         <a href="#design-zone" class="text-black text-[10px] uppercase font-bold tracking-widest hover:opacity-50 hidden md:block">Design Zone</a>
         <a href="#labs" class="text-black text-[10px] uppercase font-bold tracking-widest hover:opacity-50 hidden md:block">Labs</a>
         <a href="#skills" class="text-black text-[10px] uppercase font-bold tracking-widest hover:opacity-50 hidden md:block">Skills</a>
         <a href="#chronicle" class="text-black text-[10px] uppercase font-bold tracking-widest hover:opacity-50 hidden md:block">Chronicle</a>
-        <a href="mailto:prashanthgarigaboina@gmail.com" class="glass-icon !w-10 !h-10 !rounded-xl">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
-          </svg>
+        <a href="Prashanth-resume.pdf" target="_blank" class="glass-icon !w-auto !px-4 !h-10 !rounded-xl text-xs font-bold font-space flex items-center gap-2">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+          <span>CV</span>
         </a>
       </nav>
     </div>
@@ -379,7 +398,7 @@ html{scroll-behavior:smooth;}
         <p class="text-base md:text-2xl font-light leading-relaxed text-gray-500 max-w-2xl mt-8 mb-10 mx-auto lg:ml-0">
           Engineering student specializing in <span class="text-black font-semibold">Computer Science & Business System</span>. Building robust digital systems that blend high-performance logic with scalable user experiences.
         </p>
-        <div class="flex mailbox-wrapper mailbox-center lg:justify-start">
+        <div class="flex mailbox-wrapper mailbox-center lg:justify-start gap-4">
           <a href="mailto:prashanthgarigaboina@gmail.com" class="mailbox-card glass">
             <div class="mailbox-icon-wrapper glass-icon-dark !bg-black/0">
               <svg class="w-6 h-6 text-black" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
@@ -400,12 +419,12 @@ html{scroll-behavior:smooth;}
   <section class="py-20 px-6 bg-zinc-100 border-y border-zinc-200 relative overflow-hidden">
     <div class="container mx-auto max-w-[1200px] text-center">
       <div class="mb-10 reveal">
-        <span class="text-[9px] uppercase font-bold tracking-[0.4em] text-zinc-500">INTERACTIVE HARDWARE INTERFACE</span>
+        <span class="text-[9px] uppercase font-bold tracking-[0.4em] text-zinc-500">TACTILE HARDWARE DIAL</span>
         <h2 class="text-3xl md:text-5xl font-space font-extrabold text-black mt-2 tracking-tight">ROTARY TOOL DIAL</h2>
-        <p class="text-xs md:text-sm text-zinc-500 max-w-md mx-auto mt-2 font-medium">Tap any slot on the metallic rotary dial below to trigger logic sections or open the design folder vault.</p>
+        <p class="text-xs md:text-sm text-zinc-500 max-w-md mx-auto mt-2 font-medium">Rotate and select tool sockets to navigate projects, work experience, or open design folders.</p>
       </div>
 
-      <!-- Rotary Dial Container -->
+      <!-- Rotary Dial Body -->
       <div class="rotary-dial-body reveal" id="rotaryDialContainer">
         <div class="rotary-wheel" id="rotaryWheel">
           
@@ -415,13 +434,13 @@ html{scroll-behavior:smooth;}
             <span id="dialActiveStatus" class="text-xs md:text-sm font-space font-black text-black mt-1 uppercase">DIAL READY</span>
           </div>
 
-          <!-- Slot 1: Design Zone (Photoshop / Design Tool) -->
-          <div class="rotary-slot" style="top: 8%; left: 41%;" onclick="triggerToolAction('design', 'Design Zone')" onmouseenter="playHoverSound()" title="Design Vault">
+          <!-- Slot 1: Design Zone -->
+          <div class="rotary-slot" style="top: 8%; left: 41%;" onclick="triggerToolAction('design-zone', 'Design Vault')" onmouseenter="playHoverSound()" title="Design Vault">
             <span class="text-xs font-black text-purple-600 font-mono">Ps</span>
           </div>
 
           <!-- Slot 2: Illustrator / Design Folder -->
-          <div class="rotary-slot" style="top: 18%; right: 18%;" onclick="triggerToolAction('design', 'Illustrator Folders')" onmouseenter="playHoverSound()" title="Vector Folders">
+          <div class="rotary-slot" style="top: 18%; right: 18%;" onclick="triggerToolAction('design-zone', 'Illustrator Folders')" onmouseenter="playHoverSound()" title="Vector Folders">
             <span class="text-xs font-black text-orange-600 font-mono">Ai</span>
           </div>
 
@@ -430,29 +449,29 @@ html{scroll-behavior:smooth;}
             <span class="text-xs font-black text-blue-600 font-mono">Py</span>
           </div>
 
-          <!-- Slot 4: Skills (React) -->
-          <div class="rotary-slot" style="bottom: 18%; right: 18%;" onclick="triggerToolAction('skills', 'Tech Stack')" onmouseenter="playHoverSound()" title="Skills">
-            <span class="text-xs font-black text-cyan-600 font-mono">React</span>
+          <!-- Slot 4: Work Experience -->
+          <div class="rotary-slot" style="bottom: 18%; right: 18%;" onclick="triggerToolAction('experience', 'Work Experience')" onmouseenter="playHoverSound()" title="Work Experience">
+            <span class="text-xs font-black text-emerald-600 font-mono">Exp</span>
           </div>
 
-          <!-- Slot 5: Interactive Labs (VS Code) -->
-          <div class="rotary-slot" style="bottom: 8%; left: 41%;" onclick="triggerToolAction('labs', 'Interactive Labs')" onmouseenter="playHoverSound()" title="Labs">
+          <!-- Slot 5: Interactive Labs -->
+          <div class="rotary-slot" style="bottom: 8%; left: 41%;" onclick="triggerToolAction('labs', 'OS Playground')" onmouseenter="playHoverSound()" title="OS Playground">
             <span class="text-xs font-black text-blue-500 font-mono">VS</span>
           </div>
 
-          <!-- Slot 6: Chronicle (Java) -->
+          <!-- Slot 6: Chronicle -->
           <div class="rotary-slot" style="bottom: 18%; left: 18%;" onclick="triggerToolAction('chronicle', 'Chronicle & Degree')" onmouseenter="playHoverSound()" title="Chronicle">
             <span class="text-xs font-black text-red-600 font-mono">Java</span>
           </div>
 
           <!-- Slot 7: Design Folders Direct -->
-          <div class="rotary-slot" style="top: 41%; left: 8%;" onclick="triggerToolAction('design', 'Folder Archives')" onmouseenter="playHoverSound()" title="Design Folders">
+          <div class="rotary-slot" style="top: 41%; left: 8%;" onclick="triggerToolAction('design-zone', 'Apple Folders')" onmouseenter="playHoverSound()" title="Design Folders">
             <svg class="w-5 h-5 text-zinc-700" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"/></svg>
           </div>
 
         </div>
 
-        <!-- Stop Lever Metal Finger -->
+        <!-- Lever Metal Finger -->
         <div class="rotary-stop-lever"></div>
       </div>
     </div>
@@ -468,11 +487,31 @@ html{scroll-behavior:smooth;}
 
       <div class="space-y-[10vh] md:space-y-[15vh] pb-[15vh]">
 
+        <!-- Project 00: F1 Data Analysis Dashboard (NEW) -->
+        <a href="https://github.com/prasshhhzanth/f1-data-analysis" target="_blank" class="project-card note-red reveal">
+          <div class="flex justify-between items-start">
+            <span class="text-xs font-bold uppercase tracking-widest text-black/50">Project 01 — Analytics</span>
+            <div class="glass-icon !w-12 !h-12 !rounded-xl !bg-white/40 !border-white/50">
+              <svg class="w-6 h-6 text-black" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+              </svg>
+            </div>
+          </div>
+          <div>
+            <h3 class="text-2xl md:text-4xl font-space font-extrabold tracking-tight mb-2 text-black">F1 Data Analysis Dashboard</h3>
+            <p class="text-sm text-black/85 mb-6 font-medium">Interactive Formula 1 analytics report evaluating driver, constructor, and race performance metrics. Engineered data transformation pipelines using Power Query and calculated custom KPIs using DAX.</p>
+            <div class="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest opacity-90">
+              <span class="border-b-2 border-black pb-1">Power BI · Excel · Power Query · DAX</span>
+              <svg class="w-3.5 h-3.5 inline ml-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+            </div>
+          </div>
+        </a>
+
         <!-- Project 01: MyUnity -->
         <div class="project-card note-purple reveal">
           <div class="flex justify-between items-start">
-            <span class="text-xs font-bold uppercase tracking-widest text-black/40">Project 01 — 2026</span>
-            <div class="glass-icon !w-12 !h-12 !rounded-xl !bg-white/30 !border-white/40">
+            <span class="text-xs font-bold uppercase tracking-widest text-black/50">Project 02 — 2026</span>
+            <div class="glass-icon !w-12 !h-12 !rounded-xl !bg-white/40 !border-white/50">
               <svg class="w-6 h-6 text-black" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
               </svg>
@@ -480,8 +519,8 @@ html{scroll-behavior:smooth;}
           </div>
           <div>
             <h3 class="text-2xl md:text-4xl font-space font-extrabold tracking-tight mb-2 text-black">MyUnity</h3>
-            <p class="text-sm text-black/75 mb-6 font-medium">Smart Community & Welfare Management System for modern residential societies. Streamlines digital visitor approvals, community EV reservations, amenity booking, real-time notifications, complaint management, and a local service marketplace.</p>
-            <div class="flex flex-wrap items-center gap-2 text-[10px] font-bold uppercase tracking-widest opacity-80">
+            <p class="text-sm text-black/85 mb-6 font-medium">Smart Community & Welfare Management System for modern residential societies. Streamlines digital visitor approvals, community EV reservations, amenity booking, real-time notifications, complaint management, and a local service marketplace.</p>
+            <div class="flex flex-wrap items-center gap-2 text-[10px] font-bold uppercase tracking-widest opacity-90">
               <span class="border-b-2 border-black pb-1">Flutter · Python · PostgreSQL · Supabase · Firebase · Google Maps API</span>
             </div>
           </div>
@@ -490,8 +529,8 @@ html{scroll-behavior:smooth;}
         <!-- Project 02: DEPay -->
         <div class="project-card note-orange reveal">
           <div class="flex justify-between items-start">
-            <span class="text-xs font-bold uppercase tracking-widest text-black/40">Project 02 — 2026</span>
-            <div class="glass-icon !w-12 !h-12 !rounded-xl !bg-white/30 !border-white/40">
+            <span class="text-xs font-bold uppercase tracking-widest text-black/50">Project 03 — 2026</span>
+            <div class="glass-icon !w-12 !h-12 !rounded-xl !bg-white/40 !border-white/50">
               <svg class="w-6 h-6 text-black" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/>
               </svg>
@@ -499,8 +538,8 @@ html{scroll-behavior:smooth;}
           </div>
           <div>
             <h3 class="text-2xl md:text-4xl font-space font-extrabold tracking-tight mb-2 text-black">DEPay</h3>
-            <p class="text-sm text-black/75 mb-6 font-medium">Decentralized sovereign payment bridge for cross-border transfers. Smart contract-driven currency conversion, secure peer-to-peer settlement, and real-time transaction tracking across chains.</p>
-            <div class="flex flex-wrap items-center gap-2 text-[10px] font-bold uppercase tracking-widest opacity-80">
+            <p class="text-sm text-black/85 mb-6 font-medium">Decentralized sovereign payment bridge for cross-border transfers. Smart contract-driven currency conversion, secure peer-to-peer settlement, and real-time transaction tracking across chains.</p>
+            <div class="flex flex-wrap items-center gap-2 text-[10px] font-bold uppercase tracking-widest opacity-90">
               <span class="border-b-2 border-black pb-1">Kotlin · Solidity · Node.js · Ethereum · Hyperledger · Web3j</span>
             </div>
           </div>
@@ -509,8 +548,8 @@ html{scroll-behavior:smooth;}
         <!-- Project 03: Clothing.ai -->
         <a href="https://github.com/prasshhhzanth" target="_blank" class="project-card note-yellow reveal">
           <div class="flex justify-between items-start">
-            <span class="text-xs font-bold uppercase tracking-widest text-black/40">Project 03</span>
-            <div class="glass-icon !w-12 !h-12 !rounded-xl !bg-white/30 !border-white/40">
+            <span class="text-xs font-bold uppercase tracking-widest text-black/50">Project 04</span>
+            <div class="glass-icon !w-12 !h-12 !rounded-xl !bg-white/40 !border-white/50">
               <svg class="w-6 h-6 text-black" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
               </svg>
@@ -518,8 +557,8 @@ html{scroll-behavior:smooth;}
           </div>
           <div>
             <h3 class="text-2xl md:text-4xl font-space font-extrabold tracking-tight mb-2 text-black">Clothing.ai</h3>
-            <p class="text-sm text-black/75 mb-6 font-medium">GenAI & AR fashion assistant. Generates unique fashion patterns with generative AI and automatically web-crawls to map designs to real purchase links. Building an AR module for live camera virtual try-ons.</p>
-            <div class="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest opacity-80">
+            <p class="text-sm text-black/85 mb-6 font-medium">GenAI & AR fashion assistant. Generates unique fashion patterns with generative AI and automatically web-crawls to map designs to real purchase links. Building an AR module for live camera virtual try-ons.</p>
+            <div class="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest opacity-90">
               <span class="border-b-2 border-black pb-1">Python · Generative AI · Computer Vision</span>
               <svg class="w-3.5 h-3.5 inline ml-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
             </div>
@@ -529,8 +568,8 @@ html{scroll-behavior:smooth;}
         <!-- Project 04: Dhanvantri AI -->
         <a href="https://github.com/prasshhhzanth" target="_blank" class="project-card note-pink reveal">
           <div class="flex justify-between items-start">
-            <span class="text-xs font-bold uppercase tracking-widest text-black/40">Project 04 — 2025</span>
-            <div class="glass-icon !w-12 !h-12 !rounded-xl !bg-white/30 !border-white/40">
+            <span class="text-xs font-bold uppercase tracking-widest text-black/50">Project 05 — 2025</span>
+            <div class="glass-icon !w-12 !h-12 !rounded-xl !bg-white/40 !border-white/50">
               <svg class="w-6 h-6 text-black" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M19 10.5V20a2 2 0 01-2 2H5a2 2 0 01-2-2V4a2 2 0 012-2h12a2 2 0 012 2v2.5M19 10.5V6.5M19 10.5h2.5a2.5 2.5 0 012.5 2.5v5a2.5 2.5 0 01-2.5 2.5H19m0-10h-2M13 14H7m4-3H9m4 6H7"/>
               </svg>
@@ -538,8 +577,8 @@ html{scroll-behavior:smooth;}
           </div>
           <div>
             <h3 class="text-2xl md:text-4xl font-space font-extrabold tracking-tight mb-2 text-black">Dhanvantri AI</h3>
-            <p class="text-sm text-black/75 mb-6 font-medium">Intelligent medical assistant using NLP to parse symptom-based queries. Applies classification algorithms to deliver diagnostic insights, lifestyle recommendations, and precautionary guidance.</p>
-            <div class="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest opacity-80">
+            <p class="text-sm text-black/85 mb-6 font-medium">Intelligent medical assistant using NLP to parse symptom-based queries. Applies classification algorithms to deliver diagnostic insights, lifestyle recommendations, and precautionary guidance.</p>
+            <div class="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest opacity-90">
               <span class="border-b-2 border-black pb-1">FastAPI · React · NLP · Python</span>
               <svg class="w-3.5 h-3.5 inline ml-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
             </div>
@@ -549,8 +588,8 @@ html{scroll-behavior:smooth;}
         <!-- Project 05: YOCTRON-RMS -->
         <a href="https://github.com/prasshhhzanth" target="_blank" class="project-card note-green reveal">
           <div class="flex justify-between items-start">
-            <span class="text-xs font-bold uppercase tracking-widest text-black/40">Project 05 — 2025</span>
-            <div class="glass-icon !w-12 !h-12 !rounded-xl !bg-white/30 !border-white/40">
+            <span class="text-xs font-bold uppercase tracking-widest text-black/50">Project 06 — 2025</span>
+            <div class="glass-icon !w-12 !h-12 !rounded-xl !bg-white/40 !border-white/50">
               <svg class="w-6 h-6 text-black" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
               </svg>
@@ -558,8 +597,8 @@ html{scroll-behavior:smooth;}
           </div>
           <div>
             <h3 class="text-2xl md:text-4xl font-space font-extrabold tracking-tight mb-2 text-black">YOCTRON-RMS</h3>
-            <p class="text-sm text-black/75 mb-6 font-medium">High-fidelity, component-based restaurant management dashboard. Optimized for real-time tracking of order status, menu availability, and table reservations.</p>
-            <div class="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest opacity-80">
+            <p class="text-sm text-black/85 mb-6 font-medium">High-fidelity, component-based restaurant management dashboard. Optimized for real-time tracking of order status, menu availability, and table reservations.</p>
+            <div class="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest opacity-90">
               <span class="border-b-2 border-black pb-1">JavaScript · Bootstrap · HTML5 · CSS3</span>
               <svg class="w-3.5 h-3.5 inline ml-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
             </div>
@@ -570,107 +609,199 @@ html{scroll-behavior:smooth;}
     </div>
   </section>
 
-  <!-- DESIGN ZONE: FOLDER ARCHIVE SYSTEM (MATCHING IMAGE_7DF9E9) -->
-  <section id="design-zone" class="py-32 px-6 bg-white border-t border-gray-100 relative">
+  <!-- WORK EXPERIENCE SECTION (MATCHING SCREENSHOT STRUCTURE) -->
+  <section id="experience" class="py-32 px-6 bg-white relative border-t border-zinc-100">
+    <div class="container mx-auto max-w-[1000px]">
+      <div class="mb-20 text-center reveal">
+        <h2 class="text-[9px] uppercase tracking-[0.5em] text-gray-400 font-bold mb-4">02 / PROFESSIONAL TIMELINE</h2>
+        <p class="text-4xl md:text-6xl font-space font-bold tracking-tighter">Work & <span class="italic font-light text-gray-400">Leadership</span></p>
+      </div>
+
+      <div class="space-y-12 reveal">
+        
+        <!-- Experience 1: YuvaIntern Internship -->
+        <div class="p-8 bg-zinc-50 border border-zinc-200 rounded-3xl shadow-sm hover:border-zinc-400 transition-all">
+          <div class="flex items-start gap-5">
+            <div class="w-14 h-14 rounded-2xl bg-white p-2 flex items-center justify-center shadow-md shrink-0 border border-zinc-200 overflow-hidden">
+              <img src="https://yuvaintern.com/assets/img/logo.png" alt="YuvaIntern Logo" class="w-full h-full object-contain" onerror="this.src='https://placehold.co/100x100/1e40af/fff?text=YI'"/>
+            </div>
+            <div class="flex-1">
+              <div class="flex flex-wrap items-center justify-between gap-2">
+                <h3 class="text-2xl font-space font-extrabold text-black">YuvaIntern</h3>
+                <span class="text-xs font-bold font-mono bg-blue-100 text-blue-700 px-3 py-1 rounded-full">Internship</span>
+              </div>
+              <p class="text-xs text-zinc-500 font-medium mt-0.5">Kolkata, West Bengal, India</p>
+
+              <!-- Timeline Role -->
+              <div class="mt-6 relative pl-6 border-l-2 border-zinc-300 space-y-4">
+                <div class="relative">
+                  <span class="absolute -left-[31px] top-1.5 w-3 h-3 rounded-full bg-blue-600 border-2 border-white"></span>
+                  <div class="flex justify-between items-start">
+                    <h4 class="text-lg font-bold text-black">Logistics Data Analyst Intern</h4>
+                    <span class="text-xs text-zinc-400 font-mono">2026</span>
+                  </div>
+                  <p class="text-xs text-zinc-600 mt-1 leading-relaxed">
+                    Performed supply chain logistics analytics, data cleaning, and operational trend modeling to optimize delivery route efficiency and inventory reporting.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Experience 2: Aarna.vbit -->
+        <div class="p-8 bg-zinc-50 border border-zinc-200 rounded-3xl shadow-sm hover:border-zinc-400 transition-all">
+          <div class="flex items-start gap-5">
+            <div class="w-14 h-14 rounded-2xl bg-black flex items-center justify-center p-1.5 shadow-md shrink-0 border border-zinc-800 overflow-hidden">
+              <img src="https://instagram.fvga2-5.fna.fbcdn.net/v/t51.82787-19/621805041_17894416752397964_2481458252858524483_n.jpg?_nc_cat=107&_nc_map=urlgen_bucketless&ig_cache_key=GPH9DyWMTv2R4JI-AEMDmDYi6W8ibmNDAQAB0j-ccb7-5&ccb=7-5&_nc_sid=669407&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLnd3dy4xMDgwLkMzIn0%3D&_nc_ohc=8hAM5pqkyqgQ7kNvwHsiBdy&_nc_oc=AdqHVTjyPL_aquLcnntquKXDNlUFftmz_ZGsFt6nx6r4GOAB3hdoNVI_YCWX3xk2E80&_nc_zt=24&_nc_ht=instagram.fvga2-5.fna&_nc_gid=cOrxQ_7QehTDdXN_wt4NNQ&_nc_ss=7a6a8&oh=00_AQTpY0mv_0Y7Y1WrgoGbMuBhfTJ74IiY8C7yIK6t8lAw2Q&oe=6AF283E5" alt="Aarna Logo" class="w-full h-full object-cover rounded-xl" onerror="this.src='https://placehold.co/100x100/000/f59e0b?text=AARNA'"/>
+            </div>
+            <div class="flex-1">
+              <div class="flex flex-wrap items-center justify-between gap-2">
+                <div>
+                  <h3 class="text-2xl font-space font-extrabold text-black">Aarna.vbit</h3>
+                  <p class="text-xs text-zinc-500 font-medium">1 yr 3 mos</p>
+                </div>
+              </div>
+
+              <!-- Roles Vertical Line -->
+              <div class="mt-6 relative pl-6 border-l-2 border-zinc-300 space-y-6">
+                <!-- Role 1 -->
+                <div class="relative">
+                  <span class="absolute -left-[31px] top-1.5 w-3 h-3 rounded-full bg-emerald-500 border-2 border-white"></span>
+                  <div class="flex flex-wrap justify-between items-start">
+                    <div>
+                      <h4 class="text-lg font-bold text-black">Chairperson</h4>
+                      <p class="text-xs text-zinc-500">Jul 2026 - Present · 5 mos</p>
+                      <p class="text-xs text-zinc-400">Hyderabad, Telangana, India</p>
+                    </div>
+                    <span class="text-[10px] font-bold uppercase tracking-wider bg-emerald-100 text-emerald-800 px-2.5 py-0.5 rounded-full">Present</span>
+                  </div>
+                </div>
+
+                <!-- Role 2 -->
+                <div class="relative">
+                  <span class="absolute -left-[31px] top-1.5 w-3 h-3 rounded-full bg-zinc-400 border-2 border-white"></span>
+                  <div>
+                    <h4 class="text-base font-bold text-black">Graphic Designer</h4>
+                    <p class="text-xs text-zinc-500">Nov 2025 - Jul 2026 · 9 mos</p>
+                    <p class="text-xs text-zinc-400">Hyderabad, Telangana, India</p>
+                  </div>
+                </div>
+
+                <!-- Role 3 -->
+                <div class="relative">
+                  <span class="absolute -left-[31px] top-1.5 w-3 h-3 rounded-full bg-zinc-400 border-2 border-white"></span>
+                  <div>
+                    <h4 class="text-base font-bold text-black">Magazine Designer</h4>
+                    <p class="text-xs text-zinc-500">Sep 2025 - Nov 2025 · 3 mos</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Experience 3: IEEE - VBIT SB -->
+        <div class="p-8 bg-zinc-50 border border-zinc-200 rounded-3xl shadow-sm hover:border-zinc-400 transition-all">
+          <div class="flex items-start gap-5">
+            <div class="w-14 h-14 rounded-2xl bg-white flex items-center justify-center p-1.5 shadow-md shrink-0 border border-zinc-200 overflow-hidden">
+              <img src="https://ieeevbitsb.in/ieee-vbit-sb.png" alt="IEEE Logo" class="w-full h-full object-contain" onerror="this.src='https://placehold.co/100x100/006699/fff?text=IEEE'"/>
+            </div>
+            <div class="flex-1">
+              <div class="flex flex-wrap items-center justify-between gap-2">
+                <div>
+                  <h3 class="text-2xl font-space font-extrabold text-black">IEEE - VBIT SB</h3>
+                  <p class="text-xs text-zinc-500 font-medium">Part-time · 10 mos</p>
+                </div>
+              </div>
+
+              <!-- Roles Vertical Line -->
+              <div class="mt-6 relative pl-6 border-l-2 border-zinc-300 space-y-6">
+                <!-- Role 1 -->
+                <div class="relative">
+                  <span class="absolute -left-[31px] top-1.5 w-3 h-3 rounded-full bg-emerald-500 border-2 border-white"></span>
+                  <div class="flex flex-wrap justify-between items-start">
+                    <div>
+                      <h4 class="text-lg font-bold text-black">Graphic Designer</h4>
+                      <p class="text-xs text-zinc-500">Jul 2026 - Present · 5 mos</p>
+                    </div>
+                    <span class="text-[10px] font-bold uppercase tracking-wider bg-emerald-100 text-emerald-800 px-2.5 py-0.5 rounded-full">Present</span>
+                  </div>
+                </div>
+
+                <!-- Role 2 -->
+                <div class="relative">
+                  <span class="absolute -left-[31px] top-1.5 w-3 h-3 rounded-full bg-zinc-400 border-2 border-white"></span>
+                  <div>
+                    <h4 class="text-base font-bold text-black">Avk PD OC</h4>
+                    <p class="text-xs text-zinc-500">Feb 2026 - Jul 2026 · 6 mos</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- DESIGN ZONE: APPLE macOS FOLDER ARCHIVE SYSTEM -->
+  <section id="design-zone" class="py-32 px-6 bg-zinc-50 border-t border-gray-200 relative">
     <div class="container mx-auto max-w-[1200px]">
       <div class="mb-20 text-center reveal">
-        <h2 class="text-[9px] uppercase tracking-[0.5em] text-gray-400 font-bold mb-4">02 / VISUAL PORTFOLIO</h2>
+        <h2 class="text-[9px] uppercase tracking-[0.5em] text-gray-400 font-bold mb-4">03 / VISUAL PORTFOLIO</h2>
         <p class="text-4xl md:text-6xl font-space font-bold tracking-tighter">Design <span class="italic font-light text-gray-400">Zone</span></p>
-        <p class="text-sm text-gray-500 mt-4 max-w-xl mx-auto font-medium">Curated graphic designs, event posters, branding certificates, and magazines tucked inside interactive folder cards.</p>
+        <p class="text-sm text-gray-500 mt-4 max-w-xl mx-auto font-medium">100% Apple macOS style folders containing posters, certificates, and editorial magazines.</p>
       </div>
 
-      <!-- Folders Grid (Matching Image_7df9e9) -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10 max-w-5xl mx-auto reveal">
+      <!-- Folders Grid (Apple macOS Style) -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-10 max-w-5xl mx-auto reveal">
 
-        <!-- Folder 1: Posters -->
-        <div class="folder-card folder-pink group" onclick="openFolderGallery('posters')">
-          <div class="folder-contents-peek">
-            <div class="folder-peek-item">
-              <img src="https://lh3.googleusercontent.com/d/1JdUxumgJVlEqYMXT9x-HN_qCQMMj3dgd" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/100x120/f472b6/fff?text=Poster'"/>
-            </div>
-            <div class="folder-peek-item">
-              <img src="https://lh3.googleusercontent.com/d/1QR2ZQDJD5PlS4ZlBQn3FPZyht4VlzGt5" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/100x120/f472b6/fff?text=Poster'"/>
-            </div>
-            <div class="folder-peek-item">
-              <img src="https://lh3.googleusercontent.com/d/1C2ewdNCCTWfCVDyF1U8gyIpAqQYLTsKN" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/100x120/f472b6/fff?text=Poster'"/>
-            </div>
+        <!-- Folder 1: Posters (Apple macOS Style) -->
+        <div class="apple-folder-container theme-pink" onclick="openFolderGallery('posters')">
+          <div class="apple-folder-tab"></div>
+          <div class="apple-folder-back"></div>
+          <div class="apple-folder-peek-stack">
+            <div class="apple-peek-card"><img src="https://lh3.googleusercontent.com/d/1JdUxumgJVlEqYMXT9x-HN_qCQMMj3dgd" class="w-full h-full object-cover"/></div>
+            <div class="apple-peek-card"><img src="https://lh3.googleusercontent.com/d/1QR2ZQDJD5PlS4ZlBQn3FPZyht4VlzGt5" class="w-full h-full object-cover"/></div>
+            <div class="apple-peek-card"><img src="https://lh3.googleusercontent.com/d/1C2ewdNCCTWfCVDyF1U8gyIpAqQYLTsKN" class="w-full h-full object-cover"/></div>
           </div>
-          <div class="relative z-10 flex items-center justify-between">
-            <div>
-              <span class="text-[9px] font-extrabold uppercase tracking-widest text-pink-700">7 ITEMS INSIDE</span>
-              <h3 class="text-2xl font-space font-extrabold text-black">Posters</h3>
-            </div>
-            <div class="w-10 h-10 rounded-full bg-white/80 border border-pink-300 flex items-center justify-center text-black group-hover:scale-110 transition-transform">
-              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
-            </div>
+          <div class="apple-folder-front">
+            <span class="text-[10px] font-black uppercase tracking-widest text-white/80">7 Items Inside</span>
+            <h3 class="text-2xl font-space font-extrabold text-white">Posters</h3>
           </div>
         </div>
 
-        <!-- Folder 2: Certificates & Posts -->
-        <div class="folder-card folder-green group" onclick="openFolderGallery('certificates')">
-          <div class="folder-contents-peek">
-            <div class="folder-peek-item">
-              <img src="https://lh3.googleusercontent.com/d/1QbZ60pQLj6Rlno1GrJSWP9drhg-E1-KD" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/100x120/34d399/fff?text=Cert'"/>
-            </div>
-            <div class="folder-peek-item">
-              <img src="https://lh3.googleusercontent.com/d/1MiSJgrKcU5Fzm5RpsfO_kTo16Tl8GCHQ" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/100x120/34d399/fff?text=Cert'"/>
-            </div>
-            <div class="folder-peek-item">
-              <img src="https://lh3.googleusercontent.com/d/1LLdGTUuAZs8nU9T_7cxes7o3u7zSBnkq" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/100x120/34d399/fff?text=Cert'"/>
-            </div>
+        <!-- Folder 2: Certificates & Posts (Apple macOS Style) -->
+        <div class="apple-folder-container theme-green" onclick="openFolderGallery('certificates')">
+          <div class="apple-folder-tab"></div>
+          <div class="apple-folder-back"></div>
+          <div class="apple-folder-peek-stack">
+            <div class="apple-peek-card"><img src="https://lh3.googleusercontent.com/d/1QbZ60pQLj6Rlno1GrJSWP9drhg-E1-KD" class="w-full h-full object-cover"/></div>
+            <div class="apple-peek-card"><img src="https://lh3.googleusercontent.com/d/1MiSJgrKcU5Fzm5RpsfO_kTo16Tl8GCHQ" class="w-full h-full object-cover"/></div>
+            <div class="apple-peek-card"><img src="https://lh3.googleusercontent.com/d/1LLdGTUuAZs8nU9T_7cxes7o3u7zSBnkq" class="w-full h-full object-cover"/></div>
           </div>
-          <div class="relative z-10 flex items-center justify-between">
-            <div>
-              <span class="text-[9px] font-extrabold uppercase tracking-widest text-emerald-800">4 ITEMS INSIDE</span>
-              <h3 class="text-2xl font-space font-extrabold text-black">Certs & Posts</h3>
-            </div>
-            <div class="w-10 h-10 rounded-full bg-white/80 border border-emerald-300 flex items-center justify-center text-black group-hover:scale-110 transition-transform">
-              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
-            </div>
+          <div class="apple-folder-front">
+            <span class="text-[10px] font-black uppercase tracking-widest text-white/80">4 Items Inside</span>
+            <h3 class="text-2xl font-space font-extrabold text-white">Certs & Posts</h3>
           </div>
         </div>
 
-        <!-- Folder 3: Magazines -->
-        <div class="folder-card folder-amber group" onclick="openFolderGallery('magazines')">
-          <div class="folder-contents-peek">
-            <div class="folder-peek-item">
-              <img src="https://lh3.googleusercontent.com/d/1VXQFxnVhQ35QuZmK6Rwma8K69tpciSb-" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/100x120/facc15/fff?text=Mag'"/>
-            </div>
-            <div class="folder-peek-item">
-              <img src="https://lh3.googleusercontent.com/d/1rGoiblju_Es1rIWk7L5VBB8CF5vCB5k2" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/100x120/facc15/fff?text=Mag'"/>
-            </div>
+        <!-- Folder 3: Magazines (Apple macOS Style) -->
+        <div class="apple-folder-container theme-amber" onclick="openFolderGallery('magazines')">
+          <div class="apple-folder-tab"></div>
+          <div class="apple-folder-back"></div>
+          <div class="apple-folder-peek-stack">
+            <div class="apple-peek-card"><img src="https://lh3.googleusercontent.com/d/1VXQFxnVhQ35QuZmK6Rwma8K69tpciSb-" class="w-full h-full object-cover"/></div>
+            <div class="apple-peek-card"><img src="https://lh3.googleusercontent.com/d/1mF-ZUySHrLqe57upseREIJsUUI6fasHz" class="w-full h-full object-cover"/></div>
           </div>
-          <div class="relative z-10 flex items-center justify-between">
-            <div>
-              <span class="text-[9px] font-extrabold uppercase tracking-widest text-amber-800">2 ITEMS INSIDE</span>
-              <h3 class="text-2xl font-space font-extrabold text-black">Magazines</h3>
-            </div>
-            <div class="w-10 h-10 rounded-full bg-white/80 border border-amber-300 flex items-center justify-center text-black group-hover:scale-110 transition-transform">
-              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
-            </div>
+          <div class="apple-folder-front">
+            <span class="text-[10px] font-black uppercase tracking-widest text-white/80">2 Items Inside</span>
+            <h3 class="text-2xl font-space font-extrabold text-white">Magazines</h3>
           </div>
         </div>
 
-      </div>
-
-      <!-- To Do List Widget (Matching Image_7df9e9 bottom layout) -->
-      <div class="mt-20 max-w-xl mx-auto bg-amber-50/60 border border-amber-200/80 p-8 rounded-3xl reveal">
-        <h4 class="text-xl font-space font-extrabold text-black mb-4">Design To Do List :</h4>
-        <ul class="space-y-3 text-sm text-zinc-700 font-medium">
-          <li class="flex items-center gap-3">
-            <span class="w-3 h-3 bg-amber-400 rounded-sm inline-block"></span>
-            Enhancing personal brand identity & poster visual design systems
-          </li>
-          <li class="flex items-center gap-3">
-            <span class="w-3 h-3 bg-amber-400 rounded-sm inline-block"></span>
-            Curating magazine layouts and typography for student publications
-          </li>
-          <li class="flex items-center gap-3">
-            <span class="w-3 h-3 bg-amber-400 rounded-sm inline-block"></span>
-            Creating vector graphics and committee event social media posts
-          </li>
-        </ul>
-        <p class="text-[10px] text-zinc-400 uppercase tracking-widest mt-6 font-bold text-right">Prashanth's Creative Space</p>
       </div>
 
     </div>
@@ -680,19 +811,19 @@ html{scroll-behavior:smooth;}
   <section id="labs" class="py-32 px-6 border-t border-gray-100 relative" style="background-image: url('https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=1600&q=80'); background-size: cover; background-position: center;">
     <div class="container mx-auto max-w-[1200px]">
       <div class="mb-24 text-center reveal">
-        <h2 class="text-[9px] uppercase tracking-[0.5em] text-gray-400 font-bold mb-4">03 / INTERACTIVE LABS</h2>
-        <p class="text-4xl md:text-6xl font-space font-bold tracking-tighter">OS <span class="italic font-light text-gray-400">Playground</span></p>
-        <p class="text-sm text-gray-400 mt-4 max-w-xl mx-auto font-medium">A set of re-engineered micro-apps and interactive widgets — small experiments built outside the main project list.</p>
+        <h2 class="text-[9px] uppercase tracking-[0.5em] text-gray-400 font-bold mb-4">04 / INTERACTIVE WIDGETS</h2>
+        <p class="text-4xl md:text-6xl font-space font-bold tracking-tighter text-white">OS <span class="italic font-light text-gray-300">Playground</span></p>
+        <p class="text-sm text-gray-300 mt-4 max-w-xl mx-auto font-medium">Re-engineered micro-apps and interactive widgets.</p>
       </div>
 
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
 
-        <!-- Live Status/Hire Widget -->
+        <!-- Live Status/Hire Widget (Updated Image Banner) -->
         <div class="flex flex-col justify-between">
           <div class="relative w-full">
             <div class="bg-[#0f1722] text-white rounded-[2.5rem] shadow-2xl relative z-10 border border-neutral-800 transition-all duration-300 overflow-hidden hover:scale-[1.01]" style="aspect-ratio:1/1; display:flex; flex-direction:column;">
-              <div class="h-28 w-full">
-                <img src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=1600&q=80" alt="banner" class="w-full h-full object-cover" />
+              <div class="h-28 w-full overflow-hidden">
+                <img src="https://i.pinimg.com/1200x/fc/6f/aa/fc6faac5f54a86010a21edde0aaf2958.jpg" alt="header banner" class="w-full h-full object-cover" />
               </div>
               <div class="p-6 mt-auto">
                 <div class="flex items-center gap-4 -mt-8">
@@ -701,7 +832,7 @@ html{scroll-behavior:smooth;}
                     <div class="text-xl font-space font-extrabold">Prashanth Garigaboina</div>
                     <div class="text-xs text-neutral-400 flex items-center gap-2">
                       <span>Systems Engineer</span>
-                      <span class="ml-2 font-mono text-[11px] text-neutral-300">Available</span>
+                      <span class="ml-2 font-mono text-[11px] text-emerald-400 font-bold">● Available</span>
                     </div>
                   </div>
                 </div>
@@ -715,24 +846,18 @@ html{scroll-behavior:smooth;}
                     <div class="text-xs text-neutral-400">Available for interesting gigs</div>
                   </div>
 
-                  <a href="mailto:prashanthgarigaboina@gmail.com" class="py-2 px-4 bg-[#2b6ff7] rounded-full text-white text-sm">Get In Touch</a>
+                  <a href="mailto:prashanthgarigaboina@gmail.com" class="py-2 px-4 bg-[#2b6ff7] hover:bg-[#1e58d4] transition-colors rounded-full text-white text-sm font-semibold">Get In Touch</a>
                 </div>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- Resume Snapshot Widget -->
+        <!-- Video Player Widget -->
         <div class="flex flex-col justify-between">
-          <div class="bg-[#ffcc00] text-black p-0 rounded-[2.5rem] shadow-2xl h-full flex flex-col justify-between border-2 border-amber-500 relative transition-all duration-300 hover:scale-[1.01] overflow-hidden" style="aspect-ratio:1/1; display:flex; flex-direction:column;">
+          <div class="bg-black text-white p-0 rounded-[2.5rem] shadow-2xl h-full flex flex-col justify-between border border-zinc-800 relative transition-all duration-300 hover:scale-[1.01] overflow-hidden" style="aspect-ratio:1/1; display:flex; flex-direction:column;">
             <div class="w-full flex-1 relative bg-zinc-900 flex items-center justify-center">
               <video src="bucket.mp4" autoplay muted loop playsinline class="w-full h-full object-cover" onerror="this.style.display='none'"></video>
-              <div class="absolute inset-0 flex items-center justify-center p-6 text-center bg-black/40 text-white">
-                <div>
-                  <span class="text-xs font-mono uppercase text-amber-400">Interactive Media</span>
-                  <h4 class="text-2xl font-space font-extrabold mt-1">Creative Motion & Code</h4>
-                </div>
-              </div>
             </div>
           </div>
         </div>
@@ -1025,7 +1150,42 @@ html{scroll-behavior:smooth;}
 </div>
 
 <script>
-// WEB AUDIO SYNTHESIZER FOR MECHANICAL ROTARY SOUNDS
+// DESIGN VAULT DATA DICTIONARY
+const designVault = {
+  posters: {
+    category: "POSTER COLLECTION",
+    title: "Posters & Visual Identity",
+    items: [
+      { id: "1JdUxumgJVlEqYMXT9x-HN_qCQMMj3dgd", title: "Poster Design 01" },
+      { id: "1QR2ZQDJD5PlS4ZlBQn3FPZyht4VlzGt5", title: "Poster Design 02" },
+      { id: "1C2ewdNCCTWfCVDyF1U8gyIpAqQYLTsKN", title: "Poster Design 03" },
+      { id: "10oPHekxFup7MKhLL5p-uO4xzqlBtRWvH", title: "Poster Design 04" },
+      { id: "1ydCk_Xs9QXy3djrN1KQTq28Jr40v6ADh", title: "Poster Design 05" },
+      { id: "1YvbFz7npASowfda7fBg5s-58A065WwaR", title: "Poster Design 06" },
+      { id: "1_MCWf-w1aeQSWEGK6TkYuc1qRUPmaVFA", title: "Poster Design 07" }
+    ]
+  },
+  certificates: {
+    category: "CERTIFICATES & POSTS",
+    title: "Official Certs & Social Media Posts",
+    items: [
+      { id: "1QbZ60pQLj6Rlno1GrJSWP9drhg-E1-KD", title: "Certificate / Post 01" },
+      { id: "1MiSJgrKcU5Fzm5RpsfO_kTo16Tl8GCHQ", title: "Certificate / Post 02" },
+      { id: "1LLdGTUuAZs8nU9T_7cxes7o3u7zSBnkq", title: "Certificate / Post 03" },
+      { id: "1-CV_iBgpc3VwDwjIqEn4-5UcjCJJLEyn", title: "Certificate / Post 04" }
+    ]
+  },
+  magazines: {
+    category: "EDITORIAL & MAGAZINES",
+    title: "Magazine Cover & Spread Layouts",
+    items: [
+      { id: "1VXQFxnVhQ35QuZmK6Rwma8K69tpciSb-", title: "Magazine Issue 01" },
+      { id: "1mF-ZUySHrLqe57upseREIJsUUI6fasHz", title: "Magazine Issue 02" }
+    ]
+  }
+};
+
+// HIGH-VOLUME RICH SYNTHESIZED WEB AUDIO ENGINE
 let audioCtx = null;
 
 function getAudioContext() {
@@ -1038,125 +1198,88 @@ function getAudioContext() {
   return audioCtx;
 }
 
-// 1. Subtle Metallic Hover Click
 function playHoverSound() {
   try {
     const ctx = getAudioContext();
     const osc = ctx.createOscillator();
     const gain = ctx.createGain();
-
-    osc.type = 'sine';
-    osc.frequency.setValueAtTime(800, ctx.currentTime);
-    osc.frequency.exponentialRampToValueAtTime(400, ctx.currentTime + 0.04);
-
-    gain.gain.setValueAtTime(0.04, ctx.currentTime);
-    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.04);
-
+    
+    osc.type = 'triangle';
+    osc.frequency.setValueAtTime(440, ctx.currentTime);
+    osc.frequency.exponentialRampToValueAtTime(880, ctx.currentTime + 0.08);
+    
+    gain.gain.setValueAtTime(0.18, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.08);
+    
     osc.connect(gain);
     gain.connect(ctx.destination);
-
+    
     osc.start();
-    osc.stop(ctx.currentTime + 0.04);
+    osc.stop(ctx.currentTime + 0.08);
   } catch (e) {
-    console.log("Audio play error", e);
+    console.error(e);
   }
 }
 
-// 2. Mechanical Dial Spin & Heavy Ratchet Latch Sound
 function playDialSpinSound() {
   try {
     const ctx = getAudioContext();
     
-    // Mechanical click 1
+    // Rich multi-tone metallic ratchet click sound
     const osc1 = ctx.createOscillator();
-    const gain1 = ctx.createGain();
-    osc1.type = 'triangle';
-    osc1.frequency.setValueAtTime(300, ctx.currentTime);
-    osc1.frequency.exponentialRampToValueAtTime(90, ctx.currentTime + 0.12);
-    gain1.gain.setValueAtTime(0.2, ctx.currentTime);
-    gain1.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.12);
-    osc1.connect(gain1);
-    gain1.connect(ctx.destination);
-    osc1.start();
-    osc1.stop(ctx.currentTime + 0.12);
+    const osc2 = ctx.createOscillator();
+    const gain = ctx.createGain();
 
-    // Mechanical spring ratchet spin sound after 0.15s
-    setTimeout(() => {
-      const osc2 = ctx.createOscillator();
-      const gain2 = ctx.createGain();
-      osc2.type = 'sawtooth';
-      osc2.frequency.setValueAtTime(500, ctx.currentTime);
-      osc2.frequency.exponentialRampToValueAtTime(120, ctx.currentTime + 0.25);
-      gain2.gain.setValueAtTime(0.12, ctx.currentTime);
-      gain2.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.25);
-      osc2.connect(gain2);
-      gain2.connect(ctx.destination);
-      osc2.start();
-      osc2.stop(ctx.currentTime + 0.25);
-    }, 120);
+    osc1.type = 'square';
+    osc1.frequency.setValueAtTime(580, ctx.currentTime);
+    osc1.frequency.exponentialRampToValueAtTime(140, ctx.currentTime + 0.3);
+
+    osc2.type = 'sawtooth';
+    osc2.frequency.setValueAtTime(290, ctx.currentTime);
+    osc2.frequency.exponentialRampToValueAtTime(80, ctx.currentTime + 0.3);
+
+    gain.gain.setValueAtTime(0.28, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.3);
+
+    osc1.connect(gain);
+    osc2.connect(gain);
+    gain.connect(ctx.destination);
+
+    osc1.start();
+    osc2.start();
+    osc1.stop(ctx.currentTime + 0.3);
+    osc2.stop(ctx.currentTime + 0.3);
   } catch (e) {
-    console.log("Audio play error", e);
+    console.error(e);
   }
 }
 
-// 3. Folder Open Swoosh Sound
 function playFolderOpenSound() {
   try {
     const ctx = getAudioContext();
-    const osc = ctx.createOscillator();
-    const gain = ctx.createGain();
+    
+    // Majestic folder opening chime / chord
+    [300, 450, 600].forEach((freq, idx) => {
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
 
-    osc.type = 'sine';
-    osc.frequency.setValueAtTime(250, ctx.currentTime);
-    osc.frequency.exponentialRampToValueAtTime(650, ctx.currentTime + 0.15);
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(freq, ctx.currentTime + (idx * 0.03));
+      osc.frequency.exponentialRampToValueAtTime(freq * 1.5, ctx.currentTime + 0.25);
 
-    gain.gain.setValueAtTime(0.1, ctx.currentTime);
-    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.15);
+      gain.gain.setValueAtTime(0.15, ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.25);
 
-    osc.connect(gain);
-    gain.connect(ctx.destination);
+      osc.connect(gain);
+      gain.connect(ctx.destination);
 
-    osc.start();
-    osc.stop(ctx.currentTime + 0.15);
+      osc.start(ctx.currentTime + (idx * 0.03));
+      osc.stop(ctx.currentTime + 0.25);
+    });
   } catch (e) {
-    console.log("Audio play error", e);
+    console.error(e);
   }
 }
-
-// DESIGN ASSETS DATABASE
-const designVault = {
-  posters: {
-    title: "Posters & Promos",
-    category: "Graphics & Layouts",
-    items: [
-      { id: "1JdUxumgJVlEqYMXT9x-HN_qCQMMj3dgd", title: "Poster Design #01" },
-      { id: "1QR2ZQDJD5PlS4ZlBQn3FPZyht4VlzGt5", title: "Poster Design #02" },
-      { id: "1C2ewdNCCTWfCVDyF1U8gyIpAqQYLTsKN", title: "Poster Design #03" },
-      { id: "10oPHekxFup7MKhLL5p-uO4xzqlBtRWvH", title: "Poster Design #04" },
-      { id: "1ydCk_Xs9QXy3djrN1KQTq28Jr40v6ADh", title: "Poster Design #05" },
-      { id: "1YvbFz7npASowfda7fBg5s-58A065WwaR", title: "Poster Design #06" },
-      { id: "1_MCWf-w1aeQSWEGK6TkYuc1qRUPmaVFA", title: "Poster Design #07" }
-    ]
-  },
-  certificates: {
-    title: "Certificates & Social Posts",
-    category: "Branding & Certificates",
-    items: [
-      { id: "1QbZ60pQLj6Rlno1GrJSWP9drhg-E1-KD", title: "Certificate / Post #01" },
-      { id: "1MiSJgrKcU5Fzm5RpsfO_kTo16Tl8GCHQ", title: "Certificate / Post #02" },
-      { id: "1LLdGTUuAZs8nU9T_7cxes7o3u7zSBnkq", title: "Certificate / Post #03" },
-      { id: "1-CV_iBgpc3VwDwjIqEn4-5UcjCJJLEyn", title: "Certificate / Post #04" }
-    ]
-  },
-  magazines: {
-    title: "Magazines & Cover Art",
-    category: "Publications & Editorial",
-    items: [
-      { id: "1VXQFxnVhQ35QuZmK6Rwma8K69tpciSb-", title: "Magazine Design #01" },
-      { id: "1rGoiblju_Es1rIWk7L5VBB8CF5vCB5k2", title: "Magazine Design #02" }
-    ]
-  }
-};
 
 // INITIALIZATION
 window.addEventListener('DOMContentLoaded', () => {
@@ -1363,5 +1486,3 @@ function toggleFocusSprint() {
   }
 }
 </script>
-</body>
-</html>
