@@ -3,30 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Garigaboina Prashanth | Portfolio</title>
+<title>Garigaboina Prashanth | Interactive Portfolio</title>
 <script src="https://cdn.tailwindcss.com"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800&family=Inter:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{--bg-color:#ffffff;--text-main:#000000;--text-muted:#666666;}
 body{font-family:'Inter',sans-serif;background-color:var(--bg-color);color:var(--text-main);overflow-x:hidden;-webkit-font-smoothing:antialiased;}
-body.loading{overflow:hidden !important;height:100vh;}
 .font-space{font-family:'Space Grotesk',sans-serif;}
-
-/* PRELOADER STYLING */
-#preloader-container{position:fixed;top:0;left:0;width:100vw;height:100vh;background-color:#0d0e12;z-index:9999;display:flex;justify-content:center;align-items:center;overflow:hidden;pointer-events:all;}
-.loader-bg-panel{position:absolute;width:100%;height:100%;background-color:#0a0b0d;top:0;left:0;z-index:1;}
-.loader-content{position:relative;z-index:10;display:flex;flex-direction:column;align-items:center;justify-content:center;pointer-events:none;}
-.greetings-mask{height:110px;overflow:hidden;position:relative;display:flex;align-items:center;justify-content:center;}
-.greeting-word{font-family:'Space Grotesk',sans-serif;font-size:clamp(2.5rem,7vw,5rem);font-weight:800;line-height:1;letter-spacing:-0.05em;color:#ffffff;position:absolute;opacity:0;transform:translateY(110%) rotateX(40deg);filter:blur(12px);white-space:nowrap;display:flex;align-items:center;}
-@media (max-width:640px){.greetings-mask{height:70px;}}
-.status-dot-wrapper{margin-top:32px;display:flex;align-items:center;gap:10px;opacity:0;transform:translateY(20px);filter:blur(4px);}
-.status-dot{width:8px;height:8px;border-radius:50%;background-color:#ffffff;box-shadow:0 0 10px rgba(255,255,255,0.8);}
-.status-text{font-size:10px;text-transform:uppercase;letter-spacing:0.3em;color:rgba(255,255,255,0.5);font-weight:700;}
-
-/* MAIN WRAPPER EXIT MOTION */
-#main-site-wrapper{opacity:0;filter:blur(8px);transform:translateY(25px);transition:opacity 1s cubic-bezier(0.16,1,0.3,1),filter 1s cubic-bezier(0.16,1,0.3,1),transform 1s cubic-bezier(0.16,1,0.3,1);}
-#main-site-wrapper.ready{opacity:1;filter:blur(0px);transform:translateY(0px);}
 
 /* GLASS COMPONENT SYSTEM */
 .glass-icon{
@@ -148,7 +132,6 @@ body.loading{overflow:hidden !important;height:100vh;}
 .reveal.active{opacity:1;transform:translateY(0);}
 
 header { transition: background 0.3s ease; }
-
 html{scroll-behavior:smooth;}
 
 /* INTERACTIVE LAB WIDGETS */
@@ -166,28 +149,6 @@ html{scroll-behavior:smooth;}
   border: 1px solid rgba(255,255,255,0.12);
   box-shadow: 0 8px 32px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.08);
 }
-
-.widget-card {
-  background: #ffffff;
-  border-radius: 2.2rem;
-  padding: 2.5rem 1.8rem;
-  box-shadow: 0 25px 50px -12px rgba(0,0,0,0.07);
-  border: 1.5px solid rgba(240,240,243,0.9);
-  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: relative;
-  overflow: hidden;
-}
-.widget-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 35px 60px -10px rgba(0,0,0,0.12);
-  border-color: rgba(0,0,0,0.06);
-}
-.widget-card:hover .hover-offset-1 { transform: translate(-8px, -8px) rotate(-4deg); }
-.widget-card:hover .hover-offset-2 { transform: translate(8px, 8px) rotate(4deg); }
-.widget-card:hover .hover-scale-up { transform: scale(1.12); }
 
 /* STAMP / BADGE COLLECTION (Achievements) */
 .stamp-card{
@@ -222,39 +183,145 @@ html{scroll-behavior:smooth;}
   font-size:0.58rem; letter-spacing:0.12em; text-transform:uppercase;
   font-weight:700; color:rgba(255,255,255,0.75); margin-top:0.25rem; text-align:center;
 }
+
+/* REALISTIC ROTARY PHONE DIAL UI (MATCHING IMAGE_7E501C) */
+.rotary-dial-body {
+  width: min(380px, 85vw);
+  height: min(380px, 85vw);
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #d1d5db, #9ca3af 60%, #4b5563);
+  box-shadow: 
+    0 25px 50px -12px rgba(0, 0, 0, 0.35),
+    inset 0 4px 10px rgba(255, 255, 255, 0.8),
+    inset 0 -6px 12px rgba(0, 0, 0, 0.4);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  user-select: none;
+}
+.rotary-wheel {
+  width: 90%;
+  height: 90%;
+  border-radius: 50%;
+  background: radial-gradient(circle at 40% 40%, #e5e7eb, #b8c0cc 70%, #6b7280);
+  box-shadow: inset 0 2px 6px rgba(255, 255, 255, 0.9), inset 0 -4px 8px rgba(0,0,0,0.3);
+  position: relative;
+  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+.rotary-center-hub {
+  width: 48%;
+  height: 48%;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, #fdfbf7, #e2ded8);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2), inset 0 2px 4px rgba(255,255,255,0.9);
+  position: absolute;
+  top: 26%;
+  left: 26%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 1rem;
+  z-index: 10;
+  border: 1px solid rgba(0,0,0,0.08);
+}
+.rotary-slot {
+  position: absolute;
+  width: 18%;
+  height: 18%;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, #ffffff, #dcdfe5);
+  border: 2px solid #8c95a3;
+  box-shadow: inset 0 3px 6px rgba(0,0,0,0.3), 0 2px 4px rgba(255,255,255,0.8);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.rotary-slot:hover {
+  transform: scale(1.15);
+  border-color: #111;
+  box-shadow: 0 0 12px rgba(0,0,0,0.25), inset 0 1px 3px rgba(255,255,255,1);
+}
+.rotary-stop-lever {
+  position: absolute;
+  bottom: 12%;
+  right: 18%;
+  width: 22%;
+  height: 25%;
+  background: linear-gradient(135deg, #e5e7eb, #9ca3af, #4b5563);
+  clip-path: polygon(0% 0%, 100% 50%, 40% 100%, 0% 80%);
+  filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.3));
+  z-index: 12;
+  pointer-events: none;
+}
+
+/* FOLDER CARD SYSTEM (MATCHING IMAGE_7DF9E9) */
+.folder-card {
+  position: relative;
+  border-radius: 1.8rem;
+  padding: 1.5rem;
+  padding-top: 3.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: 230px;
+  cursor: pointer;
+  transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.35s ease;
+  box-shadow: 0 12px 30px -10px rgba(0,0,0,0.1);
+}
+.folder-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 20px 40px -12px rgba(0,0,0,0.18);
+}
+.folder-contents-peek {
+  position: absolute;
+  top: -24px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: -8px;
+  z-index: 1;
+}
+.folder-peek-item {
+  width: 52px;
+  height: 64px;
+  border-radius: 8px;
+  background: #ffffff;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  border: 1px solid rgba(0,0,0,0.08);
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+.folder-card:hover .folder-peek-item:nth-child(1) { transform: rotate(-10deg) translateY(-6px); }
+.folder-card:hover .folder-peek-item:nth-child(2) { transform: translateY(-10px); }
+.folder-card:hover .folder-peek-item:nth-child(3) { transform: rotate(10deg) translateY(-6px); }
+
+/* PASTEL FOLDER COLORS */
+.folder-pink { background-color: #fbcfe8; border: 1px solid #f472b6; }
+.folder-green { background-color: #a7f3d0; border: 1px solid #34d399; }
+.folder-amber { background-color: #fef08a; border: 1px solid #facc15; }
+.folder-blue { background-color: #bae6fd; border: 1px solid #38bdf8; }
+.folder-purple { background-color: #e9d5ff; border: 1px solid #c084fc; }
 </style>
 </head>
-<body class="noise antialiased bg-white loading">
+<body class="noise antialiased bg-white">
 
-<!-- PRELOADER LAYER -->
-<div id="preloader-container">
-  <div class="loader-bg-panel" id="loader-slide-curtain"></div>
-  <div class="loader-content">
-    <div class="greetings-mask w-[290px] sm:w-[480px]">
-      <span class="greeting-word" data-lang="en">Hello</span>
-      <span class="greeting-word" data-lang="fr">Bonjour</span>
-      <span class="greeting-word" data-lang="it">Ciao</span>
-      <span class="greeting-word" data-lang="es">Hola</span>
-      <span class="greeting-word" data-lang="de">Hallo</span>
-      <span class="greeting-word" data-lang="jp">こんにちは</span>
-      <span class="greeting-word" data-lang="in">नमस्ते</span>
-      <span class="greeting-word" data-lang="ta">வணக்கம்</span>
-    </div>
-    <div class="status-dot-wrapper" id="loader-status">
-      <span class="status-dot"></span>
-      <span class="status-text" id="status-string">CONNECTING [0%]</span>
-    </div>
-  </div>
-</div>
+<!-- MAIN SITE WRAPPER -->
+<div id="main-site-wrapper" class="ready" style="opacity: 1; filter: blur(0px); transform: translateY(0px);">
 
-<!-- MAIN SITE -->
-<div id="main-site-wrapper">
   <!-- Header identity -->
   <header class="py-5 fixed top-0 w-full z-[100] glass border-b-0">
     <div class="px-6 md:px-12 mx-auto max-w-[1600px] flex items-center justify-between">
       <a href="#" class="header-identity flex items-center gap-3">
         <div class="header-profile-avatar glass-icon !w-[38px] !h-[38px] overflow-hidden">
-          <img src="prashanth.png" alt="Prashanth" class="w-full h-full object-cover rounded-xl" />
+          <img src="prashanth.jpg" alt="Prashanth" class="w-full h-full object-cover rounded-xl" onerror="this.src='https://placehold.co/100x100/111/fff?text=GP'"/>
         </div>
         <div class="flex flex-col">
           <span class="text-sm font-space font-extrabold tracking-tighter text-black leading-none mb-0.5">G. PRASHANTH</span>
@@ -263,6 +330,7 @@ html{scroll-behavior:smooth;}
       </a>
       <nav class="flex items-center space-x-4 md:space-x-8">
         <a href="#projects" class="text-black text-[10px] uppercase font-bold tracking-widest hover:opacity-50 hidden md:block">Work</a>
+        <a href="#design-zone" class="text-black text-[10px] uppercase font-bold tracking-widest hover:opacity-50 hidden md:block">Design Zone</a>
         <a href="#labs" class="text-black text-[10px] uppercase font-bold tracking-widest hover:opacity-50 hidden md:block">Labs</a>
         <a href="#skills" class="text-black text-[10px] uppercase font-bold tracking-widest hover:opacity-50 hidden md:block">Skills</a>
         <a href="#chronicle" class="text-black text-[10px] uppercase font-bold tracking-widest hover:opacity-50 hidden md:block">Chronicle</a>
@@ -277,11 +345,11 @@ html{scroll-behavior:smooth;}
 
   <!-- Hero Section -->
   <section class="min-h-screen flex flex-col justify-center relative pt-32 pb-12 px-6 md:px-12">
-      <div class="container mx-auto max-w-[1500px] relative">
+    <div class="container mx-auto max-w-[1500px] relative">
       <div class="profile-card-wrapper">
         <div class="profile-card-fintech glass">
           <div class="profile-img-bg flex items-center justify-center bg-zinc-900 overflow-hidden">
-            <img src="prashanth.png" alt="Prashanth" class="w-full h-full object-cover" />
+            <img src="prashanth.jpg" alt="Prashanth" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/400x480/222/fff?text=Prashanth'"/>
           </div>
           <div class="card-footer-actions glass-dark">
             <a href="https://www.linkedin.com/in/prashanthgarigaboina?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" rel="noopener noreferrer" class="btn-card-sm btn-white-solid">
@@ -328,9 +396,70 @@ html{scroll-behavior:smooth;}
     </div>
   </section>
 
+  <!-- ROTARY TOOL DIAL CONTROLLER SECTION -->
+  <section class="py-20 px-6 bg-zinc-100 border-y border-zinc-200 relative overflow-hidden">
+    <div class="container mx-auto max-w-[1200px] text-center">
+      <div class="mb-10 reveal">
+        <span class="text-[9px] uppercase font-bold tracking-[0.4em] text-zinc-500">INTERACTIVE HARDWARE INTERFACE</span>
+        <h2 class="text-3xl md:text-5xl font-space font-extrabold text-black mt-2 tracking-tight">ROTARY TOOL DIAL</h2>
+        <p class="text-xs md:text-sm text-zinc-500 max-w-md mx-auto mt-2 font-medium">Tap any slot on the metallic rotary dial below to trigger logic sections or open the design folder vault.</p>
+      </div>
+
+      <!-- Rotary Dial Container -->
+      <div class="rotary-dial-body reveal" id="rotaryDialContainer">
+        <div class="rotary-wheel" id="rotaryWheel">
+          
+          <!-- Center Hub -->
+          <div class="rotary-center-hub">
+            <span class="text-[8px] uppercase tracking-widest font-extrabold text-zinc-400">SELECT TOOL</span>
+            <span id="dialActiveStatus" class="text-xs md:text-sm font-space font-black text-black mt-1 uppercase">DIAL READY</span>
+          </div>
+
+          <!-- Slot 1: Design Zone (Photoshop / Design Tool) -->
+          <div class="rotary-slot" style="top: 8%; left: 41%;" onclick="triggerToolAction('design', 'Design Zone')" title="Design Vault">
+            <span class="text-xs font-black text-purple-600 font-mono">Ps</span>
+          </div>
+
+          <!-- Slot 2: Illustrator / Design Folder -->
+          <div class="rotary-slot" style="top: 18%; right: 18%;" onclick="triggerToolAction('design', 'Illustrator Folders')" title="Vector Folders">
+            <span class="text-xs font-black text-orange-600 font-mono">Ai</span>
+          </div>
+
+          <!-- Slot 3: Projects (Python) -->
+          <div class="rotary-slot" style="top: 41%; right: 8%;" onclick="triggerToolAction('projects', 'Projects Gallery')" title="Code Projects">
+            <span class="text-xs font-black text-blue-600 font-mono">Py</span>
+          </div>
+
+          <!-- Slot 4: Skills (React) -->
+          <div class="rotary-slot" style="bottom: 18%; right: 18%;" onclick="triggerToolAction('skills', 'Tech Stack')" title="Skills">
+            <span class="text-xs font-black text-cyan-600 font-mono">React</span>
+          </div>
+
+          <!-- Slot 5: Interactive Labs (VS Code) -->
+          <div class="rotary-slot" style="bottom: 8%; left: 41%;" onclick="triggerToolAction('labs', 'Interactive Labs')" title="Labs">
+            <span class="text-xs font-black text-blue-500 font-mono">VS</span>
+          </div>
+
+          <!-- Slot 6: Chronicle (Java) -->
+          <div class="rotary-slot" style="bottom: 18%; left: 18%;" onclick="triggerToolAction('chronicle', 'Chronicle & Degree')" title="Chronicle">
+            <span class="text-xs font-black text-red-600 font-mono">Java</span>
+          </div>
+
+          <!-- Slot 7: Design Folders Direct -->
+          <div class="rotary-slot" style="top: 41%; left: 8%;" onclick="triggerToolAction('design', 'Folder Archives')" title="Design Folders">
+            <svg class="w-5 h-5 text-zinc-700" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"/></svg>
+          </div>
+
+        </div>
+
+        <!-- Stop Lever Metal Finger -->
+        <div class="rotary-stop-lever"></div>
+      </div>
+    </div>
+  </section>
+
   <!-- Projects Section -->
   <section id="projects" class="bg-gray-50/50 pt-32 pb-48 px-6 relative">
-
     <div class="container mx-auto max-w-[1200px]">
       <div class="mb-24 text-center reveal">
         <h2 class="text-[9px] uppercase tracking-[0.5em] text-gray-300 font-bold mb-4">01 / SELECTED WORKS</h2>
@@ -441,19 +570,124 @@ html{scroll-behavior:smooth;}
     </div>
   </section>
 
+  <!-- DESIGN ZONE: FOLDER ARCHIVE SYSTEM (MATCHING IMAGE_7DF9E9) -->
+  <section id="design-zone" class="py-32 px-6 bg-white border-t border-gray-100 relative">
+    <div class="container mx-auto max-w-[1200px]">
+      <div class="mb-20 text-center reveal">
+        <h2 class="text-[9px] uppercase tracking-[0.5em] text-gray-400 font-bold mb-4">02 / VISUAL PORTFOLIO</h2>
+        <p class="text-4xl md:text-6xl font-space font-bold tracking-tighter">Design <span class="italic font-light text-gray-400">Zone</span></p>
+        <p class="text-sm text-gray-500 mt-4 max-w-xl mx-auto font-medium">Curated graphic designs, event posters, branding certificates, and magazines tucked inside interactive folder cards.</p>
+      </div>
+
+      <!-- Folders Grid (Matching Image_7df9e9) -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10 max-w-5xl mx-auto reveal">
+
+        <!-- Folder 1: Posters -->
+        <div class="folder-card folder-pink group" onclick="openFolderGallery('posters')">
+          <div class="folder-contents-peek">
+            <div class="folder-peek-item">
+              <img src="https://lh3.googleusercontent.com/d/1JdUxumgJVlEqYMXT9x-HN_qCQMMj3dgd" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/100x120/f472b6/fff?text=Poster'"/>
+            </div>
+            <div class="folder-peek-item">
+              <img src="https://lh3.googleusercontent.com/d/1QR2ZQDJD5PlS4ZlBQn3FPZyht4VlzGt5" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/100x120/f472b6/fff?text=Poster'"/>
+            </div>
+            <div class="folder-peek-item">
+              <img src="https://lh3.googleusercontent.com/d/1C2ewdNCCTWfCVDyF1U8gyIpAqQYLTsKN" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/100x120/f472b6/fff?text=Poster'"/>
+            </div>
+          </div>
+          <div class="relative z-10 flex items-center justify-between">
+            <div>
+              <span class="text-[9px] font-extrabold uppercase tracking-widest text-pink-700">7 ITEMS INSIDE</span>
+              <h3 class="text-2xl font-space font-extrabold text-black">Posters</h3>
+            </div>
+            <div class="w-10 h-10 rounded-full bg-white/80 border border-pink-300 flex items-center justify-center text-black group-hover:scale-110 transition-transform">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Folder 2: Certificates & Posts -->
+        <div class="folder-card folder-green group" onclick="openFolderGallery('certificates')">
+          <div class="folder-contents-peek">
+            <div class="folder-peek-item">
+              <img src="https://lh3.googleusercontent.com/d/1QbZ60pQLj6Rlno1GrJSWP9drhg-E1-KD" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/100x120/34d399/fff?text=Cert'"/>
+            </div>
+            <div class="folder-peek-item">
+              <img src="https://lh3.googleusercontent.com/d/1MiSJgrKcU5Fzm5RpsfO_kTo16Tl8GCHQ" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/100x120/34d399/fff?text=Cert'"/>
+            </div>
+            <div class="folder-peek-item">
+              <img src="https://lh3.googleusercontent.com/d/1LLdGTUuAZs8nU9T_7cxes7o3u7zSBnkq" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/100x120/34d399/fff?text=Cert'"/>
+            </div>
+          </div>
+          <div class="relative z-10 flex items-center justify-between">
+            <div>
+              <span class="text-[9px] font-extrabold uppercase tracking-widest text-emerald-800">4 ITEMS INSIDE</span>
+              <h3 class="text-2xl font-space font-extrabold text-black">Certs & Posts</h3>
+            </div>
+            <div class="w-10 h-10 rounded-full bg-white/80 border border-emerald-300 flex items-center justify-center text-black group-hover:scale-110 transition-transform">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Folder 3: Magazines -->
+        <div class="folder-card folder-amber group" onclick="openFolderGallery('magazines')">
+          <div class="folder-contents-peek">
+            <div class="folder-peek-item">
+              <img src="https://lh3.googleusercontent.com/d/1VXQFxnVhQ35QuZmK6Rwma8K69tpciSb-" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/100x120/facc15/fff?text=Mag'"/>
+            </div>
+            <div class="folder-peek-item">
+              <img src="https://lh3.googleusercontent.com/d/1mF-ZUySHrLqe57upseREIJsUUI6fasHz" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/100x120/facc15/fff?text=Mag'"/>
+            </div>
+          </div>
+          <div class="relative z-10 flex items-center justify-between">
+            <div>
+              <span class="text-[9px] font-extrabold uppercase tracking-widest text-amber-800">2 ITEMS INSIDE</span>
+              <h3 class="text-2xl font-space font-extrabold text-black">Magazines</h3>
+            </div>
+            <div class="w-10 h-10 rounded-full bg-white/80 border border-amber-300 flex items-center justify-center text-black group-hover:scale-110 transition-transform">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- To Do List Widget (Matching Image_7df9e9 bottom layout) -->
+      <div class="mt-20 max-w-xl mx-auto bg-amber-50/60 border border-amber-200/80 p-8 rounded-3xl reveal">
+        <h4 class="text-xl font-space font-extrabold text-black mb-4">Design To Do List :</h4>
+        <ul class="space-y-3 text-sm text-zinc-700 font-medium">
+          <li class="flex items-center gap-3">
+            <span class="w-3 h-3 bg-amber-400 rounded-sm inline-block"></span>
+            Enhancing personal brand identity & poster visual design systems
+          </li>
+          <li class="flex items-center gap-3">
+            <span class="w-3 h-3 bg-amber-400 rounded-sm inline-block"></span>
+            Curating magazine layouts and typography for student publications
+          </li>
+          <li class="flex items-center gap-3">
+            <span class="w-3 h-3 bg-amber-400 rounded-sm inline-block"></span>
+            Creating vector graphics and committee event social media posts
+          </li>
+        </ul>
+        <p class="text-[10px] text-zinc-400 uppercase tracking-widest mt-6 font-bold text-right">Prashanth's Creative Space</p>
+      </div>
+
+    </div>
+  </section>
+
   <!-- Creative Labs / Micro-Apps Playground Section -->
   <section id="labs" class="py-32 px-6 border-t border-gray-100 relative" style="background-image: url('https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=1600&q=80'); background-size: cover; background-position: center;">
-
     <div class="container mx-auto max-w-[1200px]">
       <div class="mb-24 text-center reveal">
-        <h2 class="text-[9px] uppercase tracking-[0.5em] text-gray-400 font-bold mb-4">02 / INTERACTIVE LABS</h2>
+        <h2 class="text-[9px] uppercase tracking-[0.5em] text-gray-400 font-bold mb-4">03 / INTERACTIVE LABS</h2>
         <p class="text-4xl md:text-6xl font-space font-bold tracking-tighter">OS <span class="italic font-light text-gray-400">Playground</span></p>
         <p class="text-sm text-gray-400 mt-4 max-w-xl mx-auto font-medium">A set of re-engineered micro-apps and interactive widgets — small experiments built outside the main project list.</p>
       </div>
 
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
 
-        <!-- Live Status/Hire Widget (Updated UI) -->
+        <!-- Live Status/Hire Widget -->
         <div class="flex flex-col justify-between">
           <div class="relative w-full">
             <div class="bg-[#0f1722] text-white rounded-[2.5rem] shadow-2xl relative z-10 border border-neutral-800 transition-all duration-300 overflow-hidden hover:scale-[1.01]" style="aspect-ratio:1/1; display:flex; flex-direction:column;">
@@ -462,12 +696,12 @@ html{scroll-behavior:smooth;}
               </div>
               <div class="p-6 mt-auto">
                 <div class="flex items-center gap-4 -mt-8">
-                  <img src="prashanth.png" alt="avatar" class="w-16 h-16 rounded-full border-4 border-[#0f1722] object-cover" />
+                  <img src="prashanth.jpg" alt="avatar" class="w-16 h-16 rounded-full border-4 border-[#0f1722] object-cover" onerror="this.src='https://placehold.co/100x100/222/fff?text=GP'"/>
                   <div>
                     <div class="text-xl font-space font-extrabold">Prashanth Garigaboina</div>
                     <div class="text-xs text-neutral-400 flex items-center gap-2">
                       <span>Systems Engineer</span>
-                      <span class="ml-2 font-mono text-[11px] text-neutral-300">05:14 PM</span>
+                      <span class="ml-2 font-mono text-[11px] text-neutral-300">Available</span>
                     </div>
                   </div>
                 </div>
@@ -488,11 +722,17 @@ html{scroll-behavior:smooth;}
           </div>
         </div>
 
-        <!-- Resume Snapshot Widget (Video only, autoplay muted loop) -->
+        <!-- Resume Snapshot Widget -->
         <div class="flex flex-col justify-between">
           <div class="bg-[#ffcc00] text-black p-0 rounded-[2.5rem] shadow-2xl h-full flex flex-col justify-between border-2 border-amber-500 relative transition-all duration-300 hover:scale-[1.01] overflow-hidden" style="aspect-ratio:1/1; display:flex; flex-direction:column;">
-            <div class="w-full flex-1">
-              <video src="bucket.mp4" autoplay muted loop playsinline class="w-full h-full object-cover bg-black"></video>
+            <div class="w-full flex-1 relative bg-zinc-900 flex items-center justify-center">
+              <video src="bucket.mp4" autoplay muted loop playsinline class="w-full h-full object-cover" onerror="this.style.display='none'"></video>
+              <div class="absolute inset-0 flex items-center justify-center p-6 text-center bg-black/40 text-white">
+                <div>
+                  <span class="text-xs font-mono uppercase text-amber-400">Interactive Media</span>
+                  <h4 class="text-2xl font-space font-extrabold mt-1">Creative Motion & Code</h4>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -531,10 +771,9 @@ html{scroll-behavior:smooth;}
 
   <!-- Skills Section -->
   <section id="skills" class="py-32 px-6 relative">
-
     <div class="container mx-auto max-w-[1200px]">
       <div class="mb-24 reveal text-center lg:text-left">
-        <h2 class="text-[9px] uppercase tracking-[0.5em] text-gray-300 font-bold mb-4">03 / CAPABILITIES</h2>
+        <h2 class="text-[9px] uppercase tracking-[0.5em] text-gray-300 font-bold mb-4">04 / CAPABILITIES</h2>
         <p class="text-4xl md:text-6xl font-space font-bold tracking-tighter">Tools & <span class="italic font-light text-gray-400">Logic</span></p>
       </div>
 
@@ -619,10 +858,9 @@ html{scroll-behavior:smooth;}
 
   <!-- Chronicle & Education Section -->
   <section id="chronicle" class="py-32 md:py-60 bg-gray-50 relative overflow-hidden px-6">
-
     <div class="container mx-auto max-w-[1100px] relative z-20">
       <div class="text-center mb-24 reveal">
-        <h2 class="text-[9px] uppercase tracking-[0.5em] text-gray-300 font-bold mb-8">04 / CHRONICLE</h2>
+        <h2 class="text-[9px] uppercase tracking-[0.5em] text-gray-300 font-bold mb-8">05 / CHRONICLE</h2>
         <span class="text-sm font-mono text-gray-400 mb-4 block">2024 — 2028</span>
         <h3 class="text-5xl md:text-8xl font-space font-bold mb-8 tracking-tighter leading-none text-black">VBIT Hyderabad</h3>
         <p class="text-xl md:text-3xl text-gray-400 font-light leading-tight mb-20 max-w-2xl mx-auto">
@@ -646,7 +884,7 @@ html{scroll-behavior:smooth;}
           <!-- Stamp 1: Poster Design 1st Prize -->
           <div class="stamp-card" style="background:linear-gradient(160deg,#ff8a3d,#e6432a);">
             <div class="stamp-icon-wrap">
-              <svg class="w-12 h-12" viewBox="0 0 48 48" fill="none">
+              <svg class="w-12 h-12 text-white" viewBox="0 0 48 48" fill="none">
                 <path d="M16 8h16v8c0 5.5-3 9.5-7 9.5s-7-4-7-9.5z" fill="#fff" opacity="0.92"/>
                 <path d="M16 9.5c-3.6-.5-6 1.8-6 5s2.7 5.4 6.3 5.4" stroke="#fff" stroke-width="2" fill="none"/>
                 <path d="M32 9.5c3.6-.5 6 1.8 6 5s-2.7 5.4-6.3 5.4" stroke="#fff" stroke-width="2" fill="none"/>
@@ -661,7 +899,7 @@ html{scroll-behavior:smooth;}
           <!-- Stamp 2: GenAI Hackathon -->
           <div class="stamp-card" style="background:linear-gradient(160deg,#7c5cff,#4527a0);">
             <div class="stamp-icon-wrap">
-              <svg class="w-12 h-12" viewBox="0 0 48 48" fill="none">
+              <svg class="w-12 h-12 text-white" viewBox="0 0 48 48" fill="none">
                 <circle cx="24" cy="22" r="13" fill="#fff" opacity="0.92"/>
                 <path d="M24 12v3M24 31v3M14 22h3M31 22h3M17.5 15.5l2 2M30.5 15.5l-2 2M17.5 28.5l2-2M30.5 28.5l-2-2" stroke="#4527a0" stroke-width="2.4" stroke-linecap="round"/>
                 <circle cx="24" cy="22" r="4.2" fill="#4527a0"/>
@@ -674,7 +912,7 @@ html{scroll-behavior:smooth;}
           <!-- Stamp 3: GDG Solution Challenge -->
           <div class="stamp-card" style="background:linear-gradient(160deg,#3ddc97,#0e8a5f);">
             <div class="stamp-icon-wrap">
-              <svg class="w-12 h-12" viewBox="0 0 48 48" fill="none">
+              <svg class="w-12 h-12 text-white" viewBox="0 0 48 48" fill="none">
                 <circle cx="24" cy="20" r="10" fill="#fff" opacity="0.92"/>
                 <path d="M14 36c2-7 7-10 10-10s8 3 10 10" stroke="#fff" stroke-width="3" stroke-linecap="round" fill="none" opacity="0.92"/>
                 <circle cx="24" cy="20" r="4" fill="#0e8a5f"/>
@@ -687,7 +925,7 @@ html{scroll-behavior:smooth;}
           <!-- Stamp 4: Build with India -->
           <div class="stamp-card" style="background:linear-gradient(160deg,#3da9fc,#1c4f9c);">
             <div class="stamp-icon-wrap">
-              <svg class="w-12 h-12" viewBox="0 0 48 48" fill="none">
+              <svg class="w-12 h-12 text-white" viewBox="0 0 48 48" fill="none">
                 <path d="M24 8c8 6 11 18 9 28-1.5 6-5 9-9 9s-7.5-3-9-9c-2-10 1-22 9-28z" fill="#fff" opacity="0.92"/>
                 <circle cx="24" cy="22" r="4" fill="#1c4f9c"/>
                 <path d="M16 33l-6 4 2-8M32 33l6 4-2-8" stroke="#fff" stroke-width="2.4" stroke-linecap="round" fill="none" opacity="0.92"/>
@@ -700,7 +938,7 @@ html{scroll-behavior:smooth;}
           <!-- Stamp 5: Infosys Springboard -->
           <div class="stamp-card" style="background:linear-gradient(160deg,#ffd23d,#e6a30f);">
             <div class="stamp-icon-wrap">
-              <svg class="w-12 h-12" viewBox="0 0 48 48" fill="none">
+              <svg class="w-12 h-12 text-white" viewBox="0 0 48 48" fill="none">
                 <rect x="11" y="14" width="26" height="20" rx="3" fill="#fff" opacity="0.92"/>
                 <path d="M16 19h16M16 24h16M16 29h10" stroke="#e6a30f" stroke-width="2.2" stroke-linecap="round"/>
               </svg>
@@ -712,7 +950,7 @@ html{scroll-behavior:smooth;}
           <!-- Stamp 6: Google Developer Profile -->
           <div class="stamp-card" style="background:linear-gradient(160deg,#5cc8ff,#1c7fc9);">
             <div class="stamp-icon-wrap">
-              <svg class="w-12 h-12" viewBox="0 0 48 48" fill="none">
+              <svg class="w-12 h-12 text-white" viewBox="0 0 48 48" fill="none">
                 <circle cx="24" cy="24" r="13" fill="#fff" opacity="0.92"/>
                 <path d="M24 16v8l6 4" stroke="#1c7fc9" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
               </svg>
@@ -752,73 +990,82 @@ html{scroll-behavior:smooth;}
       </div>
     </div>
   </footer>
+
+</div>
+
+<!-- FOLDER GALLERY MODAL GRID -->
+<div id="folderGalleryModal" class="fixed inset-0 bg-black/80 backdrop-blur-md z-[200] hidden flex-col justify-center items-center p-4 md:p-8">
+  <div class="bg-white rounded-3xl w-full max-w-5xl max-h-[90vh] overflow-y-auto p-6 md:p-10 relative flex flex-col shadow-2xl">
+    <!-- Close Button -->
+    <button onclick="closeFolderGallery()" class="absolute top-6 right-6 w-10 h-10 rounded-full bg-zinc-100 hover:bg-zinc-200 flex items-center justify-center text-black font-bold text-lg">✕</button>
+    
+    <div class="mb-8">
+      <span class="text-xs font-mono uppercase tracking-widest text-zinc-400" id="modalCategoryLabel">Category</span>
+      <h3 class="text-3xl md:text-5xl font-space font-extrabold text-black mt-1" id="modalFolderTitle">Folder Designs</h3>
+      <p class="text-sm text-zinc-500 mt-2">Tap any design card below to inspect in high-resolution preview.</p>
+    </div>
+
+    <!-- Grid Container -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6" id="modalDesignsGrid">
+      <!-- Injected via JavaScript -->
+    </div>
+  </div>
+</div>
+
+<!-- SINGLE DESIGN LIGHTBOX MODAL -->
+<div id="lightboxModal" class="fixed inset-0 bg-black/95 z-[300] hidden flex-col justify-center items-center p-4">
+  <button onclick="closeLightbox()" class="absolute top-6 right-6 z-10 px-4 py-2 rounded-full bg-white/20 hover:bg-white/40 text-white font-bold text-sm backdrop-blur-md">Close Preview ✕</button>
+  <div class="max-w-4xl max-h-[85vh] w-full flex flex-col items-center justify-center relative">
+    <iframe id="lightboxIframe" class="w-full h-[75vh] rounded-2xl border border-zinc-800 bg-zinc-900" src="" frameborder="0" allowfullscreen></iframe>
+    <div class="mt-4 flex items-center justify-between w-full text-white px-2">
+      <span id="lightboxTitle" class="font-space font-bold text-lg">Design Preview</span>
+      <a id="lightboxExternalLink" href="#" target="_blank" class="text-xs bg-white text-black font-bold px-4 py-2 rounded-full hover:bg-zinc-200 transition-colors">Open Drive File ↗</a>
+    </div>
+  </div>
 </div>
 
 <script>
-function boot() {
-  if (typeof gsap === 'undefined') {
-    requestAnimationFrame(boot);
-    return;
+// DESIGN ASSETS DATABASE
+const designVault = {
+  posters: {
+    title: "Posters & Promos",
+    category: "Graphics & Layouts",
+    items: [
+      { id: "1JdUxumgJVlEqYMXT9x-HN_qCQMMj3dgd", title: "Poster Design #01" },
+      { id: "1QR2ZQDJD5PlS4ZlBQn3FPZyht4VlzGt5", title: "Poster Design #02" },
+      { id: "1C2ewdNCCTWfCVDyF1U8gyIpAqQYLTsKN", title: "Poster Design #03" },
+      { id: "10oPHekxFup7MKhLL5p-uO4xzqlBtRWvH", title: "Poster Design #04" },
+      { id: "1ydCk_Xs9QXy3djrN1KQTq28Jr40v6ADh", title: "Poster Design #05" },
+      { id: "1YvbFz7npASowfda7fBg5s-58A065WwaR", title: "Poster Design #06" },
+      { id: "1_MCWf-w1aeQSWEGK6TkYuc1qRUPmaVFA", title: "Poster Design #07" }
+    ]
+  },
+  certificates: {
+    title: "Certificates & Social Posts",
+    category: "Branding & Certificates",
+    items: [
+      { id: "1QbZ60pQLj6Rlno1GrJSWP9drhg-E1-KD", title: "Certificate / Post #01" },
+      { id: "1MiSJgrKcU5Fzm5RpsfO_kTo16Tl8GCHQ", title: "Certificate / Post #02" },
+      { id: "1LLdGTUuAZs8nU9T_7cxes7o3u7zSBnkq", title: "Certificate / Post #03" },
+      { id: "1-CV_iBgpc3VwDwjIqEn4-5UcjCJJLEyn", title: "Certificate / Post #04" }
+    ]
+  },
+  magazines: {
+    title: "Magazines & Cover Art",
+    category: "Publications & Editorial",
+    items: [
+      { id: "1VXQFxnVhQ35QuZmK6Rwma8K69tpciSb-", title: "Magazine Design #01" },
+      { id: "1mF-ZUySHrLqe57upseREIJsUUI6fasHz", title: "Magazine Design #02" }
+    ]
   }
-  runPreloader();
+};
+
+// INITIALIZATION
+window.addEventListener('DOMContentLoaded', () => {
+  initReveal();
+  stackNotes();
   startWidgetScripts();
-}
-boot();
-
-function runPreloader() {
-const greetings = document.querySelectorAll('.greeting-word');
-const statusEl = document.getElementById('status-string');
-const wrapper = document.getElementById('main-site-wrapper');
-const preloader = document.getElementById('preloader-container');
-let idx = 0;
-const total = greetings.length;
-
-function showWord(i) {
-  greetings.forEach((w, n) => {
-    if (n === i) {
-      gsap.to(w, { opacity: 1, y: 0, filter: 'blur(0px)', rotateX: 0, duration: 0.25, ease: 'power3.out' });
-    } else {
-      gsap.set(w, { opacity: 0, y: '110%', filter: 'blur(12px)', rotateX: 40 });
-    }
-  });
-}
-
-gsap.to('#loader-status', { opacity: 1, y: 0, filter: 'blur(0px)', duration: 0.4, delay: 0.1 });
-showWord(0);
-
-const interval = setInterval(() => {
-  idx++;
-  if (idx >= total) {
-    clearInterval(interval);
-    finishLoading();
-    return;
-  }
-  showWord(idx);
-  statusEl.textContent = `CONNECTING [${Math.round((idx / total) * 100)}%]`;
-}, 160);
-
-function finishLoading() {
-  statusEl.textContent = 'CONNECTING [100%]';
-
-  gsap.to("#loader-slide-curtain", {
-    y: "-100%",
-    duration: 0.6,
-    ease: "power4.inOut"
-  });
-
-  gsap.to(preloader, {
-    opacity: 0,
-    duration: 0.5,
-    delay: 0.1,
-    onComplete: () => {
-      preloader.style.display = 'none';
-      document.body.classList.remove('loading');
-      wrapper.classList.add('ready');
-      initReveal();
-      stackNotes();
-    }
-  });
-}
+});
 
 function initReveal() {
   const reveals = document.querySelectorAll('.reveal');
@@ -829,11 +1076,8 @@ function initReveal() {
   }, { threshold: 0.1 });
   reveals.forEach(el => obs.observe(el));
 }
-}
 
 function stackNotes() {
-  if (document.body.classList.contains('loading')) return;
-
   const cards = document.querySelectorAll('.project-card');
   const threshold = 0.2;
   cards.forEach((card, i) => {
@@ -851,26 +1095,97 @@ function stackNotes() {
     }
   });
 }
-
 window.addEventListener('scroll', stackNotes, { passive: true });
 
-function startWidgetScripts() {
-  function updateWidgetClock() {
-    const timeEl = document.getElementById('widget-local-time');
-    if (!timeEl) return;
-    const now = new Date();
-    let hours = now.getHours();
-    let minutes = now.getMinutes();
-    const ampm = hours >= 12 ? 'PM' : 'AM';
-    hours = hours % 12;
-    hours = hours ? hours : 12;
-    minutes = minutes < 10 ? '0'+minutes : minutes;
-    const timeString = `${hours < 10 ? '0' + hours : hours}:${minutes} ${ampm}`;
-    timeEl.textContent = timeString;
-  }
-  updateWidgetClock();
-  setInterval(updateWidgetClock, 10000);
+// ROTARY DIAL INTERACTION
+function triggerToolAction(targetKey, toolLabel) {
+  const wheel = document.getElementById('rotaryWheel');
+  const status = document.getElementById('dialActiveStatus');
+  
+  if (status) status.textContent = toolLabel;
+  if (wheel) wheel.style.transform = 'rotate(45deg)';
 
+  setTimeout(() => {
+    if (wheel) wheel.style.transform = 'rotate(0deg)';
+    if (targetKey === 'design') {
+      const targetEl = document.getElementById('design-zone');
+      if (targetEl) targetEl.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      const targetEl = document.getElementById(targetKey);
+      if (targetEl) targetEl.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, 400);
+}
+
+// FOLDER GALLERY MODAL LOGIC
+function openFolderGallery(folderKey) {
+  const data = designVault[folderKey];
+  if (!data) return;
+
+  document.getElementById('modalCategoryLabel').textContent = data.category;
+  document.getElementById('modalFolderTitle').textContent = data.title;
+
+  const container = document.getElementById('modalDesignsGrid');
+  container.innerHTML = '';
+
+  data.items.forEach((item, index) => {
+    const imgUrl = `https://lh3.googleusercontent.com/d/${item.id}`;
+    const card = document.createElement('div');
+    card.className = "bg-zinc-50 border border-zinc-200 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all cursor-pointer flex flex-col group";
+    card.onclick = () => openLightbox(item.id, item.title);
+
+    card.innerHTML = `
+      <div class="aspect-[3/4] bg-zinc-200 overflow-hidden relative">
+        <img src="${imgUrl}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" onerror="this.src='https://placehold.co/400x500/111/fff?text=${encodeURIComponent(item.title)}'"/>
+        <div class="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white font-bold text-xs uppercase tracking-widest">Tap to view</div>
+      </div>
+      <div class="p-4 flex justify-between items-center bg-white">
+        <span class="text-sm font-space font-extrabold text-black">${item.title}</span>
+        <span class="text-[10px] bg-zinc-100 text-zinc-600 font-bold px-2 py-1 rounded-md">Item #${index + 1}</span>
+      </div>
+    `;
+    container.appendChild(card);
+  });
+
+  const modal = document.getElementById('folderGalleryModal');
+  modal.classList.remove('hidden');
+  modal.classList.add('flex');
+}
+
+function closeFolderGallery() {
+  const modal = document.getElementById('folderGalleryModal');
+  modal.classList.add('hidden');
+  modal.classList.remove('flex');
+}
+
+// LIGHTBOX MODAL LOGIC
+function openLightbox(driveId, title) {
+  const iframe = document.getElementById('lightboxIframe');
+  const titleEl = document.getElementById('lightboxTitle');
+  const link = document.getElementById('lightboxExternalLink');
+
+  const previewUrl = `https://drive.google.com/file/d/${driveId}/preview`;
+  const viewUrl = `https://drive.google.com/file/d/${driveId}/view`;
+
+  iframe.src = previewUrl;
+  titleEl.textContent = title;
+  link.href = viewUrl;
+
+  const lightbox = document.getElementById('lightboxModal');
+  lightbox.classList.remove('hidden');
+  lightbox.classList.add('flex');
+}
+
+function closeLightbox() {
+  const lightbox = document.getElementById('lightboxModal');
+  const iframe = document.getElementById('lightboxIframe');
+  iframe.src = '';
+  lightbox.classList.add('hidden');
+  lightbox.classList.remove('flex');
+}
+
+// CALENDAR & SPRINT WIDGET LOGIC
+function startWidgetScripts() {
   renderRollingCalendar();
 }
 
@@ -890,17 +1205,9 @@ function renderRollingCalendar() {
 
     const isPast = current < today && current.toDateString() !== today.toDateString();
     const isToday = current.toDateString() === today.toDateString();
-    const isFirstOfMonth = current.getDate() === 1;
 
     const dayDiv = document.createElement('div');
-    dayDiv.className = 'relative flex flex-col items-center justify-center w-9 h-9 sm:w-10 sm:h-10 rounded-xl text-xs font-semibold font-space select-none transition-transform duration-300';
-
-    if (isFirstOfMonth || i === 0) {
-      const monthBadge = document.createElement('div');
-      monthBadge.className = 'absolute -top-3 bg-white text-[8px] font-extrabold text-black border border-gray-100 px-1.5 py-0.5 rounded-md shadow-sm z-10 leading-none';
-      monthBadge.textContent = current.toLocaleString('default', { month: 'short' });
-      dayDiv.appendChild(monthBadge);
-    }
+    dayDiv.className = 'relative flex flex-col items-center justify-center w-9 h-9 sm:w-10 sm:h-10 rounded-xl text-xs font-semibold font-space select-none';
 
     const dateSpan = document.createElement('span');
     dateSpan.textContent = current.getDate();
@@ -911,13 +1218,6 @@ function renderRollingCalendar() {
     } else if (isPast) {
       dayDiv.className += ' bg-[#c5fc1a] text-black border border-transparent';
       dateSpan.className = 'relative z-10 font-bold';
-
-      const scribbleSvg = `
-        <svg class="absolute inset-0 w-full h-full text-black opacity-85 select-none pointer-events-none" viewBox="0 0 100 100" preserveAspectRatio="none">
-          <path d="M15,40 Q35,15 65,30 T85,25 M10,55 Q40,30 75,65 T90,45 M20,75 Q50,50 80,80" fill="none" stroke="currentColor" stroke-width="4.5" stroke-linecap="round"/>
-        </svg>
-      `;
-      dayDiv.insertAdjacentHTML('beforeend', scribbleSvg);
     } else {
       dayDiv.className += ' bg-gray-50 text-zinc-900 border border-gray-100 hover:bg-zinc-100';
     }
@@ -953,7 +1253,6 @@ function toggleFocusSprint() {
         clearInterval(timerInterval);
         timerRunning = false;
         btnText.textContent = "Session Complete!";
-        btnIcon.innerHTML = `<path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>`;
         panel.textContent = "Nice work!";
         return;
       }
@@ -962,69 +1261,6 @@ function toggleFocusSprint() {
       panel.textContent = `${mins < 10 ? '0' + mins : mins}:${secs < 10 ? '0' + secs : secs}`;
     }, 1000);
   }
-}
-
-function copyWidgetEmail(btnElement) {
-  const emailText = "prashanthgarigaboina@gmail.com";
-  const labelSpan = document.getElementById('copy-btn-text');
-
-  const textArea = document.createElement("textarea");
-  textArea.value = emailText;
-  textArea.style.position = "absolute";
-  textArea.style.left = "-9999px";
-  document.body.appendChild(textArea);
-  textArea.select();
-
-  try {
-    document.execCommand('copy');
-    if (labelSpan) {
-      labelSpan.textContent = "Copied!";
-      setTimeout(() => {
-        labelSpan.textContent = "Copy Email";
-      }, 2000);
-    }
-  } catch (err) {
-    console.error("Fallback copy execution error", err);
-  }
-  document.body.removeChild(textArea);
-}
-
-let currentTaxiLocState = 1;
-function toggleTaxiLocation() {
-  const addrEl = document.getElementById('taxi-location-address');
-  if (!addrEl) return;
-  if (currentTaxiLocState === 0) {
-    addrEl.textContent = "VBIT Campus, Hyderabad, TS 501301";
-    currentTaxiLocState = 1;
-  } else {
-    addrEl.textContent = "111 Fifth Ave New York, NY 10003";
-    currentTaxiLocState = 0;
-  }
-}
-
-function requestCabSimulation(btn) {
-  if (btn.disabled) return;
-  btn.disabled = true;
-  const originalText = btn.textContent;
-  btn.innerHTML = `
-    <svg class="animate-spin h-5 h-5 text-amber-500 inline-block mr-2" fill="none" viewBox="0 0 24 24">
-      <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-      <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-    </svg> Loading...
-  `;
-
-  setTimeout(() => {
-    btn.innerHTML = "On its Way!";
-    btn.classList.remove('bg-black', 'text-[#ffcc00]');
-    btn.classList.add('bg-white', 'text-black', 'border-2', 'border-black');
-
-    setTimeout(() => {
-      btn.textContent = originalText;
-      btn.classList.remove('bg-white', 'text-black', 'border-2', 'border-black');
-      btn.classList.add('bg-black', 'text-[#ffcc00]');
-      btn.disabled = false;
-    }, 4000);
-  }, 1800);
 }
 </script>
 </body>
